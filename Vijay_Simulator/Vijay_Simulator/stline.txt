@@ -1,0 +1,58 @@
+movi r0
+100
+movi r1
+200
+movi r2
+10
+movi r4 
+00
+movs r0
+load r3
+movs r1
+store r4
+adi 
+01
+store r4
+adi 
+01
+movd r1
+movi r4
+01
+LOOP: cdu 
+PLOT
+movs r2
+subi
+01
+movd r2
+jmpdnz
+LOOP
+stop
+PLOT: movs r1
+store r4
+adi 
+01
+movd r1
+movi r5
+00
+movs r3
+movd r7
+LOOP1: movs r5
+add r4
+movd r5
+movs r7
+subi 
+01
+movd r7
+jmpdnz
+LOOP1
+movs r1
+store r5
+adi 
+01
+movd r1
+movs r4
+adi 
+01
+movd r4
+retu
+  

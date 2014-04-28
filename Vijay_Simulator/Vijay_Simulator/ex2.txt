@@ -1,0 +1,14 @@
+movi r1
+22
+movs r1
+adi
+42
+push r1
+cdu 
+next
+pop r2
+movs r2
+stop
+next: add r1
+movd r3
+retu
