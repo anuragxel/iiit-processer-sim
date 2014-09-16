@@ -1,5 +1,0 @@
-movi r1
-100
-movs r1
-load r2
-stop
