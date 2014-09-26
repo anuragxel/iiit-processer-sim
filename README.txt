@@ -1,7 +1,7 @@
 Old People. New Challenge. mov pc,lr
 
 ### Structural Layout of Program ###
-Each register is defined along with setters, and getter type operations only. (Increment and Decrement are debatable.)
+Each register is defined along with operations on bus. Via extern databus defined globally.
 ALU is defined with all operations as defined.
 Databus is essentially identical to the registers, it just happens to remain connected to a large number of other registers.
 
