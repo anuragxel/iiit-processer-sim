@@ -17,7 +17,7 @@ void ALU::setContent ( int content ) {
 }
 
 int ALU::getContent () {
-	return this->Content & ~((1 << 9) - 1);
+	return this->Content & 255;
 }
 
 #endif

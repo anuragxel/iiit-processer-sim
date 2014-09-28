@@ -1,7 +1,6 @@
 Old People. New Challenge. mov pc,lr
 
 ### Structural Layout of Program ###
-	
 *.hpp -> 
 	class declaration of module.
 	Must be included in every *.cpp
