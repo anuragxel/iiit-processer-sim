@@ -17,7 +17,7 @@ void Databus::setContent ( int content ) {
 }
 
 int Databus::getContent () {
-	return this->Content & ~((1 << 9) - 1);
+	return this->Content & 255;
 }
 
 #endif
