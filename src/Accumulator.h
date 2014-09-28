@@ -1,5 +1,5 @@
-#ifndef ACCUMULATOR_H
-#define ACCUMULATOR_H
+#ifndef _ACCUMULATOR_H
+#define _ACCUMULATOR_H
 
 class Accumulator
 {

@@ -1,22 +1,22 @@
-OBJ = cv
-override CFLAGS += -Ofast -funroll-loops -flto -Wall -D_FILE_OFFSET_BITS=64
-override DEVEL_FLAGS += -g -Wall -D_FILE_OFFSET_BITS=64
-override LFLAGS += -lncurses -lm
+OBJ = stdArchSim
+override CFLAGS += -Ofast -funroll-loops -flto -Wall 
+override DEVEL_FLAGS += -g -Wall 
+override LFLAGS += 
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
-$(OBJ) : <*.o>
+$(OBJ) : Accumulator.o 
 	$(CC) -Wall $^ -o $@ $(LFLAGS)
 
-%.o : %.c
+%.o : %.cpp
 	$(CC) $(DEVEL_FLAGS) -c $^
 
 clean :
 	rm -f *.o $(OBJ)
 
 ofast :
-	$(CC) $(CFLAGS) -c <*.cpp>
+	$(CC) $(CFLAGS) -c  Accumulator.cpp
 
 install : $(OBJ)
 	@echo "Installing program to $(DESTDIR)$(BINDIR) ..."
