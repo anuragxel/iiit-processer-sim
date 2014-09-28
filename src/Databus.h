@@ -5,7 +5,7 @@ class Databus
 {
 	private:
 		int Content;
-		bool flag;
+		bool Busy;
 	public:
 		Databus();
 		~Databus();
@@ -14,8 +14,8 @@ class Databus
 		int getContent ( );
 
 		bool isBusy();
-		bool setBusy();
-		bool resetBusy();
+		void setBusy();
+		void resetBusy();
 
 		void setBusy( bool );
 		bool getBusy ();

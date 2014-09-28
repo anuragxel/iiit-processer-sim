@@ -4,13 +4,15 @@
 class ALU
 {
 	private:
-		int Content;
+		int Flags;
 	public:
 		ALU();
 		~ALU();
 
-		void setContent( int content );
-		int getContent ( );
+		void getContent(); // for pseudo-content
+
+		void setFlags( int );
+		int getFlags ();
 };
 
 #endif

@@ -6,7 +6,7 @@
 
 Databus::Databus () {
 	this->Content = 0;
-	this-Busy = true;
+	this->Busy = true;
 }
 
 Databus::~Databus () {

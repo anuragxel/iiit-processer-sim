@@ -8,7 +8,7 @@ PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
-$(OBJ) : Accumulator.o Databus.o ALU.o main.o ControlSignals.o
+$(OBJ) : Accumulator.o Databus.o ALU.o main.o BaseRegister.o
 	$(CC) -Wall $^ -o $@ $(LFLAGS)
 
 %.o : %.cpp

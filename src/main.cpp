@@ -13,15 +13,6 @@ ALU *alu = new ALU();
 
 int main(int argc, char const *argv[])
 {
-	std::cout <<databus->getContent()<<std::endl;
-	std::cout <<accumulator->getContent()<<std::endl;
-
-	accumulator->setContent( 10 );
-
-	EAR();
-
-	std::cout <<accumulator->getContent()<<std::endl;
-	std::cout <<databus->getContent()<<std::endl;
 
 	delete accumulator;
 	delete databus;
