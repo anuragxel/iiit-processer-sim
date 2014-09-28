@@ -8,7 +8,7 @@ PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
-$(OBJ) : Accumulator.o Databus.o ALU.o main.o BaseRegister.o
+$(OBJ) : *.o
 	$(CC) -Wall $^ -o $@ $(LFLAGS)
 
 %.o : %.cpp
@@ -17,11 +17,10 @@ $(OBJ) : Accumulator.o Databus.o ALU.o main.o BaseRegister.o
 clean :
 	rm -f *.o $(OBJ)
 
+clear : clean
+
 ofast :
-	$(CC) $(CFLAGS) -c Accumulator.cpp
-	$(CC) $(CFLAGS) -c Databus.cpp
-	$(CC) $(CFLAGS) -c ALU.cpp
-	$(CC) $(CFLAGS) -c main.cpp
+	$(CC) $(CFLAGS) -c *.cpp
 
 install : $(OBJ)
 	@echo "Installing program to $(DESTDIR)$(BINDIR) ..."

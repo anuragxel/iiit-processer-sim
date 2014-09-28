@@ -14,6 +14,7 @@ ALU *alu = new ALU();
 int main(int argc, char const *argv[])
 {
 
+
 	delete accumulator;
 	delete databus;
 	delete alu;
