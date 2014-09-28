@@ -10,7 +10,7 @@ class Display
 		char Memory[17][17][WIDTH+1];
 		void SetMemory(int address , char value[],MemoryIO & Mem)
 		{
-//			Mem.SetMem("", value);
+			//			Mem.SetMem("", value);
 			return ;
 		}
 		void MemoryValue(int start  , int offset , MemoryIO & Mem)
@@ -30,26 +30,26 @@ class Display
 		}
 		void AllRegisterValues(RegisterFile & RG,ProgramCounter & PC , Stack & St,Accumulator & AC, OperandRegister & Op)
 		{
-		  //		fprintf(stdout,"\n\n\t\t Value of Registers \n");
-				fprintf(stdout,"__________________________________________________________________________\n");
-				char pr[10];pr[0]=0;
-				fprintf(stdout," r0  r1  r2  r3  r4  r5  r6  r7  r8  r9  r10  r11  PC  SP  AR  OR\n ");
-				for (int kk=0;kk<8;kk++)
-				{
-					sprintf(pr,"r%d",kk);
-					string ff=pr;
-					fprintf(stdout,"%s  ",toHexS(RG.value_of_register[RG.Registers[ff]]).c_str());
-				}
-				//fprintf(stdout,"\n r8  r9  r10  r11  PC  SP  AR  OR\n ");
-				for (int kk=8;kk<12;kk++)
-				{
-					sprintf(pr,"r%d",kk);
-					string ff=pr;
-					if (kk>9)fprintf(stdout," ");
-					fprintf(stdout,"%s  ",toHexS(RG.value_of_register[RG.Registers[ff]]).c_str());
-				}
-				fprintf(stdout,"%s  %s  %s  %s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
-				fprintf(stdout,"_______________________________________________________________________\n");
+			//		fprintf(stdout,"\n\n\t\t Value of Registers \n");
+			fprintf(stdout,"__________________________________________________________________________\n");
+			char pr[10];pr[0]=0;
+			fprintf(stdout," r0  r1  r2  r3  r4  r5  r6  r7  r8  r9  r10  r11  PC  SP  AR  OR\n ");
+			for (int kk=0;kk<8;kk++)
+			{
+				sprintf(pr,"r%d",kk);
+				string ff=pr;
+				fprintf(stdout,"%s  ",toHexS(RG.value_of_register[RG.Registers[ff]]).c_str());
+			}
+			//fprintf(stdout,"\n r8  r9  r10  r11  PC  SP  AR  OR\n ");
+			for (int kk=8;kk<12;kk++)
+			{
+				sprintf(pr,"r%d",kk);
+				string ff=pr;
+				if (kk>9)fprintf(stdout," ");
+				fprintf(stdout,"%s  ",toHexS(RG.value_of_register[RG.Registers[ff]]).c_str());
+			}
+			fprintf(stdout,"%s  %s  %s  %s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+			fprintf(stdout,"_______________________________________________________________________\n");
 		}
 		Display()
 		{
@@ -138,26 +138,26 @@ class Display
 				}
 				fprintf(stdout,"%s  %s  %s  %s\n\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
 
-/*				fprintf(stdout,"\t\tRegister ID\n\n  \t00\t01\t10\t11\n\n");
-				for (int i=0;i<3;i++)
-				{
-					if (i==0)
-						fprintf(stdout,"00");
-					else if(i==1)
-						fprintf(stdout,"01");
-					else if(i==2)
-						fprintf(stdout,"10");
-					for (int j=0;j<4;j++)
-					{
-						sprintf(pr,"r%d",kk++);
-						string ff=pr;
-						fprintf(stdout,"\t%s",toHexS(RG.value_of_register[RG.Registers[ff]]).c_str());
-					}
-					fprintf(stdout,"\n\n");
-				}
-				fprintf(stdout,"  \tPC\tSP\tAR\tOR\n\n");
-		fprintf(stdout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
-*/
+				/*				fprintf(stdout,"\t\tRegister ID\n\n  \t00\t01\t10\t11\n\n");
+								for (int i=0;i<3;i++)
+								{
+								if (i==0)
+								fprintf(stdout,"00");
+								else if(i==1)
+								fprintf(stdout,"01");
+								else if(i==2)
+								fprintf(stdout,"10");
+								for (int j=0;j<4;j++)
+								{
+								sprintf(pr,"r%d",kk++);
+								string ff=pr;
+								fprintf(stdout,"\t%s",toHexS(RG.value_of_register[RG.Registers[ff]]).c_str());
+								}
+								fprintf(stdout,"\n\n");
+								}
+								fprintf(stdout,"  \tPC\tSP\tAR\tOR\n\n");
+								fprintf(stdout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+								*/
 				fprintf(stdout,"\n_______________________________________________________________________\n\n");
 			}
 			if (FOUT)// File Output if it is selected
@@ -202,12 +202,12 @@ class Display
 					{
 						sprintf(pr,"r%d",kk++);
 						string ff=pr;
-		//				fprintf(fout,"\t",toHex(RG.value_of_register[RG.Registers[ff]].c_str()).c_str());
+						//				fprintf(fout,"\t",toHex(RG.value_of_register[RG.Registers[ff]].c_str()).c_str());
 					}
 					fprintf(fout,"\n\n");
 				}
 				fprintf(fout,"  \tPC\tSP\tAR\tOR\n\n");
-		fprintf(fout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+				fprintf(fout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
 				fprintf(fout,"\n_______________________________________________________________________\n\n");
 			}
 			return ;
@@ -262,7 +262,7 @@ class Display
 					fprintf(stdout,"\n\n");
 				}
 				fprintf(stdout,"  \tPC\tSP\tAR\tOR\n\n");
-		fprintf(stdout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+				fprintf(stdout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
 				fprintf(stdout,"\n_______________________________________________________________________\n\n");
 			}
 			if (FOUT)// File  Output if it is selected
@@ -307,12 +307,12 @@ class Display
 					{
 						sprintf(pr,"r%d",kk++);
 						string ff=pr;
-		//				fprintf(fout,"\t",toHex(RG.value_of_register[RG.Registers[ff]].c_str()).c_str());
+						//				fprintf(fout,"\t",toHex(RG.value_of_register[RG.Registers[ff]].c_str()).c_str());
 					}
 					fprintf(fout,"\n\n");
 				}
 				fprintf(fout,"  \tPC\tSP\tAR\tOR\n\n");
-		fprintf(fout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+				fprintf(fout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
 				fprintf(fout,"\n_______________________________________________________________________\n\n");
 			}
 			return ;
@@ -402,7 +402,7 @@ class Display
 					fprintf(stdout,"\n\n");
 				}
 				fprintf(stdout,"  \tPC\tSP\tAR\tOR\n\n");
-		fprintf(stdout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+				fprintf(stdout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
 				fprintf(stdout,"\n_______________________________________________________________________\n\n");
 			}
 			if (FOUT)// File Output if it is selected
@@ -424,12 +424,12 @@ class Display
 					{
 						sprintf(pr,"r%d",kk++);
 						string ff=pr;
-				//		fprintf(fout,"\t",toHex(RG.value_of_register[RG.Registers[ff]].c_str()).c_str());
+						//		fprintf(fout,"\t",toHex(RG.value_of_register[RG.Registers[ff]].c_str()).c_str());
 					}
 					fprintf(fout,"\n\n");
 				}
 				fprintf(fout,"  \tPC\tSP\tAR\tOR\n\n");
-		fprintf(fout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
+				fprintf(fout,"  \t%s\t%s\t%s\t%s\n",toHex(PC.Curr_Value().c_str()).c_str(),toHex(St.Curr_Value().c_str()).c_str(),toHex(AC.Curr_Value().c_str()).c_str(),toHex(Op.Curr_Value().c_str()).c_str());
 				fprintf(fout,"\n_______________________________________________________________________\n\n");
 			}
 			return ;

@@ -5,6 +5,8 @@
 
 void EAR ()
 {
+	if (databus->isBusy())
+		return;
 	databus->setContent(accumulator->getContent());
 }
 

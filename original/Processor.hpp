@@ -244,72 +244,72 @@ set<int> breaks;
 
 map<string , int > inst_len;
 /*
-bool label_create(string fname)
+   bool label_create(string fname)
+   {
+   ifstream fin(fname.c_str());
+   string str1="" , str2="" , str3="";
+   int line = 0  , l = 0;
+   while (TRUE)
+   {
+   fin >> str1; // Always a new instruction
+   if (fin.eof()) // Code end
+   {
+   break;
+   }
+   if (str1=="brk")
+   {
+   breaks.insert(line);
+   continue;
+   }
+   l = str1.length();
+   if (str1[l-1]==':')
+   {
+//Label Handle
+if (labels.find(str1)!=labels.end())
 {
-	ifstream fin(fname.c_str());
-	string str1="" , str2="" , str3="";
-	int line = 0  , l = 0;
-	while (TRUE)
-	{
-		fin >> str1; // Always a new instruction
-		if (fin.eof()) // Code end
-		{
-			break;
-		}
-		if (str1=="brk")
-		{
-			breaks.insert(line);
-			continue;
-		}
-		l = str1.length();
-		if (str1[l-1]==':')
-		{
-			//Label Handle
-			if (labels.find(str1)!=labels.end())
-			{
-				cout << "Error : Redefinition of label  : " <<str1<<"\n";
-				return false ;
-			}
-			if (CheckHex(str1) == true )
-			{
-				cout << "The labels cannot be valid Hexadecimal numbers. Please change the label " << str1<<"\n\n";
-				return false ;
-			}
-			labels.insert(str1);
-			label_lookup[str1]=line;
-			continue ;
-		}
-		if (str1[0]=='r') // Return Statement
-		{
-			line++;
-			continue;
-		}
-		if (inst_len[str1] == 4)
-		{
-			fin >> str2;// Register Value is scanned
-			line++;
-		}
-		if (inst_len[str1] == 8 )
-		{
-			line++;
-		}
-                if (str1[0]=='j' || (str1[0]=='c' && (str1[1]=='d' || str1[1]=='r'))) // Jump or Call instruction
-                {
-                    line++;
-                    if (str1[l-2]=='d' || str1[l-3]=='d')
-                    {
-                        line++;
-                        fin >> str2;
-                    }
-                }
-		if (str1[l-1] == 'i') // Immediate Instruction
-		{
-			int j;fin >>j;//Integer Scan
-			line++;
-		}
-	}
-	fin.close();
-	return true ;
+cout << "Error : Redefinition of label  : " <<str1<<"\n";
+return false ;
+}
+if (CheckHex(str1) == true )
+{
+cout << "The labels cannot be valid Hexadecimal numbers. Please change the label " << str1<<"\n\n";
+return false ;
+}
+labels.insert(str1);
+label_lookup[str1]=line;
+continue ;
+}
+if (str1[0]=='r') // Return Statement
+{
+line++;
+continue;
+}
+if (inst_len[str1] == 4)
+{
+fin >> str2;// Register Value is scanned
+line++;
+}
+if (inst_len[str1] == 8 )
+{
+line++;
+}
+if (str1[0]=='j' || (str1[0]=='c' && (str1[1]=='d' || str1[1]=='r'))) // Jump or Call instruction
+{
+line++;
+if (str1[l-2]=='d' || str1[l-3]=='d')
+{
+line++;
+fin >> str2;
+}
+}
+if (str1[l-1] == 'i') // Immediate Instruction
+{
+int j;fin >>j;//Integer Scan
+line++;
+}
+}
+fin.close();
+return true ;
 }
 */
 

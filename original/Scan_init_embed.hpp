@@ -4,8 +4,8 @@ bool  Scan_init(MicroPM & MPM , ALU & ALU1 , RegisterFile & RG , MemoryIO & Mem)
 {
 	FILE *filepointer;
 	char designf[100];
-//	cout << "\n\tPlease enter the name of the design file : ";
-//	cin >> designf;
+	//	cout << "\n\tPlease enter the name of the design file : ";
+	//	cin >> designf;
 	// This work is done to embed the design file in the program
 	char design_string[100000];
 #include "embeddedDesign"
@@ -199,8 +199,8 @@ bool  Scan_init(MicroPM & MPM , ALU & ALU1 , RegisterFile & RG , MemoryIO & Mem)
 						inp[LWR]='1';
 					else if (str=="ERD")
 						inp[ERD]='1';
-	//				else if (str=="LIO")
-	//					inp[LIO]='1';
+					//				else if (str=="LIO")
+					//					inp[LIO]='1';
 					else if (str != " " && str != "" && str != "\t" && str != "\n"){
 						cout << "  Invalid  symbol used :  " << str << "\n";
 						return false;

@@ -2,7 +2,7 @@
  *	Scanning of User's input program is done in this function
  *
  */
-	
+
 bool Scan_input(MemoryIO & Mem , ALU & ALU1 , RegisterFile & RG)
 {
 	char codef[100];
@@ -12,7 +12,7 @@ bool Scan_input(MemoryIO & Mem , ALU & ALU1 , RegisterFile & RG)
 	{
 		cout << "\n\tPlease enter the program file : ";
 		cin >> codef;
-       	 	filepointer = fopen(codef,"r");
+		filepointer = fopen(codef,"r");
 		if (errno)
 		{
 			perror("Invalid Entry : ");
@@ -23,7 +23,7 @@ bool Scan_input(MemoryIO & Mem , ALU & ALU1 , RegisterFile & RG)
 	}
 	while (flag == false );
 	fclose(filepointer);
-//	Creating the label table
+	//	Creating the label table
 	{
 		ifstream fin(codef);
 		string str1="" , str2="" , str3="";
@@ -79,14 +79,14 @@ bool Scan_input(MemoryIO & Mem , ALU & ALU1 , RegisterFile & RG)
 				line++;
 			}
 			if (str1[0]=='j' || (str1[0]=='c' && (str1[1]=='d' || str1[1]=='r'))) // Jump or Call instruction
-       	       		{
+			{
 				line++;
 				if (str1[l-2]=='d' || str1[l-3]=='d')  // only if a direct inst.
 				{
 					line++;
-                        		fin >> str2;
-                		}
-                	}
+					fin >> str2;
+				}
+			}
 			if (str1[l-1] == 'i') // Immediate Instruction
 			{
 				int j;fin >>j;//Integer Scan
@@ -95,7 +95,7 @@ bool Scan_input(MemoryIO & Mem , ALU & ALU1 , RegisterFile & RG)
 		}
 		fin.close();
 	}
-//	Page ID Section	
+	//	Page ID Section	
 	cout << "\n\n\tYou have 256 pages in Memory each of size 256 bytes.\n";
 	while ( TRUE )
 	{
@@ -140,10 +140,10 @@ bool Scan_input(MemoryIO & Mem , ALU & ALU1 , RegisterFile & RG)
 		}
 	}
 
-//	Label table ready
+	//	Label table ready
 
 	bool ret = Make_operation( codef , Mem , ALU1 , RG);
-	
+
 	if (ret == false )
 		return ret;
 	return true;

@@ -23,16 +23,16 @@ class Decoder
 				}
 				if (Bit_opcode == "00000")
 					opcode = inst;
-/*				if (opcode =="0000" || opcode=="1110" || opcode=="1111") //   CHECK 
-				{
-					if ( inst != "00000000" && inst != "00000001") { // jmpd/jmpr/cd/cr/ret 
-						opcode = Bit_opcode;//Entire instruction length
-					}
-					else {// Stop  and nop 
-						opcode = inst;
-					}
-				}
-*/				
+				/*				if (opcode =="0000" || opcode=="1110" || opcode=="1111") //   CHECK 
+								{
+								if ( inst != "00000000" && inst != "00000001") { // jmpd/jmpr/cd/cr/ret 
+								opcode = Bit_opcode;//Entire instruction length
+								}
+								else {// Stop  and nop 
+								opcode = inst;
+								}
+								}
+								*/				
 				Address = lookup[opcode];
 			}
 			return ;

@@ -4,129 +4,129 @@ bool  Scan_init(MicroPM & MPM , ALU & ALU1 , RegisterFile & RG , MemoryIO & Mem)
 {
 	FILE *filepointer;
 	char designf[100];
-//	cout << "\n\tPlease enter the name of the design file : ";
-//	cin >> designf;
+	//	cout << "\n\tPlease enter the name of the design file : ";
+	//	cin >> designf;
 	// This work is done to embed the design file in the program
 	char design_string[10000];
 	strcpy(design_string,"ALU
-nop	00000000
-stop	00000001
-adi	00000010
-subi	00000011
-ani	00000100
-ori	00000101
-xri	00000110
-cmi	00000111
-ret	00001
-jmpd	11100
-jmpr	11101
-cd	11110
-cr	11111
-add	0001
-sub	0010
-xor	0011
-and	0100
-or	0101
-cmp	0110
-movs	0111
-movd	1000
-movi	1001
-store	1010
-load	1011
-push	1100
-pop	1101
-END
-Micro-Instructions
-stop 1
+			nop	00000000
+			stop	00000001
+			adi	00000010
+			subi	00000011
+			ani	00000100
+			ori	00000101
+			xri	00000110
+			cmi	00000111
+			ret	00001
+			jmpd	11100
+			jmpr	11101
+			cd	11110
+			cr	11111
+			add	0001
+			sub	0010
+			xor	0011
+			and	0100
+			or	0101
+			cmp	0110
+			movs	0111
+			movd	1000
+			movi	1001
+			store	1010
+			load	1011
+			push	1100
+			pop	1101
+			END
+			Micro-Instructions
+			stop 1
 
-adi 3
-EAR LOR
-EPC LMR
-IPC ERD SAF 0001 LAR RMS
-subi 3
-EPC LMR
-IPC ERD LOR
-EAR SAF 0010 LAR RMS
-xri 3
-EAR LOR
-EPC LMR
-IPC ERD SAF 0011 LAR RMS
-ani 3
-EAR LOR
-EPC LMR
-IPC ERD SAF 0100 LAR RMS
-ori 3
-EAR LOR
-EPC LMR
-IPC ERD SAF 0101 LAR RMS
-cmi 3
-EAR LOR
-EPC LMR
-IPC ERD SAF 0010 RMS
-add 2
-ERG LOR
-EAR SAF 0001 LAR RMS
-sub 2
-ERG LOR
-EAR SAF 0010 LAR RMS
-xor 2
-ERG LOR
-EAR SAF 0011 LAR RMS
-and 2
-ERG LOR
-EAR SAF 0100 LAR RMS
-or 2
-ERG LOR
-EAR SAF 0101 LAR RMS
-cmp 2
-ERG LOR
-EAR SAF 0010 RMS
-movs 2
-ERG LOR
-SAF 1111 LOR LAR RMS
-movd 1
-EAR LRG RMS
-load 2
-ERG LMR
-ERD SAF 1111 LOR LAR RMS
-store 2
-ERG LMR
-EAR LWR RMS
-push 3
-DSP
-ESP LMR
-ERG LWR RMS
-pop 2
-ESP LMR
-ISP ERD LRG RMS
-movi 2
-EPC LMR
-ERD IPC LRG RMS
-jmpd 3
-EPC LMR
-IPC SFL RMS
-ERD LPC RMS
-jmpr 2
-SFL RMS
-EAR LPC RMS
-cd 6
-EPC LMR
-IPC SFL RMS
-ERD LOR DSP
-ESP LMR
-EPC LWR
-EOR LPC RMS
-cr 5
-RMS SFL
-DSP
-ESP LMR
-EPC LWR
-EAR LPC RMS
-ret 3
-RMS SFL
-ESP LMR
-ISP ERD LPC RMS
-END");
+			adi 3
+			EAR LOR
+			EPC LMR
+			IPC ERD SAF 0001 LAR RMS
+			subi 3
+			EPC LMR
+			IPC ERD LOR
+			EAR SAF 0010 LAR RMS
+			xri 3
+			EAR LOR
+			EPC LMR
+			IPC ERD SAF 0011 LAR RMS
+			ani 3
+			EAR LOR
+			EPC LMR
+			IPC ERD SAF 0100 LAR RMS
+			ori 3
+			EAR LOR
+			EPC LMR
+			IPC ERD SAF 0101 LAR RMS
+			cmi 3
+			EAR LOR
+			EPC LMR
+			IPC ERD SAF 0010 RMS
+			add 2
+			ERG LOR
+			EAR SAF 0001 LAR RMS
+			sub 2
+			ERG LOR
+			EAR SAF 0010 LAR RMS
+			xor 2
+			ERG LOR
+			EAR SAF 0011 LAR RMS
+			and 2
+			ERG LOR
+			EAR SAF 0100 LAR RMS
+			or 2
+			ERG LOR
+			EAR SAF 0101 LAR RMS
+			cmp 2
+			ERG LOR
+			EAR SAF 0010 RMS
+			movs 2
+			ERG LOR
+			SAF 1111 LOR LAR RMS
+			movd 1
+			EAR LRG RMS
+			load 2
+			ERG LMR
+			ERD SAF 1111 LOR LAR RMS
+			store 2
+			ERG LMR
+			EAR LWR RMS
+			push 3
+			DSP
+			ESP LMR
+			ERG LWR RMS
+			pop 2
+			ESP LMR
+			ISP ERD LRG RMS
+			movi 2
+			EPC LMR
+			ERD IPC LRG RMS
+			jmpd 3
+			EPC LMR
+			IPC SFL RMS
+			ERD LPC RMS
+			jmpr 2
+			SFL RMS
+			EAR LPC RMS
+			cd 6
+			EPC LMR
+			IPC SFL RMS
+			ERD LOR DSP
+			ESP LMR
+			EPC LWR
+			EOR LPC RMS
+			cr 5
+			RMS SFL
+			DSP
+			ESP LMR
+			EPC LWR
+			EAR LPC RMS
+			ret 3
+			RMS SFL
+			ESP LMR
+			ISP ERD LPC RMS
+			END");
 	FILE *embed_file = fopen("~/.tmp_file","w");
 	fprintf(embed_file,"%s",design_string);
 	fclose(embed_file);
@@ -316,8 +316,8 @@ END");
 						inp[LWR]='1';
 					else if (str=="ERD")
 						inp[ERD]='1';
-	//				else if (str=="LIO")
-	//					inp[LIO]='1';
+					//				else if (str=="LIO")
+					//					inp[LIO]='1';
 					else if (str != " " && str != "" && str != "\t" && str != "\n"){
 						cout << "  Invalid  symbol used :  " << str << "\n";
 						return false;

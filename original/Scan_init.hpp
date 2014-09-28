@@ -7,13 +7,13 @@ bool  Scan_init(MicroPM & MPM , ALU & ALU1 , RegisterFile & RG , MemoryIO & Mem)
 	cout << "\n\tPlease enter the name of the design file : ";
 	cin >> designf;
 	// This work is done to embed the design file in the program
-/*	char design_string[10000];
-	strcpy(design_string,"");
-	FILE *embed_file = fopen("~/.tmp_file","w");
-	fprintf(embed_file,"%s",design_string);
-	fclose(embed_file);
-	strcpy(designf,"~/.tmp_file");
-*/	filepointer = fopen(designf,"r");
+	/*	char design_string[10000];
+		strcpy(design_string,"");
+		FILE *embed_file = fopen("~/.tmp_file","w");
+		fprintf(embed_file,"%s",design_string);
+		fclose(embed_file);
+		strcpy(designf,"~/.tmp_file");
+		*/	filepointer = fopen(designf,"r");
 	if (errno)
 	{
 		perror("Error with the file ");
@@ -82,7 +82,7 @@ bool  Scan_init(MicroPM & MPM , ALU & ALU1 , RegisterFile & RG , MemoryIO & Mem)
 			}
 			lookup[ALU1.SelectBits[str1]] = t;
 			getline(fin,str);
-			for (int i=0;i<in;i++)
+			for (int it=0;it<in;it++)
 			{
 				getline(fin,str2);
 				string inp = "000000000000000000000000000000000000000000" ;
@@ -198,8 +198,8 @@ bool  Scan_init(MicroPM & MPM , ALU & ALU1 , RegisterFile & RG , MemoryIO & Mem)
 						inp[LWR]='1';
 					else if (str=="ERD")
 						inp[ERD]='1';
-	//				else if (str=="LIO")
-	//					inp[LIO]='1';
+					//				else if (str=="LIO")
+					//					inp[LIO]='1';
 					else if (str != " " && str != "" && str != "\t" && str != "\n"){
 						cout << "  Invalid  symbol used :  " << str << "\n";
 						return false;

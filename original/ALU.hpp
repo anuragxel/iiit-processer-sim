@@ -39,7 +39,7 @@ class ALU
 				flag = true;
 				temp1 = Value(DB.DATA);
 				char S[100];
-			       	strcpy(S,(Op.Curr_Value()).c_str());
+				strcpy(S,(Op.Curr_Value()).c_str());
 				temp2 = Value(S);
 				result = temp1 - temp2 ;
 				Result = ToStr(result);
@@ -48,7 +48,7 @@ class ALU
 			{
 				flag = true;
 				temp1 = Value(DB.DATA);
-			       	char S[100];
+				char S[100];
 				strcpy(S,(Op.Curr_Value()).c_str());
 				temp2 = Value(S);
 				result = temp1 ^ temp2 ;
@@ -74,13 +74,13 @@ class ALU
 				result = temp1 | temp2 ;
 				Result = ToStr(result);
 			}
-/*		Flag operations .
- *
- *	FLAG[1] = Zero    Bit
- *	FLAG[3] = Sign    Bit
- *	FLAG[5] = Carry   Bit
- *	FLAG[7] = Parity  Bit (Odd only)
- */
+			/*		Flag operations .
+			 *
+			 *	FLAG[1] = Zero    Bit
+			 *	FLAG[3] = Sign    Bit
+			 *	FLAG[5] = Carry   Bit
+			 *	FLAG[7] = Parity  Bit (Odd only)
+			 */
 			if (flag == true )
 			{
 				if (result == 0)

@@ -7,11 +7,11 @@ class FlagRegister
 		string SN;
 		/*
 		 * 	FLAG[0] = Unconditional
-		*	FLAG[1] = Zero    Bit
-		* 	FLAG[3] = Sign    Bit
-		*	FLAG[5] = Carry   Bit
-		*	FLAG[7] = Parity  Bit  ( ODD )
-		*/
+		 *	FLAG[1] = Zero    Bit
+		 * 	FLAG[3] = Sign    Bit
+		 *	FLAG[5] = Carry   Bit
+		 *	FLAG[7] = Parity  Bit  ( ODD )
+		 */
 	public:
 		FlagRegister()
 		{

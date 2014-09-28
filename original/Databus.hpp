@@ -2,7 +2,7 @@
 
 typedef struct Databus
 {
-	        char DATA[WIDTH];
-		char FLAG;
+	char DATA[WIDTH];
+	char FLAG;
 }Databus;
 
