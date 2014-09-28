@@ -4,9 +4,9 @@
 #include "Accumulator.h"
 #include "Processor.h"
 
-extern Databus databus;
-extern Accumulator accumulator;
-extern ALU alu;
+extern Databus *databus;
+extern Accumulator *accumulator;
+extern ALU *alu;
 
 Accumulator::Accumulator () {
 	this->Content = 0;
@@ -26,16 +26,17 @@ int Accumulator::getContent () {
 
 void EAR ()
 {
-	databus.setContent(accumulator.getContent());
+	databus->setContent(accumulator->getContent());
 }
 
 void RAR ()
 {
-	accumulator.setContent( 0 );
+	accumulator->setContent( 0 );
 }
 
 void LAR ()
 {
-	accumulator.setContent(alu.getContent());
+	accumulator->setContent(alu->getContent());
 }
+
 #endif

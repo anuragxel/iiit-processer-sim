@@ -2,11 +2,12 @@ OBJ = stdArchSim
 override CFLAGS += -Ofast -funroll-loops -flto -Wall 
 override DEVEL_FLAGS += -g -Wall 
 override LFLAGS += 
+CC = g++
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
-$(OBJ) : Accumulator.o 
+$(OBJ) : Accumulator.o Databus.o ALU.o main.o
 	$(CC) -Wall $^ -o $@ $(LFLAGS)
 
 %.o : %.cpp
