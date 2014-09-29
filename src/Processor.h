@@ -11,5 +11,6 @@
 extern Accumulator *accumulator;
 extern ALU *alu;
 extern Databus *databus;
+extern Microinstruction *microinstruction;
 
 #endif
