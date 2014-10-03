@@ -3,12 +3,12 @@
 
 #include "BaseRegister.h"
 
-class Accumulator : public Register
-{
+class Accumulator : public Register {
 	private:
 	public:
 		Accumulator();
 		~Accumulator();
+		void processSignal();
 };
 
 #endif

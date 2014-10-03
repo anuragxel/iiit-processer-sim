@@ -6,6 +6,7 @@ class Databus
 	private:
 		int Content;
 		bool Busy;
+		bool Corrupt;
 	public:
 		Databus();
 		~Databus();

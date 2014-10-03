@@ -6,7 +6,8 @@
 
 Databus::Databus () {
 	this->Content = 0;
-	this->Busy = true;
+	this->Busy = false;
+	this->Corrupt = false;
 }
 
 Databus::~Databus () {
@@ -14,7 +15,10 @@ Databus::~Databus () {
 }
 
 void Databus::setContent ( int content ) {
+	if (this->Busy)
+		this->Corrupt = true;
 	this->Content = content;
+	this->Busy = true;
 }
 
 int Databus::getContent () {

@@ -2,6 +2,7 @@
 #define _BASE_REGISTER_CPP
 
 #include "BaseRegister.h"
+#include "Processor.h"
 
 Register::Register () {
 	this->Content = 0;

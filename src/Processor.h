@@ -7,10 +7,13 @@
 #include "Accumulator.h"
 #include "ALU.h"
 #include "Databus.h"
+#include "Microinstruction.h"
+#include "Operand.h"
 
 extern Accumulator *accumulator;
 extern ALU *alu;
 extern Databus *databus;
 extern Microinstruction *microinstruction;
+extern Operand *operand;
 
 #endif
