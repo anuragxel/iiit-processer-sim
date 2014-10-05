@@ -22,7 +22,7 @@ class Microinstruction {
 		bool LMS;
 		bool RMS;
 
-		bool RFL;
+		bool EFL;
 
 		bool LIO;
 

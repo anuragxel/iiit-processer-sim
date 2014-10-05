@@ -14,11 +14,11 @@ Accumulator::~Accumulator () {
 
 void Accumulator::processSignal () {
 	if (microinstruction->EAR)
-		databus->setContent(this->getContent());
+		databus->setContent(this->Content);
 	if (microinstruction->RAR)
-		this->setContent(0);
+		this->Content = 0;
 	if (microinstruction->LAR)
-		this->setContent(alu->getContent());
+		this->Content = alu->getContent();
 }
 
 #endif

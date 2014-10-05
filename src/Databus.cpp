@@ -15,8 +15,10 @@ Databus::~Databus () {
 }
 
 void Databus::setContent ( int content ) {
-	if (this->Busy)
+	if (this->Busy){
 		this->Corrupt = true;
+		throw CORRUPT_BIT_SET;
+	}
 	this->Content = content;
 	this->Busy = true;
 }
@@ -44,5 +46,9 @@ void Databus::setBusy( bool busy ) {
 bool Databus::getBusy () {
 	return this->Busy;
 };
+
+void Databus::resetCorrupt () {
+	this->Corrupt = false;
+}
 
 #endif

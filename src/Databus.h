@@ -20,6 +20,8 @@ class Databus
 
 		void setBusy( bool );
 		bool getBusy ();
+
+		void resetCorrupt();
 };
 
 #endif

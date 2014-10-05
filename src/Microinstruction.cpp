@@ -18,7 +18,7 @@ Microinstruction::Microinstruction () {
 	LIR = false;
 	LMS = false;
 	RMS = false;
-	RFL = false;
+	EFL = false;
 	LIO = false;
 	LRG = false;
 	ERG = false;

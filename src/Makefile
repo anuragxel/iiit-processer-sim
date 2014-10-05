@@ -1,15 +1,15 @@
 OBJ = stdArchSim
 MAN = stdArchSim.1
-override CFLAGS += -Ofast -funroll-loops -flto -Wall 
-override DEVEL_FLAGS += -g -Wall 
-override LFLAGS += 
+override CFLAGS += -Ofast -funroll-loops -flto -Wall -std=c++0x
+override DEVEL_FLAGS += -g -Wall -std=c++0x
+override LFLAGS +=
 CC = g++
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
 $(OBJ) : *.o
-	$(CC) -Wall $^ -o $@ $(LFLAGS)
+	$(CC) $(DEVEL_FLAGS) $^ -o $@ $(LFLAGS)
 
 %.o : %.cpp
 	$(CC) $(DEVEL_FLAGS) -c $^
@@ -21,6 +21,7 @@ clear : clean
 
 ofast :
 	$(CC) $(CFLAGS) -c *.cpp
+	$(CC) $(CFLAGS) -o $(OBJ) *.o $(LFLAGS)
 
 install : $(OBJ)
 	@echo "Installing program to $(DESTDIR)$(BINDIR) ..."

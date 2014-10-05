@@ -3,7 +3,7 @@
 
 class Register
 {
-	private:
+	protected:
 		int Content;
 		int _previousContent;
 	public:
