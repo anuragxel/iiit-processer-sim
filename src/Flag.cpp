@@ -12,6 +12,37 @@ Flag::~Flag () {
 
 }
 
+bool Flag::getFlag() {
+	switch(io->SFL & 7)
+	{
+		case 0:
+			return this->getU();
+			break;
+		case 1:
+			return this->getZ();
+			break;
+		case 2:
+			return this->getNZ();
+			break;
+		case 3:
+			return this->getS();
+			break;
+		case 4:
+			return this->getNS();
+			break;
+		case 5:
+			return this->getC();
+			break;
+		case 6:
+			return this->getNC();
+			break;
+		case 7:
+			return this->getP();
+			break;
+	}
+	return false; //Never goes here.
+}
+
 void Flag::processSignal () {
 	if (microinstruction->EFL)
 		;

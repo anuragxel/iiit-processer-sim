@@ -22,7 +22,6 @@ Microinstruction::Microinstruction () {
 	LIO = false;
 	LRG = false;
 	ERG = false;
-	SRG = 0;
 	LAR = false;
 	RAR = false;
 	EAR = false;

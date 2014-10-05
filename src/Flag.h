@@ -9,6 +9,8 @@ class Flag : public Register {
 		Flag();
 		~Flag();
 
+		bool getFlag(); //get for pseudo variable Flag
+
 		bool getU();
 
 		void setZ();

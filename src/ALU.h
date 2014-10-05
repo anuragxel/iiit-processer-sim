@@ -6,7 +6,7 @@ class ALU {
 	public:
 		ALU();
 		~ALU();
-		int getContent(); // for pseudo-content
+		int getContent(); // get for pseudo variable Content
 };
 
 #endif

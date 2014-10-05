@@ -8,13 +8,30 @@
 #include "Processor.h"
 
 Accumulator *accumulator = new Accumulator();
-Databus *databus = new Databus();
 ALU *alu = new ALU();
+Databus *databus = new Databus();
+Flag *flag = new Flag();
+IO_RF *io = new IO_RF();
 Microinstruction *microinstruction = new Microinstruction();
 Operand *operand = new Operand();
-Flag *flag = new Flag();
+
 
 int main(int argc, char const *argv[]) {
+
+	// databus->setContent(1);
+	// microinstruction->LIO = true;
+	// io->processSignal();
+	// io->clockPulse();
+	// std::cout <<io->SFL<<std::endl;
+	// std::cout <<flag->getFlag()<<std::endl;
+	// flag->setNZ();
+	// databus->resetBusy();
+	// databus->setContent(2);
+	// microinstruction->LIO = true;
+	// io->processSignal();
+	// io->clockPulse();
+	// std::cout <<io->SFL<<std::endl;
+	// std::cout <<flag->getFlag()<<std::endl;
 
 	// operand->setContent( 0 );
 	// databus->setContent( 127 );
@@ -43,6 +60,7 @@ int main(int argc, char const *argv[]) {
 	delete alu;
 	delete databus;
 	delete flag;
+	delete io;
 	delete microinstruction;
 	delete operand;
 	return 0;

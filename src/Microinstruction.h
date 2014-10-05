@@ -28,7 +28,6 @@ class Microinstruction {
 
 		bool LRG;
 		bool ERG;
-		int SRG;
 
 		bool LAR;
 		bool RAR;

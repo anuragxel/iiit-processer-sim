@@ -9,8 +9,10 @@
 #include "ALU.h"
 #include "Databus.h"
 #include "Flag.h"
+#include "IORF.h"
 #include "Microinstruction.h"
 #include "Operand.h"
+
 
 extern Accumulator *accumulator;
 extern ALU *alu;
@@ -18,5 +20,6 @@ extern Databus *databus;
 extern Flag *flag;
 extern Microinstruction *microinstruction;
 extern Operand *operand;
+extern IO_RF *io;
 
 #endif
