@@ -12,9 +12,12 @@ ALU *alu = new ALU();
 Databus *databus = new Databus();
 Flag *flag = new Flag();
 IO_RF *io = new IO_RF();
+MemoryAddress *memoryAddress = new MemoryAddress();
 Microinstruction *microinstruction = new Microinstruction();
 Operand *operand = new Operand();
-
+ProgramCounter *programCounter = new ProgramCounter();
+RegisterArray *registerArray = new RegisterArray();
+StackPointer *stackPointer = new StackPointer();
 
 int main(int argc, char const *argv[]) {
 
@@ -61,7 +64,11 @@ int main(int argc, char const *argv[]) {
 	delete databus;
 	delete flag;
 	delete io;
+	delete memoryAddress;
 	delete microinstruction;
 	delete operand;
+	delete programCounter;
+	delete registerArray;
+	delete stackPointer;
 	return 0;
 }

@@ -10,16 +10,23 @@
 #include "Databus.h"
 #include "Flag.h"
 #include "IORF.h"
+#include "MemoryAddress.h"
 #include "Microinstruction.h"
 #include "Operand.h"
-
+#include "ProgramCounter.h"
+#include "RegisterArray.h"
+#include "StackPointer.h"
 
 extern Accumulator *accumulator;
 extern ALU *alu;
 extern Databus *databus;
 extern Flag *flag;
+extern IO_RF *io;
+extern MemoryAddress *memoryAddress;
 extern Microinstruction *microinstruction;
 extern Operand *operand;
-extern IO_RF *io;
+extern ProgramCounter *programCounter;
+extern RegisterArray *registerArray;
+extern StackPointer *stackPointer;
 
 #endif

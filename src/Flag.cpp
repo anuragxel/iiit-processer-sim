@@ -45,7 +45,7 @@ bool Flag::getFlag() {
 
 void Flag::processSignal () {
 	if (microinstruction->EFL)
-		;
+		; // TODO: Put this after MS is made
 }
 
 bool Flag::getU() {
