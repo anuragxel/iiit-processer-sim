@@ -1,6 +1,8 @@
 #ifndef _REGISTERARRAY_CPP
 #define _REGISTERARRAY_CPP
 
+#include <iostream>
+
 #include "RegisterArray.h"
 #include "Processor.h"
 
@@ -20,7 +22,8 @@ void RegisterArray::processSignal () {
 }
 
 void RegisterArray::clockPulse () {
-	registerArray[io->SRG].clockPulse();
+	for (auto &i : registerArray)
+		i.clockPulse();
 }
 
 void RegisterArray::setContent ( int content ) {

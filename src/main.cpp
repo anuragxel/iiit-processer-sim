@@ -21,6 +21,8 @@ StackPointer *stackPointer = new StackPointer();
 
 int main(int argc, char const *argv[]) {
 
+	// registerArray->clockPulse();
+
 	// databus->setContent(1);
 	// microinstruction->LIO = true;
 	// io->processSignal();
