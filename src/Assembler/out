@@ -1,0 +1,45 @@
+0   movi            r0        100
+
+2   movi            r1        00
+
+4>> loop1
+4   cdu            next
+
+6   movs            r1
+
+7   adi            
+8   movd            
+9   cmi            04
+
+11   jmpdnz            loop1
+
+13>> loop2
+13   cdu            next
+
+15   movs            r1
+
+16   subi            01
+
+18   movd            
+19   cmi            255
+
+21   jmpdnz            loop2
+
+23   stop            
+24>> next
+24   movs            r1
+
+25   movd            
+26   add            r2
+
+27   movd            
+28   movs            r0
+
+29   store            r1
+
+30   adi            
+31   store            r2
+
+32   adi            
+33   movd            
+34   retu            

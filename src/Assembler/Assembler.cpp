@@ -5,37 +5,28 @@
 
 using namespace std;
 
-struct tableEntry
-{
-	std::string symbol;
-	int location;
-};
-
-int nextInstructionAddr;
-int nextSymbolTableIdx;
-int flags[MEMSIZE];
 int memory[MEMSIZE];
-
+int nextInstructionAddr;
 std::map <std::string,int> lookupTable;
 
 std::map <std::string,int> registers = 
 {
-	{"r0", 0x00 },
-	{"r1", 0x01 },
-	{"r2", 0x02 },
-	{"r3", 0x03 },
-	{"r4", 0x04 },
-	{"r5", 0x05 },
-	{"r6", 0x06 },
-	{"r7", 0x07 },
-	{"r8", 0x08 },
-	{"r9", 0x09 },
-	{"r10", 0x0A },
-	{"r11", 0x0B },
-	{"pc", 0x0C },
-	{"sp", 0x0D },
-	{"ar", 0x0E },
-	{"or", 0x0F },
+	{ "r0", 0x00 },
+	{ "r1", 0x01 },
+	{ "r2", 0x02 },
+	{ "r3", 0x03 },
+	{ "r4", 0x04 },
+	{ "r5", 0x05 },
+	{ "r6", 0x06 },
+	{ "r7", 0x07 },
+	{ "r8", 0x08 },
+	{ "r9", 0x09 },
+	{ "r10", 0x0A },
+	{ "r11", 0x0B },
+	{ "pc", 0x0C },
+	{ "sp", 0x0D },
+	{ "ar", 0x0E },
+	{ "or", 0x0F },
 };
 
 std::map <std::string,int> opCode = 
@@ -142,13 +133,22 @@ std::map <std::string,int> opCode =
 	{ "crop", 0xFF },
 };
 
+bool isALabel(std::string word)
+{
+	return (word.find(":") != -1);
+}
 bool isAnInstruction(std::string word)
 {
 	return (opCode.find(word) != opCode.end());
 }
-int typeOfInstruction(int currCode) { 
+
+int typeOfInstruction(int currCode)
+{ 
 	switch(currCode) 
 	{
+		case 0x02: // immediate
+			return IMMEINST;
+			break;
 		case 0x03: // immediate
 			return IMMEINST;
 			break;
@@ -183,6 +183,9 @@ int typeOfInstruction(int currCode) {
 			return REGINST;
 			break;
 		case 0x70: //adding register to op code
+			return REGINST;
+			break;
+		case 0x80: //adding register to op code
 			return REGINST;
 			break;
 		case 0xA0: //adding register to op code
@@ -252,74 +255,134 @@ int typeOfInstruction(int currCode) {
 			return 0;
 			break;
 	}
-} 
+}
+
 void initialize()
 {
 	for(int i = 0;i<MEMSIZE;i++)
 	{
 		memory[i] = 0;
-		flags[i] = -1;
 	}
 	nextInstructionAddr = 0;
-	nextSymbolTableIdx = 0;
 }
 
+/* A Two pass Assembler */
 void assembleCode(std::string path,std::string outpath)
 {
-	std::string word,word1;
+	std::string word;
 	fstream file;
-	fstream outfile;
 	int currCode = 0;
 	int regCode = 0;
 	file.open(path, ios::in);
-	
-	if( outpath != "stdout" )
-		outfile.open(outpath, ios::out);
-
 	// first pass through the code
 	while(file >> word) 
-	{ 
+	{
 		if ( isAnInstruction(word) )
 		{
 			currCode = opCode[word];
-			if ( typeOfInstruction(currCode) == IMMEINST ) {
-				file >> word;
-				cout << hex << currCode;
-				cout << "			" << word;
+			if ( typeOfInstruction(currCode) == IMMEINST ) //opcode xx
+			{
+				file >> word; // xx
+				memory[nextInstructionAddr++] = currCode; // opcode
+				memory[nextInstructionAddr++] = stoi(word); // xx
 			}
-			else if ( typeOfInstruction(currCode) == REGINST ) {
-				file >> word;
-				regCode = registers[word];
-				currCode = currCode + regCode;
-				cout << hex << currCode;
-			}
-			else if ( typeOfInstruction(currCode) == JMPDINST ) {
-				file >> word;
-				cout << hex << currCode;
-				cout << "		" << word;
-			}
-			else if( typeOfInstruction(currCode) == MOVIINST ) {
+			else if ( typeOfInstruction(currCode) == REGINST ) // opcode
+			{
 				file >> word; // <R>
 				regCode = registers[word];
-				currCode = currCode + regCode;
-				file >> word; // xx
-				cout << hex << currCode;
-				cout << "		" << word;
+				currCode = currCode | regCode;
+				memory[nextInstructionAddr++] = currCode;
 			}
-			else if ( typeOfInstruction(currCode) == CDINST ) {
+			else if ( typeOfInstruction(currCode) == JMPDINST ) 
+			{
 				file >> word;
-				cout << hex << currCode;
-				cout << "		" << word;	
+				memory[nextInstructionAddr++] = currCode;
+				// at the position for the address we just leave 0.
+				memory[nextInstructionAddr++] = -1;
 			}
-			else {
-				cout << hex << currCode;
+			else if( typeOfInstruction(currCode) == MOVIINST )
+			{
+				file >> word; // <R>
+				regCode = registers[word];
+				currCode = currCode | regCode;
+				memory[nextInstructionAddr++] = currCode;
+				file >> word; // xx
+				memory[nextInstructionAddr++] = stoi(word);
 			}
+			else if ( typeOfInstruction(currCode) == CDINST ) 
+			{
+				file >> word;
+				memory[nextInstructionAddr++] = currCode;
+				// at the position for the address we just leave -1.
+				memory[nextInstructionAddr++] = -1;
+			}
+			else
+			{
+				memory[nextInstructionAddr++] = currCode;
+			}
+		}
+		else if ( isALabel(word) )
+		{
+			word = word.erase(word.size() - 1);
+			lookupTable[word] = nextInstructionAddr;
+		}
+		else
+		{
+			cout << "incorrect at line " << nextInstructionAddr <<endl;
+		}
+	}
+	file.close();
+
+
+	file.open(path, ios::in);
+
+	nextInstructionAddr = 0;
+	//second pass through the code.
+	while(file >> word) 
+	{
+		if ( isAnInstruction(word) )
+		{
+			currCode = opCode[word];
+			if ( typeOfInstruction(currCode) == IMMEINST )
+			{
+				file >> word;
+				nextInstructionAddr += 2;
+			}
+			else if ( typeOfInstruction(currCode) == REGINST )
+			{
+				file >> word;
+				nextInstructionAddr++;
+			}
+			else if ( typeOfInstruction(currCode) == JMPDINST ) 
+			{
+				file >> word;
+				nextInstructionAddr++;
+				memory[nextInstructionAddr++] = lookupTable[word];
+			}
+			else if( typeOfInstruction(currCode) == MOVIINST )
+			{
+				file >> word; // <R>
+				file >> word; // xx
+				nextInstructionAddr += 2;
+			}
+			else if ( typeOfInstruction(currCode) == CDINST ) 
+			{
+				file >> word;
+				nextInstructionAddr++;
+				memory[nextInstructionAddr++] = lookupTable[word];
+			}
+			else
+			{
+				nextInstructionAddr++;
+			}
+		}
+	}
+	file.close();
+	for(int i=0;i<MEMSIZE;i++)
+	{
+		cout << memory[i] << "		";
+		if(!(i+1)%8)
 			cout << endl;
-		}
-		else {
-			cout << "FUCK YOU !!" << endl;
-			break;
-		}
 	}
 }
 
@@ -332,6 +395,7 @@ int main(const int argc, char **argv)
 		assembleCode(argv[2],argv[3]);
 	else
 		cout << "USAGE : assemble -o infile outfile" << endl;
+	return 0;
 }
 
 #endif
