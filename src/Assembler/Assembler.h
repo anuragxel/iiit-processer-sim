@@ -34,7 +34,7 @@ std::map <std::string,int> registers =
 	{ "r9", 0x09 },
 	{ "r10", 0x0A },
 	{ "r11", 0x0B },
-	
+
 	// special registers
 	{ "pc", 0x0C },
 	{ "sp", 0x0D },
@@ -58,7 +58,7 @@ std::map <std::string,int> opCode =
 	{ "ani", 0x05 },
 	{ "ori", 0x06 },
 	{ "cmi", 0x07 },
-	
+
 	// PC <- [[SP]], [SP] <- [SP] + 1 if <FL> = 1
 	{ "retu", 0x08 },
 	{ "retz", 0x09 },
@@ -68,7 +68,7 @@ std::map <std::string,int> opCode =
 	{ "retp", 0x0D },
 	{ "retm", 0x0E },
 	{ "retop", 0x0F },
-	
+
 	// is of the format add <R>
 	// we actually do add 00 - 0F to the opCode for the register number
 	// [AR] <- [AR] {op} <R>
@@ -82,7 +82,7 @@ std::map <std::string,int> opCode =
 	// [AR] - <R> (Only flags)
 	// we actually do add 00 - 0F to the opCode for the register number
 	{ "cmp", 0x60  },
-	
+
 	// movs <R>
 	// [OR] <- [<R>] , [AR] <- [<R>]
 	// we actually do add 00 - 0F to the opCode for the register number

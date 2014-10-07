@@ -23,21 +23,21 @@ bool islabelPresent(std::string word)
 }
 
 int typeOfInstruction(int currCode)
-{ 
-	if( currCode == 0x02 or currCode == 0x03 or currCode == 0x04 or currCode == 0x05 or 
-	    currCode == 0x06 or currCode == 0x07 )
+{
+	if( currCode == 0x02 or currCode == 0x03 or currCode == 0x04 or currCode == 0x05 or
+			currCode == 0x06 or currCode == 0x07 )
 		return IMMEINST;
 	else if(currCode == 0x10 or currCode == 0x20 or currCode == 0x30 or currCode == 0x40 or
-	   currCode == 0x50 or currCode == 0x60 or currCode == 0x70 or currCode == 0x80 or
-	   currCode == 0xA0 or currCode == 0xB0 or currCode == 0xC0 or currCode == 0xD0 )
+			currCode == 0x50 or currCode == 0x60 or currCode == 0x70 or currCode == 0x80 or
+			currCode == 0xA0 or currCode == 0xB0 or currCode == 0xC0 or currCode == 0xD0 )
 		return REGINST;
 	else if(currCode == 0xE0 or currCode == 0xE1 or currCode == 0xE2 or currCode == 0xE3 or
-	   currCode == 0xE4 or currCode == 0xE5 or currCode == 0xE6 or currCode == 0xE7 )
+			currCode == 0xE4 or currCode == 0xE5 or currCode == 0xE6 or currCode == 0xE7 )
 		return JMPDINST;
 	else if(currCode == 0x90)
 		return MOVIINST;
 	else if(currCode == 0xF0 or currCode == 0xF1 or currCode == 0xF2 or currCode == 0xF3 or
-	   currCode == 0xF4 or currCode == 0xF5 or currCode == 0xF6 or currCode == 0xF7 )
+			currCode == 0xF4 or currCode == 0xF5 or currCode == 0xF6 or currCode == 0xF7 )
 		return CDINST;
 	else
 		return 0;
@@ -56,13 +56,14 @@ void initialize()
 void assembleCode(std::string path,std::string outpath)
 {
 	std::string word;
-	fstream outfile,file;
+	ifstream infile;
+	ofstream outfile;
 	int currCode = 0;
 	int regCode = 0;
-	file.open(path, ios::in);
+	infile.open(path, ios::in);
 
 	// first pass through the assembly code
-	while(file >> word) 
+	while(infile >> word)
 	{
 		if ( isAnInstruction(word) )
 		{
@@ -70,7 +71,7 @@ void assembleCode(std::string path,std::string outpath)
 			currCode = opCode[word];
 			if ( typeOfInstruction(currCode) == IMMEINST ) //opcode xx
 			{
-				file >> word; // xx
+				infile >> word; // xx
 				memory[nextInstructionAddr++] = currCode; // opcode
 				if( stoi(word) > 256 )
 				{
@@ -81,7 +82,7 @@ void assembleCode(std::string path,std::string outpath)
 			}
 			else if ( typeOfInstruction(currCode) == REGINST ) // opcode
 			{
-				file >> word; // <R>
+				infile >> word; // <R>
 				if( not isARegister(word) )
 				{
 					cerr << "Improper Register at " << nextInstructionAddr << endl;
@@ -91,16 +92,16 @@ void assembleCode(std::string path,std::string outpath)
 				currCode = currCode | regCode; // partial op code is completed with the register code
 				memory[nextInstructionAddr++] = currCode;
 			}
-			else if ( typeOfInstruction(currCode) == JMPDINST ) 
+			else if ( typeOfInstruction(currCode) == JMPDINST )
 			{
-				file >> word;
+				infile >> word;
 				memory[nextInstructionAddr++] = currCode;
 				// at the position for the address for the label we just leave -1.
 				memory[nextInstructionAddr++] = -1;
 			}
 			else if( typeOfInstruction(currCode) == MOVIINST )
 			{
-				file >> word; // <R>
+				infile >> word; // <R>
 				if( not isARegister(word) )
 				{
 					cerr << "Improper Register at " << nextInstructionAddr << endl;
@@ -109,7 +110,7 @@ void assembleCode(std::string path,std::string outpath)
 				regCode = registers[word];
 				currCode = currCode | regCode; // partial op code is completed with the register code
 				memory[nextInstructionAddr++] = currCode;
-				file >> word; // xx
+				infile >> word; // xx
 				if( stoi(word) > 256 )
 				{
 					cerr << "Constant is too big at " << nextInstructionAddr << endl;
@@ -119,7 +120,7 @@ void assembleCode(std::string path,std::string outpath)
 			}
 			else if ( typeOfInstruction(currCode) == CDINST )
 			{
-				file >> word;
+				infile >> word;
 				memory[nextInstructionAddr++] = currCode;
 				// at the position for the address for the label we just leave -1.
 				memory[nextInstructionAddr++] = -1;
@@ -136,7 +137,7 @@ void assembleCode(std::string path,std::string outpath)
 			if( islabelPresent(word) )
 			{
 				cerr << "Duplicate Label at " << nextInstructionAddr << endl;
-				return;		
+				return;
 			}
 			lookupTable[word] = nextInstructionAddr;
 		}
@@ -147,29 +148,29 @@ void assembleCode(std::string path,std::string outpath)
 		}
 	}
 
-	file.close();
-	file.open(path, ios::in);
+	infile.close();
+	infile.open(path, ios::in);
 	nextInstructionAddr = 0;
-	
+
 	//second pass through the assembly code.
-	while(file >> word)
+	while(infile >> word)
 	{
 		if ( isAnInstruction(word) )
 		{
 			currCode = opCode[word];
 			if ( typeOfInstruction(currCode) == IMMEINST )
 			{
-				file >> word;
+				infile >> word;
 				nextInstructionAddr += 2;
 			}
 			else if ( typeOfInstruction(currCode) == REGINST )
 			{
-				file >> word;
+				infile >> word;
 				nextInstructionAddr++;
 			}
-			else if ( typeOfInstruction(currCode) == JMPDINST ) 
+			else if ( typeOfInstruction(currCode) == JMPDINST )
 			{
-				file >> word;
+				infile >> word;
 				nextInstructionAddr++;
 				if( not islabelPresent(word) )
 				{
@@ -180,13 +181,13 @@ void assembleCode(std::string path,std::string outpath)
 			}
 			else if( typeOfInstruction(currCode) == MOVIINST )
 			{
-				file >> word; // <R>
-				file >> word; // xx
+				infile >> word; // <R>
+				infile >> word; // xx
 				nextInstructionAddr += 2;
 			}
-			else if ( typeOfInstruction(currCode) == CDINST ) 
+			else if ( typeOfInstruction(currCode) == CDINST )
 			{
-				file >> word;
+				infile >> word;
 				nextInstructionAddr++;
 				if( not islabelPresent(word) )
 				{
@@ -201,13 +202,15 @@ void assembleCode(std::string path,std::string outpath)
 			}
 		}
 	}
-	file.close();
+	infile.close();
 
-	outfile.open(outpath, ios::binary);
+	outfile.open(outpath, ios::binary | ios::trunc);
 	for(int i=0;i<MEMSIZE;i++)
 	{
 		outfile << memory[i];
 	}
+
+	outfile.close(); // Many OS makes lazy buffer flush. Be sure to clean before exit.
 }
 
 int main(const int argc, char **argv)
