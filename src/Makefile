@@ -1,7 +1,7 @@
 OBJ = stdArchSim
 MAN = stdArchSim.1
 override CFLAGS += -Ofast -funroll-loops -flto -Wall -std=c++0x
-override DEVEL_FLAGS += -g -Wall -std=c++0x
+override DEVEL_FLAGS += -g -Wall -std=c++11
 override LFLAGS +=
 CC = g++
 PREFIX ?= /usr/local
