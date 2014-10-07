@@ -1,5 +1,5 @@
-OBJ = stdArchSim
-MAN = stdArchSim.1
+OBJ = stdArchAssembler
+MAN = stdArchAssembler.1
 override CFLAGS += -Ofast -funroll-loops -flto -Wall -std=c++11
 override DEVEL_FLAGS += -g -Wall -std=c++11
 override LFLAGS +=
