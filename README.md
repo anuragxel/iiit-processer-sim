@@ -3,18 +3,16 @@ Old People. New Challenge. mov pc,lr
 ### Structural Layout of Program ###
 *.hpp -> 
 	class declaration of module.
-	Must be included in every *.cpp
 
 *.cpp -> 
 	class defination of every module.
 	Must include processor.h
 	must include *.h
 
-	Make files must be updated on each file add.
-
 	Only variable declaration happens in main.cpp
 	
 ### Naming Conventions ###
+
 	Every Module Contains Content.
 	Make accessor, mutator in each.
 
