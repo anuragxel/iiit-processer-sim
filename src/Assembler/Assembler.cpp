@@ -7,7 +7,7 @@ using namespace std;
 
 bool isALabel(std::string word)
 {
-	return (word.find(":") != -1);
+	return (word.find(":") != string::npos);
 }
 bool isAnInstruction(std::string word)
 {
@@ -72,8 +72,9 @@ void assembleCode(std::string path,std::string outpath)
 			{
 				file >> word; // xx
 				memory[nextInstructionAddr++] = currCode; // opcode
-				if( stoi(word) > 256 ) {
-					cout << "Constant is too big at " << nextInstructionAddr << endl;
+				if( stoi(word) > 256 )
+				{
+					cerr << "Constant is too big at " << nextInstructionAddr << endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = stoi(word); // xx
@@ -81,8 +82,9 @@ void assembleCode(std::string path,std::string outpath)
 			else if ( typeOfInstruction(currCode) == REGINST ) // opcode
 			{
 				file >> word; // <R>
-				if( not isARegister(word) ) {
-					cout << "Improper Register at " << nextInstructionAddr << endl;
+				if( not isARegister(word) )
+				{
+					cerr << "Improper Register at " << nextInstructionAddr << endl;
 					return;
 				}
 				regCode = registers[word];
@@ -99,16 +101,18 @@ void assembleCode(std::string path,std::string outpath)
 			else if( typeOfInstruction(currCode) == MOVIINST )
 			{
 				file >> word; // <R>
-				if( not isARegister(word) ) {
-					cout << "Improper Register at " << nextInstructionAddr << endl;
+				if( not isARegister(word) )
+				{
+					cerr << "Improper Register at " << nextInstructionAddr << endl;
 					return;
 				}
 				regCode = registers[word];
 				currCode = currCode | regCode; // partial op code is completed with the register code
 				memory[nextInstructionAddr++] = currCode;
 				file >> word; // xx
-				if( stoi(word) > 256 ) {
-					cout << "Constant is too big at " << nextInstructionAddr << endl;
+				if( stoi(word) > 256 )
+				{
+					cerr << "Constant is too big at " << nextInstructionAddr << endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = stoi(word);
@@ -129,15 +133,16 @@ void assembleCode(std::string path,std::string outpath)
 		{
 			// building up the lookup table with the labels defined in the code.
 			word = word.erase(word.size() - 1);
-			if( islabelPresent(word) ) {
-				cout << "Duplicate Label at " << nextInstructionAddr <<endl;
+			if( islabelPresent(word) )
+			{
+				cerr << "Duplicate Label at " << nextInstructionAddr << endl;
 				return;		
 			}
 			lookupTable[word] = nextInstructionAddr;
 		}
 		else
 		{
-			cout << "Incorrect at line " << nextInstructionAddr <<endl;
+			cerr << "Incorrect at line " << nextInstructionAddr <<endl;
 			return;
 		}
 	}
@@ -166,8 +171,9 @@ void assembleCode(std::string path,std::string outpath)
 			{
 				file >> word;
 				nextInstructionAddr++;
-				if( not islabelPresent(word) ) {
-				cout << "Label Not Defined at " << nextInstructionAddr << endl;
+				if( not islabelPresent(word) )
+				{
+					cerr << "Label Not Defined at " << nextInstructionAddr << endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = lookupTable[word];
@@ -182,6 +188,11 @@ void assembleCode(std::string path,std::string outpath)
 			{
 				file >> word;
 				nextInstructionAddr++;
+				if( not islabelPresent(word) )
+				{
+					cerr << "Label Not Defined at " << nextInstructionAddr << endl;
+					return;
+				}
 				memory[nextInstructionAddr++] = lookupTable[word];
 			}
 			else
@@ -192,10 +203,10 @@ void assembleCode(std::string path,std::string outpath)
 	}
 	file.close();
 
-	outfile.open(outpath, ios::out);
+	outfile.open(outpath, ios::binary);
 	for(int i=0;i<MEMSIZE;i++)
 	{
-		outfile << memory[i] << endl;
+		outfile << memory[i];
 	}
 }
 
@@ -207,7 +218,7 @@ int main(const int argc, char **argv)
 	else if(argc == 3)
 		assembleCode(argv[1],argv[2]);
 	else
-		cout << "USAGE : assemble infile [outfile]" << endl;
+		cerr << "USAGE : assemble infile [outfile]" << endl;
 	return 0;
 }
 
