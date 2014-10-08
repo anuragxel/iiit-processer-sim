@@ -13,7 +13,7 @@ Flag::~Flag () {
 }
 
 bool Flag::getFlag() {
-	switch(io->SFL & 7)
+	switch(io->SFL)
 	{
 		case 0:
 			return this->getU();

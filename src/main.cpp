@@ -7,22 +7,54 @@
 
 #include "Processor.h"
 
-Accumulator *accumulator = new Accumulator();
-ALU *alu = new ALU();
-Databus *databus = new Databus();
-Flag *flag = new Flag();
-IO_RF *io = new IO_RF();
-MemoryAddress *memoryAddress = new MemoryAddress();
-Microinstruction *microinstruction = new Microinstruction();
-Operand *operand = new Operand();
-ProgramCounter *programCounter = new ProgramCounter();
-RegisterArray *registerArray = new RegisterArray();
-StackPointer *stackPointer = new StackPointer();
+
+Accumulator *accumulator;
+ALU *alu;
+Databus *databus;
+Flag *flag;
+IO_RF *io;
+MainMemory *mainMemory;
+MemoryAddress *memoryAddress;
+Microinstruction *microinstruction;
+Operand *operand;
+ProgramCounter *programCounter;
+RegisterArray *registerArray;
+StackPointer *stackPointer;
+
+void init(std::string path) {
+	accumulator = new Accumulator();
+	alu = new ALU();
+	databus = new Databus();
+	flag = new Flag();
+	io = new IO_RF();
+	mainMemory = new MainMemory(path);
+	memoryAddress = new MemoryAddress();
+	microinstruction = new Microinstruction();
+	operand = new Operand();
+	programCounter = new ProgramCounter();
+	registerArray = new RegisterArray();
+	stackPointer = new StackPointer();
+}
+
+void cleanup () {
+	delete accumulator;
+	delete alu;
+	delete databus;
+	delete flag;
+	delete io;
+	delete mainMemory;
+	delete memoryAddress;
+	delete microinstruction;
+	delete operand;
+	delete programCounter;
+	delete registerArray;
+	delete stackPointer;
+}
 
 int main(int argc, char const *argv[]) {
+	init("./Assembler/assemble.out");
 
 	// registerArray->clockPulse();
-
 	// databus->setContent(1);
 	// microinstruction->LIO = true;
 	// io->processSignal();
@@ -61,16 +93,6 @@ int main(int argc, char const *argv[]) {
 	//	std::cout <<(microinstruction->SAF & 15)<<std::endl;
 	//	std::cout <<alu->getContent()<<std::endl;
 
-	delete accumulator;
-	delete alu;
-	delete databus;
-	delete flag;
-	delete io;
-	delete memoryAddress;
-	delete microinstruction;
-	delete operand;
-	delete programCounter;
-	delete registerArray;
-	delete stackPointer;
+	cleanup();
 	return 0;
 }

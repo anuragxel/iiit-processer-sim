@@ -6,7 +6,7 @@
 
 class RegisterArray {
 	private:
-		std::array<Register , 16> registerArray;
+		std::array<Register , 12> registerArray;
 	public:
 		RegisterArray();
 		~RegisterArray();

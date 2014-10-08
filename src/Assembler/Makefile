@@ -15,7 +15,7 @@ $(OBJ) : *.o
 	$(CC) $(DEVEL_FLAGS) -c $^
 
 clean :
-	rm -f *.o $(OBJ)
+	rm -f *.o $(OBJ) *.out
 
 clear : clean
 

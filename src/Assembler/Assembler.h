@@ -14,12 +14,13 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <array>
 
-int memory[MEMSIZE];
+std::array <char, MEMSIZE> memory;
 int nextInstructionAddr;
-std::map <std::string,int> lookupTable;
+std::map <std::string, int> lookupTable;
 
-std::map <std::string,int> registers = 
+std::map <std::string, int> registers = 
 {
 	// general registers
 	{ "r0", 0x00 },
@@ -42,7 +43,7 @@ std::map <std::string,int> registers =
 	{ "or", 0x0F },
 };
 
-std::map <std::string,int> opCode = 
+std::map <std::string, int> opCode = 
 {
 	// no operation
 	{ "nop", 0x00  },
@@ -151,7 +152,7 @@ std::map <std::string,int> opCode =
 };
 
 void initialize();
-void assembleCode(std::string,std::string);
+void assembleCode(std::string, std::string);
 int typeOfInstruction(int);
 bool isALabel(std::string);
 bool isAnInstruction(std::string);

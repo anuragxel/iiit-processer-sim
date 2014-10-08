@@ -16,7 +16,7 @@ void ProgramCounter::processSignal () {
 	if (microinstruction->EPC)
 		databus->setContent(this->getContent());
 	if (microinstruction->IPC)
-		this->setContent(this->getContent() + 1);
+		this->increment();
 	if (microinstruction->LPC)
 		this->setContent(databus->getContent());
 }

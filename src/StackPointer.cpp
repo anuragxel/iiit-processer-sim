@@ -16,9 +16,9 @@ void StackPointer::processSignal () {
 	if (microinstruction->ESP)
 		databus->setContent(this->getContent());
 	if (microinstruction->ISP)
-		this->setContent(this->getContent() + 1);
+		this->increment();
 	if (microinstruction->DSP)
-		this->setContent(this->getContent() - 1);
+		this->decrement();
 	if (microinstruction->LSP)
 		this->setContent(databus->getContent());
 }

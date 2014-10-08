@@ -45,10 +45,7 @@ int typeOfInstruction(int currCode)
 
 void initialize()
 {
-	for(int i = 0;i<MEMSIZE;i++)
-	{
-		memory[i] = 0;
-	}
+	memory.fill(0); // I love C++ oneliners;
 	nextInstructionAddr = 0;
 }
 
@@ -203,13 +200,8 @@ void assembleCode(std::string path,std::string outpath)
 		}
 	}
 	infile.close();
-
-	outfile.open(outpath, ios::binary | ios::trunc);
-	for(int i=0;i<MEMSIZE;i++)
-	{
-		outfile << memory[i];
-	}
-
+	outfile.open(outpath, ios::trunc | ios::binary);
+	outfile.write((char *) &memory, sizeof(memory)); // I love C++ oneliners;
 	outfile.close(); // Many OS makes lazy buffer flush. Be sure to clean before exit.
 }
 
