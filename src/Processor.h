@@ -11,6 +11,7 @@
 #include "ALU.h"
 #include "Databus.h"
 #include "Flag.h"
+#include "Instruction.h"
 #include "IORF.h"
 #include "MainMemory.h"
 #include "MemoryAddress.h"
@@ -24,6 +25,7 @@ extern Accumulator *accumulator;
 extern ALU *alu;
 extern Databus *databus;
 extern Flag *flag;
+extern Instruction *instruction;
 extern IO_RF *io;
 extern MainMemory *mainMemory;
 extern MemoryAddress *memoryAddress;

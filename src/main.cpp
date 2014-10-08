@@ -12,6 +12,7 @@ Accumulator *accumulator;
 ALU *alu;
 Databus *databus;
 Flag *flag;
+Instruction *instruction;
 IO_RF *io;
 MainMemory *mainMemory;
 MemoryAddress *memoryAddress;
@@ -26,6 +27,7 @@ void init(std::string path) {
 	alu = new ALU();
 	databus = new Databus();
 	flag = new Flag();
+	instruction = new Instruction();
 	io = new IO_RF();
 	mainMemory = new MainMemory(path);
 	memoryAddress = new MemoryAddress();
@@ -41,6 +43,7 @@ void cleanup () {
 	delete alu;
 	delete databus;
 	delete flag;
+	delete instruction;
 	delete io;
 	delete mainMemory;
 	delete memoryAddress;
