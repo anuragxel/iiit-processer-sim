@@ -54,30 +54,38 @@ void cleanup () {
 int main(int argc, char const *argv[]) {
 	init("./Assembler/assemble.out");
 
-	// registerArray->clockPulse();
-	// databus->setContent(1);
-	// microinstruction->LIO = true;
-	// io->processSignal();
-	// io->clockPulse();
-	// std::cout <<io->SFL<<std::endl;
-	// std::cout <<flag->getFlag()<<std::endl;
-	// flag->setNZ();
-	// databus->resetBusy();
-	// databus->setContent(2);
-	// microinstruction->LIO = true;
-	// io->processSignal();
-	// io->clockPulse();
-	// std::cout <<io->SFL<<std::endl;
-	// std::cout <<flag->getFlag()<<std::endl;
+	//	for (int i = 0 ; i <= 255 ; i++)
+	//	{
+	//		memoryAddress->setContent(i);
+	//		memoryAddress->clockPulse();
+	//		std::cout <<(unsigned int)mainMemory->getContent()<<std::endl;
+	//	}
 
-	// operand->setContent( 0 );
-	// databus->setContent( 127 );
-	// operand->clockPulse();
-	// microinstruction->SAF = 1;
-	// std::cout <<alu->getContent()<<std::endl;
-	// std::cout <<flag->getC()<<std::endl;
-	// std::cout <<flag->getS()<<std::endl;
-	// std::cout <<flag->getNS()<<std::endl;
+
+	//	registerArray->clockPulse();
+	//	databus->setContent(1);
+	//	microinstruction->LIO = true;
+	//	io->processSignal();
+	//	io->clockPulse();
+	//	std::cout <<io->SFL<<std::endl;
+	//	std::cout <<flag->getFlag()<<std::endl;
+	//	flag->setNZ();
+	//	databus->resetBusy();
+	//	databus->setContent(2);
+	//	microinstruction->LIO = true;
+	//	io->processSignal();
+	//	io->clockPulse();
+	//	std::cout <<io->SFL<<std::endl;
+	//	std::cout <<flag->getFlag()<<std::endl;
+
+	//	operand->setContent( 0 );
+	//	databus->setContent( 127 );
+	//	operand->clockPulse();
+	//	microinstruction->SAF = 1;
+	//	std::cout <<alu->getContent()<<std::endl;
+	// 	std::cout <<flag->getC()<<std::endl;
+	//	std::cout <<flag->getS()<<std::endl;
+	//	std::cout <<flag->getNS()<<std::endl;
 
 
 	//	flag->setS();

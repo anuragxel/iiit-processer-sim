@@ -40,7 +40,7 @@ void MainMemory::setContent ( int content ) {
 }
 
 int MainMemory::getContent () {
-	return (int) this->mainMemory [ memoryAddress->getContent() ];
+	return (int) ((this->mainMemory [ memoryAddress->getContent() ]) & 0xFF);
 }
 
 #endif
