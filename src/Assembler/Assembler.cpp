@@ -3,11 +3,9 @@
 
 #include "Assembler.h"
 
-using namespace std;
-
 bool isALabel(std::string word)
 {
-	return (word.find(":") != string::npos);
+	return (word.find(":") != std::string::npos);
 }
 bool isAnInstruction(std::string word)
 {
@@ -53,11 +51,11 @@ void initialize()
 void assembleCode(std::string path,std::string outpath)
 {
 	std::string word;
-	ifstream infile;
-	ofstream outfile;
+	std::ifstream infile;
+	std::ofstream outfile;
 	int currCode = 0;
 	int regCode = 0;
-	infile.open(path, ios::in);
+	infile.open(path, std::ios::in);
 
 	// first pass through the assembly code
 	while(infile >> word)
@@ -72,7 +70,7 @@ void assembleCode(std::string path,std::string outpath)
 				memory[nextInstructionAddr++] = currCode; // opcode
 				if( stoi(word) > 256 )
 				{
-					cerr << "Constant is too big at " << nextInstructionAddr << endl;
+					std::cerr << "Constant is too big at " << nextInstructionAddr << std::endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = stoi(word); // xx
@@ -82,7 +80,7 @@ void assembleCode(std::string path,std::string outpath)
 				infile >> word; // <R>
 				if( not isARegister(word) )
 				{
-					cerr << "Improper Register at " << nextInstructionAddr << endl;
+					std::cerr << "Improper Register at " << nextInstructionAddr << std::endl;
 					return;
 				}
 				regCode = registers[word];
@@ -101,7 +99,7 @@ void assembleCode(std::string path,std::string outpath)
 				infile >> word; // <R>
 				if( not isARegister(word) )
 				{
-					cerr << "Improper Register at " << nextInstructionAddr << endl;
+					std::cerr << "Improper Register at " << nextInstructionAddr << std::endl;
 					return;
 				}
 				regCode = registers[word];
@@ -110,7 +108,7 @@ void assembleCode(std::string path,std::string outpath)
 				infile >> word; // xx
 				if( stoi(word) > 256 )
 				{
-					cerr << "Constant is too big at " << nextInstructionAddr << endl;
+					std::cerr << "Constant is too big at " << nextInstructionAddr << std::endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = stoi(word);
@@ -133,20 +131,20 @@ void assembleCode(std::string path,std::string outpath)
 			word = word.erase(word.size() - 1);
 			if( islabelPresent(word) )
 			{
-				cerr << "Duplicate Label at " << nextInstructionAddr << endl;
+				std::cerr << "Duplicate Label at " << nextInstructionAddr << std::endl;
 				return;
 			}
 			lookupTable[word] = nextInstructionAddr;
 		}
 		else
 		{
-			cerr << "Incorrect at line " << nextInstructionAddr <<endl;
+			std::cerr << "Incorrect at line " << nextInstructionAddr <<std::endl;
 			return;
 		}
 	}
 
-	infile.close();
-	infile.open(path, ios::in);
+	infile.clear();
+	infile.seekg(0 , std::ios::beg);
 	nextInstructionAddr = 0;
 
 	//second pass through the assembly code.
@@ -171,7 +169,7 @@ void assembleCode(std::string path,std::string outpath)
 				nextInstructionAddr++;
 				if( not islabelPresent(word) )
 				{
-					cerr << "Label Not Defined at " << nextInstructionAddr << endl;
+					std::cerr << "Label Not Defined at " << nextInstructionAddr << std::endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = lookupTable[word];
@@ -188,7 +186,7 @@ void assembleCode(std::string path,std::string outpath)
 				nextInstructionAddr++;
 				if( not islabelPresent(word) )
 				{
-					cerr << "Label Not Defined at " << nextInstructionAddr << endl;
+					std::cerr << "Label Not Defined at " << nextInstructionAddr << std::endl;
 					return;
 				}
 				memory[nextInstructionAddr++] = lookupTable[word];
@@ -199,8 +197,9 @@ void assembleCode(std::string path,std::string outpath)
 			}
 		}
 	}
+
 	infile.close();
-	outfile.open(outpath, ios::trunc | ios::binary);
+	outfile.open(outpath, std::ios::trunc | std::ios::binary);
 	outfile.write((char *) &memory, sizeof(memory)); // I love C++ oneliners;
 	outfile.close(); // Many OS makes lazy buffer flush. Be sure to clean before exit.
 }
@@ -213,7 +212,7 @@ int main(const int argc, char **argv)
 	else if(argc == 3)
 		assembleCode(argv[1],argv[2]);
 	else
-		cerr << "USAGE : assemble infile [outfile]" << endl;
+		std::cerr << "USAGE : assemble infile [outfile]" << std::endl;
 	return 0;
 }
 

@@ -8,20 +8,20 @@ PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
 
-$(OBJ) : *.o
+$(OBJ) : Assembler.o
 	$(CC) $(DEVEL_FLAGS) $^ -o $@ $(LFLAGS)
 
-%.o : %.cpp
+Assembler.o : Assembler.cpp
 	$(CC) $(DEVEL_FLAGS) -c $^
 
 clean :
-	rm -f *.o $(OBJ) *.out
+	rm -f Assembler.o $(OBJ)
 
 clear : clean
 
 ofast :
-	$(CC) $(CFLAGS) -c *.cpp
-	$(CC) $(CFLAGS) -o $(OBJ) *.o $(LFLAGS)
+	$(CC) $(CFLAGS) -c Assembler.cpp
+	$(CC) $(CFLAGS) -o $(OBJ) Assembler.o $(LFLAGS)
 
 install : $(OBJ)
 	@echo "Installing program to $(DESTDIR)$(BINDIR) ..."

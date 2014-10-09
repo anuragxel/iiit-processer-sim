@@ -20,7 +20,7 @@ std::array <char, MEMSIZE> memory;
 int nextInstructionAddr;
 std::map <std::string, int> lookupTable;
 
-std::map <std::string, int> registers = 
+std::map <std::string, int> registers =
 {
 	// general registers
 	{ "r0", 0x00 },
@@ -43,7 +43,7 @@ std::map <std::string, int> registers =
 	{ "or", 0x0F },
 };
 
-std::map <std::string, int> opCode = 
+std::map <std::string, int> opCode =
 {
 	// no operation
 	{ "nop", 0x00  },
@@ -52,7 +52,7 @@ std::map <std::string, int> opCode =
 	{ "stop", 0x01 },
 
 	// if of the format adi xx
-	// [AR] <-- [AR] {op} xx 
+	// [AR] <-- [AR] {op} xx
 	{ "adi", 0x02 },
 	{ "subi", 0x03 },
 	{ "xri", 0x04 },
@@ -105,7 +105,7 @@ std::map <std::string, int> opCode =
 	{ "pop", 0xD0 },
 
 	// is of the format jmpd<FL> label
-	// [PC] <- label if <FL> = 1 
+	// [PC] <- label if <FL> = 1
 	// label is an memory address pointing to a code point
 	{ "jmpdu", 0xE0 },
 	{ "jmpdz", 0xE1 },
@@ -116,7 +116,7 @@ std::map <std::string, int> opCode =
 	{ "jmpdm", 0xE6 },
 	{ "jmpdop", 0xE7 },
 
-	// is of the format jmpr<FL>	
+	// is of the format jmpr<FL>
 	// [PC] ← [AR] if <FL> = 1
 	{ "jmpru", 0xE8 },
 	{ "jmprz", 0xE9 },
@@ -156,5 +156,7 @@ void assembleCode(std::string, std::string);
 int typeOfInstruction(int);
 bool isALabel(std::string);
 bool isAnInstruction(std::string);
+bool isARegister(std::string word);
+bool islabelPresent(std::string word);
 
 #endif
