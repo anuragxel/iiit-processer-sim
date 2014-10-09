@@ -17,6 +17,7 @@ IO_RF *io;
 MainMemory *mainMemory;
 MemoryAddress *memoryAddress;
 Microinstruction *microinstruction;
+MicroprogramSequencer *microprogramSequencer;
 Operand *operand;
 ProgramCounter *programCounter;
 RegisterArray *registerArray;
@@ -32,6 +33,7 @@ void init(std::string path) {
 	mainMemory = new MainMemory(path);
 	memoryAddress = new MemoryAddress();
 	microinstruction = new Microinstruction();
+	microprogramSequencer = new MicroprogramSequencer();
 	operand = new Operand();
 	programCounter = new ProgramCounter();
 	registerArray = new RegisterArray();
@@ -48,6 +50,7 @@ void cleanup () {
 	delete mainMemory;
 	delete memoryAddress;
 	delete microinstruction;
+	delete microprogramSequencer;
 	delete operand;
 	delete programCounter;
 	delete registerArray;

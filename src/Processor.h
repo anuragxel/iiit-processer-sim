@@ -16,6 +16,7 @@
 #include "MainMemory.h"
 #include "MemoryAddress.h"
 #include "Microinstruction.h"
+#include "MicroprogramSequencer.h"
 #include "Operand.h"
 #include "ProgramCounter.h"
 #include "RegisterArray.h"
@@ -30,6 +31,7 @@ extern IO_RF *io;
 extern MainMemory *mainMemory;
 extern MemoryAddress *memoryAddress;
 extern Microinstruction *microinstruction;
+extern MicroprogramSequencer *microprogramSequencer;
 extern Operand *operand;
 extern ProgramCounter *programCounter;
 extern RegisterArray *registerArray;
