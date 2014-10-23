@@ -28,5 +28,9 @@ install : $(OBJ)
 	@mkdir -p $(DESTDIR)$(BINDIR)
 	@install -pm0755 $(OBJ) $(DESTDIR)$(BINDIR)/$(TARGET) || \
 		echo "Failed. Try "make PREFIX=~ install" ?"
+	@echo "Installing manpage to $(DESTDIR)$(MANDIR) ..."
+	@mkdir -p $(DESTDIR)$(MANDIR)
+	@install -pm0644 $(MAN) $(DESTDIR)$(MANDIR)/ || \
+		echo "Failed. Try "make PREFIX=~ install" ?"
 
 all : install
