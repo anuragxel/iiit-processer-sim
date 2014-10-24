@@ -38,6 +38,14 @@ void MicroprogramSequencer::processSignal () {
 			this->setContent(RESET_ADDRESS);
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 void MicroprogramSequencer::clockPulse () {
 	Register::clockPulse();
 	this->increment();

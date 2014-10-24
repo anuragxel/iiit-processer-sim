@@ -37,4 +37,12 @@ void Accumulator::processSignal () {
 		this->setContent(alu->getContent());
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 #endif

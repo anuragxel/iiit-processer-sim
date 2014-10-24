@@ -61,4 +61,12 @@ int MainMemory::getContent () {
 	return (int) ((this->mainMemory [ memoryAddress->getContent() ]) & 0xFF);
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 #endif

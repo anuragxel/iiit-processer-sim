@@ -37,4 +37,12 @@ void Operand::processSignal () {
 		this->setContent(databus->getContent());
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 #endif

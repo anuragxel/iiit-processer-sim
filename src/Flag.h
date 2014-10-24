@@ -64,7 +64,8 @@ class Flag : public Register {
 		void setP( bool );
 		bool getP();
 
-		void processSignal();
+		void processSignalUpwardEdge();
+		void processSignalDownwardEdge();
 };
 
 #endif

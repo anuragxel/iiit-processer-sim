@@ -34,6 +34,14 @@ void IO_RF::processSignal () {
 	}
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 void IO_RF::clockPulse () {
 	Register::clockPulse();
 	this->SRG = this->Content & 15;

@@ -82,6 +82,9 @@ void cleanup () {
 int main(int argc, char const *argv[]) {
 	init();
 
+	
+
+
 	//	for (int i = 0 ; i <= 255 ; i++)
 	//	{
 	//		memoryAddress->setContent(i);

@@ -69,6 +69,14 @@ void RegisterArray::processSignal () {
 	}
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 void RegisterArray::clockPulse () {
 	for (auto &i : registerArray)
 		i.clockPulse();

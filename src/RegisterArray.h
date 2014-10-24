@@ -26,7 +26,8 @@ class RegisterArray {
 	public:
 		RegisterArray();
 		~RegisterArray();
-		void processSignal();
+		void processSignalUpwardEdge();
+		void processSignalDownwardEdge();
 		void clockPulse();
 		void setContent (int);
 		int getContent();

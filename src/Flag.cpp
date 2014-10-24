@@ -66,6 +66,14 @@ void Flag::processSignal () {
 	// @Ghosh : |-> (END -> RMS) logic still applies here. Since rule defined in <MS>.cpp
 }
 
+void StackPointer::processSignalUpwardEdge(){
+
+}
+
+void StackPointer::processSignalDownwardEdge(){
+	
+}
+
 bool Flag::getU() {
 	return (this->Content & 1) == 1; //Should Always Be 1.
 }

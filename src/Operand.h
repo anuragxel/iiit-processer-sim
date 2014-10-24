@@ -24,7 +24,8 @@ class Operand : public Register {
 	public:
 		Operand();
 		~Operand();
-		void processSignal();
+		void processSignalUpwardEdge();
+		void processSignalDownwardEdge();
 };
 
 #endif

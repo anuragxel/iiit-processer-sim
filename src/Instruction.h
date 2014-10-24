@@ -24,7 +24,8 @@ class Instruction : public Register {
 	public:
 		Instruction();
 		~Instruction();
-		void processSignal();
+		void processSignalUpwardEdge();
+		void processSignalDownwardEdge();
 };
 
 #endif

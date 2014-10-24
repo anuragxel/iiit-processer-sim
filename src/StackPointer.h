@@ -24,7 +24,8 @@ class StackPointer : public Register {
 	public:
 		StackPointer();
 		~StackPointer();
-		void processSignal();
+		void processSignalUpwardEdge();
+		void processSignalDownwardEdge();
 };
 
 #endif
