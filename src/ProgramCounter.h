@@ -24,8 +24,8 @@ class ProgramCounter : public Register {
 	public:
 		ProgramCounter();
 		~ProgramCounter();
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 };
 
 #endif

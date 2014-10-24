@@ -28,18 +28,23 @@ IO_RF::~IO_RF () {
 
 }
 
+/*
 void IO_RF::processSignal () {
 	if (microinstruction->LIO) {
 		this->setContent(databus->getContent());
 	}
 }
+*/
 
-void StackPointer::processSignalUpwardEdge(){
+void IO_RF::processSignalRisingEdge(){
 
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void IO_RF::processSignalFallingEdge(){
+	if (microinstruction->LIO) {
+		std::cout << "LIO\n";
+		this->setContent(databus->getContent());
+	}
 }
 
 void IO_RF::clockPulse () {

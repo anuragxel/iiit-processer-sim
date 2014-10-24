@@ -17,11 +17,13 @@
 #ifndef _BASE_REGISTER_H
 #define _BASE_REGISTER_H
 
+#include <string>
+
 class Register
 {
 	protected:
 		int Content;
-		int _previousContent;
+		int _nextContent;
 	public:
 		Register();
 		~Register();
@@ -35,6 +37,7 @@ class Register
 		void leftShift();
 		void increment();
 		void decrement();
+		std::string toString();
 };
 
 #endif

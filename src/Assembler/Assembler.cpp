@@ -40,19 +40,19 @@ bool islabelPresent(std::string word)
 int typeOfInstruction(int currCode)
 {
 	if( currCode == 0x02 or currCode == 0x03 or currCode == 0x04 or currCode == 0x05 or
-			currCode == 0x06 or currCode == 0x07 )
+	    currCode == 0x06 or currCode == 0x07 )
 		return IMMEINST;
-	else if(currCode == 0x10 or currCode == 0x20 or currCode == 0x30 or currCode == 0x40 or
-			currCode == 0x50 or currCode == 0x60 or currCode == 0x70 or currCode == 0x80 or
-			currCode == 0xA0 or currCode == 0xB0 or currCode == 0xC0 or currCode == 0xD0 )
+	else if( currCode == 0x10 or currCode == 0x20 or currCode == 0x30 or currCode == 0x40 or
+		 currCode == 0x50 or currCode == 0x60 or currCode == 0x70 or currCode == 0x80 or
+		 currCode == 0xA0 or currCode == 0xB0 or currCode == 0xC0 or currCode == 0xD0 )
 		return REGINST;
-	else if(currCode == 0xE0 or currCode == 0xE1 or currCode == 0xE2 or currCode == 0xE3 or
-			currCode == 0xE4 or currCode == 0xE5 or currCode == 0xE6 or currCode == 0xE7 )
+	else if( currCode == 0xE0 or currCode == 0xE1 or currCode == 0xE2 or currCode == 0xE3 or
+		 currCode == 0xE4 or currCode == 0xE5 or currCode == 0xE6 or currCode == 0xE7 )
 		return JMPDINST;
-	else if(currCode == 0x90)
+	else if( currCode == 0x90 )
 		return MOVIINST;
-	else if(currCode == 0xF0 or currCode == 0xF1 or currCode == 0xF2 or currCode == 0xF3 or
-			currCode == 0xF4 or currCode == 0xF5 or currCode == 0xF6 or currCode == 0xF7 )
+	else if( currCode == 0xF0 or currCode == 0xF1 or currCode == 0xF2 or currCode == 0xF3 or
+		 currCode == 0xF4 or currCode == 0xF5 or currCode == 0xF6 or currCode == 0xF7 )
 		return CDINST;
 	else
 		return 0;

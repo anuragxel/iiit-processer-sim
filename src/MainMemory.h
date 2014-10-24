@@ -36,8 +36,8 @@ class MainMemory
 		void setContent( int );
 		int getContent ( );
 
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 };
 
 #endif

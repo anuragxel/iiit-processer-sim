@@ -24,8 +24,8 @@ class MemoryAddress : public Register {
 	public:
 		MemoryAddress();
 		~MemoryAddress();
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 };
 
 #endif

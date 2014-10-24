@@ -30,6 +30,7 @@ RegisterArray::~RegisterArray () {
 
 }
 
+/*
 void RegisterArray::processSignal () {
 	if (microinstruction->ERG) {
 		switch (io->SRG) {
@@ -68,13 +69,49 @@ void RegisterArray::processSignal () {
 		}
 	}
 }
-
-void StackPointer::processSignalUpwardEdge(){
-
+*/
+void RegisterArray::processSignalRisingEdge(){
+	if (microinstruction->ERG) {
+		std::cout << "ERG\n";
+		switch (io->SRG) {
+			case 15:
+				databus->setContent(operand->getContent());
+				break;
+			case 14:
+				databus->setContent(accumulator->getContent());
+				break;
+			case 13:
+				databus->setContent(stackPointer->getContent());
+				break;
+			case 12:
+				databus->setContent(programCounter->getContent());
+			default:
+				databus->setContent(registerArray[io->SRG].getContent());
+				break;
+		}
+	}
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void RegisterArray::processSignalFallingEdge(){
+	if (microinstruction->LRG) {
+		std::cout << "LRG\n";
+		switch (io->SRG) {
+			case 15:
+				operand->setContent(databus->getContent());
+				break;
+			case 14:
+				accumulator->setContent(databus->getContent());
+				break;
+			case 13:
+				stackPointer->setContent(databus->getContent());
+				break;
+			case 12:
+				programCounter->setContent(databus->getContent());
+			default:
+				registerArray[io->SRG].setContent(databus->getContent());
+				break;
+		}
+	}
 }
 
 void RegisterArray::clockPulse () {
@@ -88,6 +125,14 @@ void RegisterArray::setContent ( int content ) {
 
 int RegisterArray::getContent() {
 	return registerArray[io->SRG].getContent();
+}
+
+std::string RegisterArray::toString() {
+	std::string buff;
+	for (auto &i : registerArray)
+		buff += i.toString() + "\n";
+
+	return buff;
 }
 
 #endif

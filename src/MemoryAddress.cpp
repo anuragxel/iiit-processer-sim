@@ -28,17 +28,22 @@ MemoryAddress::~MemoryAddress () {
 
 }
 
+/*
 void MemoryAddress::processSignal () {
 	if (microinstruction->LMR)
 		this->setContent(databus->getContent());
 }
+*/
 
-void StackPointer::processSignalUpwardEdge(){
+void MemoryAddress::processSignalRisingEdge(){
 
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void MemoryAddress::processSignalFallingEdge(){
+	if (microinstruction->LMR){
+		std::cout << "LMR\n";
+		this->setContent(databus->getContent());
+	}
 }
 
 #endif

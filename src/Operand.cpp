@@ -28,6 +28,7 @@ Operand::~Operand () {
 
 }
 
+/*
 void Operand::processSignal () {
 	if (microinstruction->EOR)
 		databus->setContent(this->getContent());
@@ -36,13 +37,23 @@ void Operand::processSignal () {
 	if (microinstruction->LOR)
 		this->setContent(databus->getContent());
 }
-
-void StackPointer::processSignalUpwardEdge(){
-
+*/
+void Operand::processSignalRisingEdge(){
+	if (microinstruction->EOR){
+		std::cout << "EOR\n";
+		databus->setContent(this->getContent());
+	}
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void Operand::processSignalFallingEdge(){
+	if (microinstruction->ROR){
+		std::cout << "ROR\n";
+		this->setContent(0);
+	}
+	if (microinstruction->LOR) {
+		std::cout << "LOR\n";
+		this->setContent(databus->getContent());
+	}
 }
 
 #endif

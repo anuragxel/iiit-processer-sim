@@ -22,7 +22,7 @@
 
 Register::Register () {
 	this->Content = 0;
-	this->_previousContent = 0;
+	this->_nextContent = 0;
 }
 
 Register::~Register () {
@@ -30,7 +30,7 @@ Register::~Register () {
 }
 
 void Register::setContent ( int content ) {
-	this->_previousContent = content;
+	this->_nextContent = content;
 }
 
 int Register::getContent () {
@@ -38,23 +38,27 @@ int Register::getContent () {
 }
 
 void Register::clockPulse () {
-	this->Content = this->_previousContent;
+	this->Content = this->_nextContent;
 }
 
 void Register::rightShift() {
-	this->_previousContent = (this->_previousContent >> 1);
+	this->_nextContent = (this->_nextContent >> 1);
 }
 
 void Register::leftShift() {
-	this->_previousContent = (this->_previousContent << 1);
+	this->_nextContent = (this->_nextContent << 1);
 }
 
 void Register::increment() {
-	this->_previousContent = (this->_previousContent + 1);
+	this->_nextContent = (this->_nextContent + 1);
 }
 
 void Register::decrement() {
-	this->_previousContent = (this->_previousContent - 1);
+	this->_nextContent = (this->_nextContent - 1);
+}
+
+std::string Register::toString() {
+	return std::to_string(this->Content) + "\t" + std::to_string(this->_nextContent);
 }
 
 #endif

@@ -61,12 +61,18 @@ int MainMemory::getContent () {
 	return (int) ((this->mainMemory [ memoryAddress->getContent() ]) & 0xFF);
 }
 
-void StackPointer::processSignalUpwardEdge(){
-
+void MainMemory::processSignalRisingEdge(){
+	if(microinstruction->RD) {
+		std::cout << "RD\n";
+		databus->setContent(this->getContent());
+	}
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void MainMemory::processSignalFallingEdge(){
+	if(microinstruction->WR) {
+		std::cout << "WR\n";
+		this->setContent(databus->getContent());
+	}
 }
 
 #endif

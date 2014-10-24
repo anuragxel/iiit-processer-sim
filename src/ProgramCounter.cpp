@@ -28,6 +28,7 @@ ProgramCounter::~ProgramCounter () {
 
 }
 
+/*
 void ProgramCounter::processSignal () {
 	if (microinstruction->EPC)
 		databus->setContent(this->getContent());
@@ -36,13 +37,23 @@ void ProgramCounter::processSignal () {
 	if (microinstruction->LPC)
 		this->setContent(databus->getContent());
 }
-
-void StackPointer::processSignalUpwardEdge(){
-
+*/
+void ProgramCounter::processSignalRisingEdge(){
+	if (microinstruction->EPC){
+		std::cout << "EPC\n";
+		databus->setContent(this->getContent());
+	}
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void ProgramCounter::processSignalFallingEdge(){
+	if (microinstruction->IPC) {
+		std::cout << "IPC\n";
+		this->increment();
+	}
+	if (microinstruction->LPC) {
+		std::cout << "LPC\n";
+		this->setContent(databus->getContent());
+	}
 }
 
 #endif

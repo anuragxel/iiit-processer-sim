@@ -41,6 +41,8 @@
 #include "ROM.h"
 #include "StackPointer.h"
 
+#include <iostream> // TODO : Remove Later
+
 extern Accumulator *accumulator;
 extern ALU *alu;
 extern Databus *databus;

@@ -41,7 +41,7 @@ RegisterArray *registerArray;
 ROM *rom;
 StackPointer *stackPointer;
 
-void init() {
+void init(std::string path) {
 	accumulator = new Accumulator();
 	alu = new ALU();
 	databus = new Databus();
@@ -49,7 +49,7 @@ void init() {
 	flag = new Flag();
 	instruction = new Instruction();
 	io = new IO_RF();
-	mainMemory = new MainMemory();
+	mainMemory = new MainMemory(path);
 	memoryAddress = new MemoryAddress();
 	microinstruction = new Microinstruction();
 	microprogramSequencer = new MicroprogramSequencer();
@@ -80,17 +80,93 @@ void cleanup () {
 }
 
 int main(int argc, char const *argv[]) {
-	init();
-
+	init("./Assembler/assemble.out");
 	
+	for(int i = 0 ; instruction->getContent() != 0x01 ; i++)
+	{
+		std::cout <<"\n\nBefore : " <<i<<std::endl; 
+		std::cout <<"ALU : "<<alu->getContent()<<std::endl;
+		std::cout <<"Accumulator : "<<accumulator->getContent()<<std::endl;
+		std::cout <<"Databus : "<<databus->getContent()<<std::endl;
+		std::cout <<"Decoder : " <<decoder->getContent()<<std::endl;
+		std::cout <<"Program Counter : "<<programCounter->getContent()<<std::endl;
+		std::cout <<"mainMemory : "<<mainMemory->getContent()<<std::endl;
+		std::cout <<"flag : "<<flag->getContent()<<std::endl;
+		std::cout <<"io : "<<io->getContent()<<std::endl;
+		std::cout <<"instruction : "<<instruction->getContent()<<std::endl;
+		std::cout <<"memoryAddress : "<<memoryAddress->getContent()<<std::endl;
+		std::cout <<"Register : "<<registerArray->getContent()<<std::endl;
+		std::cout <<"MicroSequen : "<<microprogramSequencer->getContent()<<std::endl;
+		std::cout <<std::endl;
 
 
-	//	for (int i = 0 ; i <= 255 ; i++)
-	//	{
-	//		memoryAddress->setContent(i);
-	//		memoryAddress->clockPulse();
-	//		std::cout <<(unsigned int)mainMemory->getContent()<<std::endl;
-	//	}
+		databus->resetBusy();
+		
+		accumulator->processSignalRisingEdge();
+		flag->processSignalRisingEdge();
+		instruction->processSignalRisingEdge();
+		io->processSignalRisingEdge();
+		mainMemory->processSignalRisingEdge();
+		memoryAddress->processSignalRisingEdge();
+		microprogramSequencer->processSignalRisingEdge();
+		operand->processSignalRisingEdge();
+		programCounter->processSignalRisingEdge();
+		registerArray->processSignalRisingEdge();
+		stackPointer->processSignalRisingEdge();
+
+		accumulator->clockPulse();
+		flag->clockPulse();
+		instruction->clockPulse();
+		io->clockPulse();
+		memoryAddress->clockPulse();
+		microprogramSequencer->clockPulse();
+		operand->clockPulse();
+		programCounter->clockPulse();
+		registerArray->clockPulse();
+		stackPointer->clockPulse();
+
+		accumulator->processSignalFallingEdge();
+		flag->processSignalFallingEdge();
+		instruction->processSignalFallingEdge();
+		io->processSignalFallingEdge();
+		mainMemory->processSignalFallingEdge();
+		memoryAddress->processSignalFallingEdge();
+		microprogramSequencer->processSignalFallingEdge();
+		operand->processSignalFallingEdge();
+		programCounter->processSignalFallingEdge();
+		registerArray->processSignalFallingEdge();
+		stackPointer->processSignalFallingEdge();
+
+		rom->setMicroinstruction();
+
+		std::cout <<"\n\nAfter : "<< i << std::endl; 
+		std::cout <<"ALU : "<<alu->getContent()<<std::endl;
+		std::cout <<"Accumulator : "<<accumulator->getContent()<<std::endl;
+		std::cout <<"Databus : "<<databus->getContent()<<std::endl;
+		std::cout <<"Decoder : " <<decoder->getContent()<<std::endl;
+		std::cout <<"Program Counter : "<<programCounter->getContent()<<std::endl;
+		std::cout <<"mainMemory : "<<mainMemory->getContent()<<std::endl;
+		std::cout <<"flag : "<<flag->getContent()<<std::endl;
+		std::cout <<"io : "<<io->getContent()<<std::endl;
+		std::cout <<"instruction : "<<instruction->getContent()<<std::endl;
+		std::cout <<"memoryAddress : "<<memoryAddress->getContent()<<std::endl;
+		std::cout <<"Register : "<<registerArray->getContent()<<std::endl;
+		std::cout <<"MicroSequen : "<<microprogramSequencer->getContent()<<std::endl;
+		std::cout <<std::endl;
+	}
+
+	std::cout <<registerArray->toString();
+
+	for (int i = 0 ; i <= 255 ; i++)
+	{
+		memoryAddress->setContent(i);
+		memoryAddress->clockPulse();
+		std::cout <<(unsigned int)mainMemory->getContent()<<" ";
+		if (!((i + 1) % 16))
+			std::cout <<std::endl;
+	}
+
+
 
 	// std::cout <<stackPointer->getContent();
 

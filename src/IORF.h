@@ -27,8 +27,8 @@ class IO_RF : public Register {
 		IO_RF();
 		~IO_RF();
 
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 		
 		void clockPulse();
 };

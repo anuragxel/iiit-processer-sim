@@ -27,7 +27,7 @@ Accumulator::Accumulator () {
 Accumulator::~Accumulator () {
 
 }
-
+/*
 void Accumulator::processSignal () {
 	if (microinstruction->EAR)
 		databus->setContent(this->getContent());
@@ -36,13 +36,23 @@ void Accumulator::processSignal () {
 	if (microinstruction->LAR)
 		this->setContent(alu->getContent());
 }
-
-void StackPointer::processSignalUpwardEdge(){
-
+*/
+void Accumulator::processSignalRisingEdge(){
+	if(microinstruction->EAR) {
+		std::cout << "EAR\n";
+		databus->setContent(this->getContent());
+	}
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void Accumulator::processSignalFallingEdge(){
+	if (microinstruction->RAR){
+		std::cout << "RAR\n";
+		this->setContent(0);
+	}
+	if (microinstruction->LAR){
+		std::cout << "LAR\n";
+		this->setContent(alu->getContent());
+	}
 }
 
 #endif

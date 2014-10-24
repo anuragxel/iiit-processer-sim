@@ -26,8 +26,8 @@ class MicroprogramSequencer : public Register {
 		~MicroprogramSequencer();
 
 		void clockPulse();
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 };
 
 #endif

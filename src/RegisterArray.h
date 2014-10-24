@@ -19,6 +19,7 @@
 
 #include "BaseRegister.h"
 #include <array>
+#include <string>
 
 class RegisterArray {
 	private:
@@ -26,11 +27,12 @@ class RegisterArray {
 	public:
 		RegisterArray();
 		~RegisterArray();
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 		void clockPulse();
 		void setContent (int);
 		int getContent();
+		std::string toString();
 };
 
 #endif

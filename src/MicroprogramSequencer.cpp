@@ -28,6 +28,7 @@ MicroprogramSequencer::~MicroprogramSequencer () {
 
 }
 
+/*
 void MicroprogramSequencer::processSignal () {
 	if (microinstruction->LMS)
 		this->setContent(decoder->getContent());
@@ -37,18 +38,31 @@ void MicroprogramSequencer::processSignal () {
 		if (flag->getFlag())
 			this->setContent(RESET_ADDRESS);
 }
+*/
 
-void StackPointer::processSignalUpwardEdge(){
-
+void MicroprogramSequencer::processSignalRisingEdge(){	
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void MicroprogramSequencer::processSignalFallingEdge(){	
+	if (microinstruction->RMS && !microinstruction->EFL){ // @Ghosh : Unconditional reset, if EFL == false;
+		std::cout << "RMS w/o flag\n";
+		this->setContent(RESET_ADDRESS);
+	}
+	if (microinstruction->RMS && microinstruction->EFL){ // @Ghosh : Conditional reset, if flag is enabled;
+		std::cout << "RMS w/t flag\n";
+		if (flag->getFlag())
+			this->setContent(RESET_ADDRESS);
+	}
+	if (microinstruction->LMS){
+		std::cout << "LMS\n";
+		this->setContent(decoder->getContent());
+	}
 }
 
 void MicroprogramSequencer::clockPulse () {
+	if (!microinstruction->RMS && !microinstruction->LMS)
+		this->increment();
 	Register::clockPulse();
-	this->increment();
 }
 
 #endif

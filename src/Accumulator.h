@@ -24,8 +24,8 @@ class Accumulator : public Register {
 	public:
 		Accumulator();
 		~Accumulator();
-		void processSignalUpwardEdge();
-		void processSignalDownwardEdge();
+		void processSignalRisingEdge();
+		void processSignalFallingEdge();
 };
 
 #endif

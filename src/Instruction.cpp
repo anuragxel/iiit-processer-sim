@@ -28,17 +28,22 @@ Instruction::~Instruction () {
 
 }
 
+/*
 void Instruction::processSignal () {
-	if (microinstruction->LAR)
+	if (microinstruction->LIR)
 		this->setContent(databus->getContent());
 }
+*/
 
-void StackPointer::processSignalUpwardEdge(){
+void Instruction::processSignalRisingEdge(){
 
 }
 
-void StackPointer::processSignalDownwardEdge(){
-	
+void Instruction::processSignalFallingEdge(){
+	if (microinstruction->LIR){
+		std::cout << "LIR\n";
+		this->setContent(databus->getContent());
+	}
 }
 
 #endif

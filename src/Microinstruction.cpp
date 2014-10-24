@@ -79,7 +79,7 @@ void Microinstruction::setContent(Microinstruction content) {
 }
 
 void Microinstruction::resetContent() {
-	this->RD = false;
+	this->RD = true;
 	this->WR = false;
 	this->LMR = false;
 	this->EPC = false;
@@ -89,11 +89,11 @@ void Microinstruction::resetContent() {
 	this->ISP = false;
 	this->DSP = false;
 	this->LSP = false;
-	this->LIR = false;
-	this->LMS = false;
+	this->LIR = true;
+	this->LMS = true;
 	this->RMS = false;
 	this->EFL = false;
-	this->LIO = false;
+	this->LIO = true;
 	this->LRG = false;
 	this->ERG = false;
 	this->LAR = false;
