@@ -14,19 +14,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Std-Arch-Sim.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef _MICROPROGRAMSEQUENCER_H
-#define _MICROPROGRAMSEQUENCER_H
+#ifndef _DECODER_H
+#define _DECODER_H
 
-#include "BaseRegister.h"
+ #include <array>
 
-class MicroprogramSequencer : public Register {
+class Decoder {
 	private:
+		std::array<int , 256> hashTable;
 	public:
-		MicroprogramSequencer();
-		~MicroprogramSequencer();
+		Decoder();
+		~Decoder();
+		int getContent();
 
-		void clockPulse();
-		void processSignal();
+		Decoder(std::string);
+		Decoder(std::fstream);
+		Decoder(std::ifstream);
 };
 
 #endif

@@ -14,19 +14,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Std-Arch-Sim.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef _MICROPROGRAMSEQUENCER_H
-#define _MICROPROGRAMSEQUENCER_H
+#ifndef _ROM_H
+#define _ROM_H
 
-#include "BaseRegister.h"
+#include "Microinstruction.h"
+#include <vector>
+#include <fstream>
+#include <string>
 
-class MicroprogramSequencer : public Register {
+class ROM
+{
 	private:
+		std::vector<Microinstruction> hashTable;
 	public:
-		MicroprogramSequencer();
-		~MicroprogramSequencer();
+		ROM();
+		~ROM();
 
-		void clockPulse();
-		void processSignal();
+		ROM(std::string);
+		ROM(std::fstream);
+		ROM(std::ifstream);
+
+		void setMicroinstruction();
 };
 
 #endif

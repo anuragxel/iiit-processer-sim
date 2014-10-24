@@ -30,9 +30,17 @@ MicroprogramSequencer::~MicroprogramSequencer () {
 
 void MicroprogramSequencer::processSignal () {
 	if (microinstruction->LMS)
-		this->setContent(instruction->getContent());
-	if (microinstruction->RMS && !flag->getFlag())
-		this->setContent(0);
+		this->setContent(decoder->getContent());
+	if (microinstruction->RMS && !microinstruction->EFL) // @Ghosh : Unconditional reset, if EFL == false;
+		this->setContent(RESET_ADDRESS);
+	if (microinstruction->RMS && microinstruction->EFL) // @Ghosh : Conditional reset, if flag is enabled;
+		if (flag->getFlag())
+			this->setContent(RESET_ADDRESS);
+}
+
+void MicroprogramSequencer::clockPulse () {
+	Register::clockPulse();
+	this->increment();
 }
 
 #endif

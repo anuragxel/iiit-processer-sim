@@ -27,6 +27,7 @@
 Accumulator *accumulator;
 ALU *alu;
 Databus *databus;
+Decoder *decoder;
 Flag *flag;
 Instruction *instruction;
 IO_RF *io;
@@ -37,22 +38,25 @@ MicroprogramSequencer *microprogramSequencer;
 Operand *operand;
 ProgramCounter *programCounter;
 RegisterArray *registerArray;
+ROM *rom;
 StackPointer *stackPointer;
 
-void init(std::string path) {
+void init() {
 	accumulator = new Accumulator();
 	alu = new ALU();
 	databus = new Databus();
+	decoder = new Decoder();
 	flag = new Flag();
 	instruction = new Instruction();
 	io = new IO_RF();
-	mainMemory = new MainMemory(path);
+	mainMemory = new MainMemory();
 	memoryAddress = new MemoryAddress();
 	microinstruction = new Microinstruction();
 	microprogramSequencer = new MicroprogramSequencer();
 	operand = new Operand();
 	programCounter = new ProgramCounter();
 	registerArray = new RegisterArray();
+	rom = new ROM();
 	stackPointer = new StackPointer();
 }
 
@@ -60,6 +64,7 @@ void cleanup () {
 	delete accumulator;
 	delete alu;
 	delete databus;
+	delete decoder;
 	delete flag;
 	delete instruction;
 	delete io;
@@ -70,11 +75,12 @@ void cleanup () {
 	delete operand;
 	delete programCounter;
 	delete registerArray;
+	delete rom;
 	delete stackPointer;
 }
 
 int main(int argc, char const *argv[]) {
-	init("./Assembler/assemble.out");
+	init();
 
 	//	for (int i = 0 ; i <= 255 ; i++)
 	//	{
@@ -83,6 +89,7 @@ int main(int argc, char const *argv[]) {
 	//		std::cout <<(unsigned int)mainMemory->getContent()<<std::endl;
 	//	}
 
+	// std::cout <<stackPointer->getContent();
 
 	//	registerArray->clockPulse();
 	//	databus->setContent(1);

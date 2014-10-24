@@ -34,7 +34,7 @@ void Register::setContent ( int content ) {
 }
 
 int Register::getContent () {
-	return this->Content & 255;
+	return (int) this->Content & 0xFF;
 }
 
 void Register::clockPulse () {

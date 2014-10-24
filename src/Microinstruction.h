@@ -57,6 +57,9 @@ class Microinstruction {
 
 		Microinstruction();
 		~Microinstruction();
+
+		void setContent( Microinstruction );
+		void resetContent();
 };
 
 #endif

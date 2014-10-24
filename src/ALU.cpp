@@ -31,29 +31,29 @@ ALU::~ALU () {
 int ALU::getContent() { // for pseudo-content
 	int unpadded_bit = operand->getContent();
 	bool arithmatic = false;
-	switch ((microinstruction->SAF) & 15) {
-		case 1:
+	switch ((microinstruction->SAF) & 0x0F) {
+		case 0x01:
 			arithmatic = true;
 			unpadded_bit = unpadded_bit + databus->getContent();
 			break;
-		case 2:
+		case 0x02:
 			arithmatic = true;
 			unpadded_bit = unpadded_bit - databus->getContent();
 			break;
-		case 3:
+		case 0x03:
 			unpadded_bit = unpadded_bit ^ databus->getContent();
 			break;
-		case 4:
+		case 0x04:
 			unpadded_bit = unpadded_bit & databus->getContent();
 			break;
-		case 5:
+		case 0x05:
 			unpadded_bit = unpadded_bit | databus->getContent();
 			break;
-		case 6:
+		case 0x06:
 			arithmatic = true;
 			unpadded_bit = unpadded_bit - databus->getContent();
 			break;
-		case 15:
+		case 0x0F:
 			unpadded_bit = databus->getContent();
 			break;
 	}

@@ -21,7 +21,9 @@
 #include "Processor.h"
 
 MainMemory::MainMemory () {
-	this->mainMemory.fill(0);
+	this->mainMemory.fill(0); // Un-necessary by implementation of g++, this will be done automatically. But other compilers will complain.
+									// g++ optimises it away anyways. :P. All hail g++. All hail Stallman. GNU FTW!.
+	this->mainMemory[255] = 0x01; //STOP
 }
 
 MainMemory::~MainMemory () {
