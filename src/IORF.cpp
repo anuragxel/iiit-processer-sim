@@ -49,8 +49,8 @@ void IO_RF::processSignalFallingEdge(){
 
 void IO_RF::clockPulse () {
 	Register::clockPulse();
-	this->SRG = this->Content & 15;
-	this->SFL = this->Content & 7;
+	this->SRG = this->Content & 0x0F;
+	this->SFL = this->Content & 0x07;
 }
 
 #endif

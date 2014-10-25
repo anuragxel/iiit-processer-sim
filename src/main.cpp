@@ -84,6 +84,8 @@ int main(int argc, char const *argv[]) {
 	
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++)
 	{
+		rom->setMicroinstruction();
+
 		std::cout <<"\n\nBefore : " <<i<<std::endl; 
 		std::cout <<"ALU : "<<alu->getContent()<<std::endl;
 		std::cout <<"Accumulator : "<<accumulator->getContent()<<std::endl;
@@ -98,7 +100,6 @@ int main(int argc, char const *argv[]) {
 		std::cout <<"Register : "<<registerArray->getContent()<<std::endl;
 		std::cout <<"MicroSequen : "<<microprogramSequencer->getContent()<<std::endl;
 		std::cout <<std::endl;
-
 
 		databus->resetBusy();
 		
@@ -136,8 +137,6 @@ int main(int argc, char const *argv[]) {
 		programCounter->processSignalFallingEdge();
 		registerArray->processSignalFallingEdge();
 		stackPointer->processSignalFallingEdge();
-
-		rom->setMicroinstruction();
 
 		std::cout <<"\n\nAfter : "<< i << std::endl; 
 		std::cout <<"ALU : "<<alu->getContent()<<std::endl;

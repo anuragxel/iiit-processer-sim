@@ -1,8 +1,8 @@
 movi r0
-01
-movi r1
 11
+movi r1
+01
 movs r1
-and r0
+subi r0
 movd r2
 stop

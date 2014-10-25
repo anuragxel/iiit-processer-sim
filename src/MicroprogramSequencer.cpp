@@ -47,15 +47,19 @@ void MicroprogramSequencer::processSignalFallingEdge(){
 	if (microinstruction->RMS && !microinstruction->EFL){ // @Ghosh : Unconditional reset, if EFL == false;
 		std::cout << "RMS w/o flag\n";
 		this->setContent(RESET_ADDRESS);
+		this->clockPulse();
 	}
 	if (microinstruction->RMS && microinstruction->EFL){ // @Ghosh : Conditional reset, if flag is enabled;
 		std::cout << "RMS w/t flag\n";
-		if (flag->getFlag())
+		if (flag->getFlag()) {
 			this->setContent(RESET_ADDRESS);
+			this->clockPulse();
+		}
 	}
 	if (microinstruction->LMS){
 		std::cout << "LMS\n";
 		this->setContent(decoder->getContent());
+		this->clockPulse();
 	}
 }
 
