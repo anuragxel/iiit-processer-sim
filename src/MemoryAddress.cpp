@@ -46,4 +46,8 @@ void MemoryAddress::processSignalFallingEdge(){
 	}
 }
 
+void MemoryAddress::updateImmediate () {
+	Register::clockPulse();
+}
+
 #endif

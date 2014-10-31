@@ -1,3 +1,6 @@
-movi r0 100
-movi r1 10
+movi r0 32
+movi r1 64
+movd r0
+add r1
+movs r2
 stop

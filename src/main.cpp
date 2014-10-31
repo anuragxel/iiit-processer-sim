@@ -58,6 +58,7 @@ void init(std::string path) {
 	registerArray = new RegisterArray();
 	rom = new ROM();
 	stackPointer = new StackPointer();
+	microinstruction->resetContent();
 }
 
 void cleanup () {
@@ -84,8 +85,6 @@ int main(int argc, char const *argv[]) {
 	
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++)
 	{
-		rom->setMicroinstruction();
-
 		std::cout <<"\n\nBefore : " <<i<<std::endl; 
 		std::cout <<"ALU : "<<alu->getContent()<<std::endl;
 		std::cout <<"Accumulator : "<<accumulator->getContent()<<std::endl;
@@ -107,13 +106,27 @@ int main(int argc, char const *argv[]) {
 		flag->processSignalRisingEdge();
 		instruction->processSignalRisingEdge();
 		io->processSignalRisingEdge();
-		mainMemory->processSignalRisingEdge();
 		memoryAddress->processSignalRisingEdge();
+		memoryAddress->updateImmediate();
+		mainMemory->processSignalRisingEdge();
 		microprogramSequencer->processSignalRisingEdge();
 		operand->processSignalRisingEdge();
 		programCounter->processSignalRisingEdge();
 		registerArray->processSignalRisingEdge();
 		stackPointer->processSignalRisingEdge();
+
+		accumulator->processSignalFallingEdge();
+		flag->processSignalFallingEdge();
+		instruction->processSignalFallingEdge();
+		io->processSignalFallingEdge();
+		memoryAddress->processSignalFallingEdge();
+		memoryAddress->updateImmediate();
+		mainMemory->processSignalFallingEdge();
+		microprogramSequencer->processSignalFallingEdge();
+		operand->processSignalFallingEdge();
+		programCounter->processSignalFallingEdge();
+		registerArray->processSignalFallingEdge();
+		stackPointer->processSignalFallingEdge();
 
 		accumulator->clockPulse();
 		flag->clockPulse();
@@ -126,17 +139,11 @@ int main(int argc, char const *argv[]) {
 		registerArray->clockPulse();
 		stackPointer->clockPulse();
 
-		accumulator->processSignalFallingEdge();
-		flag->processSignalFallingEdge();
-		instruction->processSignalFallingEdge();
-		io->processSignalFallingEdge();
-		mainMemory->processSignalFallingEdge();
-		memoryAddress->processSignalFallingEdge();
+		microprogramSequencer->processSignalRisingEdge();
 		microprogramSequencer->processSignalFallingEdge();
-		operand->processSignalFallingEdge();
-		programCounter->processSignalFallingEdge();
-		registerArray->processSignalFallingEdge();
-		stackPointer->processSignalFallingEdge();
+		microprogramSequencer->updateImmediate();
+		
+		rom->setMicroinstruction();
 
 		std::cout <<"\n\nAfter : "<< i << std::endl; 
 		std::cout <<"ALU : "<<alu->getContent()<<std::endl;

@@ -71,7 +71,7 @@ std::map <std::string, int> opCode =
 	// if of the format adi xx
 	// [AR] <-- [AR] {op} xx
 	{ "adi", 0x02 },
-	{ "sbi", 0x03 },
+	{ "subi", 0x03 },
 	{ "xri", 0x04 },
 	{ "ani", 0x05 },
 	{ "ori", 0x06 },

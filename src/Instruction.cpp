@@ -43,7 +43,6 @@ void Instruction::processSignalFallingEdge(){
 	if (microinstruction->LIR){
 		std::cout << "LIR\n";
 		this->setContent(databus->getContent());
-		this->clockPulse();
 	}
 }
 

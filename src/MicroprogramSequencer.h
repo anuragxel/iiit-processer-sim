@@ -28,6 +28,7 @@ class MicroprogramSequencer : public Register {
 		void clockPulse();
 		void processSignalRisingEdge();
 		void processSignalFallingEdge();
+		void updateImmediate();
 };
 
 #endif

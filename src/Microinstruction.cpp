@@ -83,7 +83,7 @@ void Microinstruction::resetContent() {
 	this->WR = false;
 	this->LMR = false;
 	this->EPC = false;
-	this->IPC = false;
+	this->IPC = true;
 	this->LPC = false;
 	this->ESP = false;
 	this->ISP = false;

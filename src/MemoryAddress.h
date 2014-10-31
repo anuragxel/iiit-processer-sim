@@ -26,6 +26,7 @@ class MemoryAddress : public Register {
 		~MemoryAddress();
 		void processSignalRisingEdge();
 		void processSignalFallingEdge();
+		void updateImmediate();
 };
 
 #endif

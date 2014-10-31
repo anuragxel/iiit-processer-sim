@@ -69,4 +69,8 @@ void MicroprogramSequencer::clockPulse () {
 	Register::clockPulse();
 }
 
+void MicroprogramSequencer::updateImmediate () {
+	Register::clockPulse();
+}
+
 #endif
