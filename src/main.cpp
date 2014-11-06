@@ -23,8 +23,7 @@
 
 #include "Processor.h"
 
-
-Accumulator *accumulator;
+iAccumulator *accumulator;
 ALU *alu;
 Databus *databus;
 Decoder *decoder;
