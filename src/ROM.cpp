@@ -125,6 +125,7 @@ ROM::ROM () {
 	// @Ghosh : ret <fl>
 	
 	this->hashTable[19].EFL = true;
+	this->hashTable[19].RMS = true;
 
 	this->hashTable[20].ESP = true;
 	this->hashTable[20].LMR = true;
@@ -204,7 +205,7 @@ ROM::ROM () {
 	// @Ghosh : movd <r>
 
 	this->hashTable[35].EAR = true;
-	this->hashTable[35].LAR = true;
+	this->hashTable[35].LRG = true;
 	this->hashTable[35].RMS = true;
 
 	// @Ghosh : movi <r> xx
@@ -262,6 +263,7 @@ ROM::ROM () {
 	this->hashTable[47].LMR = true;
 	this->hashTable[47].IPC = true;
 	this->hashTable[47].EFL = true;
+	this->hashTable[47].RMS = true;
 
 	this->hashTable[48].RD = true;
 	this->hashTable[48].LPC = true;
@@ -270,6 +272,7 @@ ROM::ROM () {
 	// @Ghosh : jmpr <fl>
 
 	this->hashTable[49].EFL = true;
+	this->hashTable[49].RMS = true;
 
 	this->hashTable[50].EAR = true;
 	this->hashTable[50].LPC = true;
@@ -281,6 +284,7 @@ ROM::ROM () {
 	this->hashTable[51].LMR = true;
 	this->hashTable[51].IPC = true;
 	this->hashTable[51].EFL = true;
+	this->hashTable[51].RMS = true;
 
 	this->hashTable[52].RD = true;
 	this->hashTable[52].LOR = true;
@@ -299,6 +303,7 @@ ROM::ROM () {
 	// @Ghosh : cr <fl> 
 
 	this->hashTable[56].EFL = true;
+	this->hashTable[56].RMS = true;
 
 	this->hashTable[57].DSP = true;
 

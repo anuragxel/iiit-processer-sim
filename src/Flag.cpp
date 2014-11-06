@@ -73,11 +73,7 @@ void Flag::processSignalRisingEdge(){
 
 void Flag::processSignalFallingEdge(){
 	if (microinstruction->EFL) {
-		std::cout << "RMS = true\n";
-		microinstruction->RMS = true; // @Ghosh : This will reset MS when Flag is not 0, according to logic defined in <MS>.cpp
 	}
-	// @Ghosh : |-> If EFL then set RMS true. RMS will actually reset if EFL && !getFlag(). So it is safe. 
-	// @Ghosh : |-> (END -> RMS) logic still applies here. Since rule defined in <MS>.cpp
 }
 
 bool Flag::getU() {

@@ -1,6 +1,6 @@
 movi r0 32
-movi r1 64
-movd r0
+movi r1 244
+movs r0
 add r1
-movs r2
+movd r4
 stop
