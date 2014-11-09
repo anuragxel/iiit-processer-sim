@@ -21,19 +21,11 @@
 #include "Processor.h"
 
 MemoryAddress::MemoryAddress () {
-
 }
 
 MemoryAddress::~MemoryAddress () {
 
 }
-
-/*
-void MemoryAddress::processSignal () {
-	if (microinstruction->LMR)
-		this->setContent(databus->getContent());
-}
-*/
 
 void MemoryAddress::processSignalRisingEdge(){
 

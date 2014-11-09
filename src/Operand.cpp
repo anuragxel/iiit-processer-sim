@@ -28,16 +28,6 @@ Operand::~Operand () {
 
 }
 
-/*
-void Operand::processSignal () {
-	if (microinstruction->EOR)
-		databus->setContent(this->getContent());
-	if (microinstruction->ROR)
-		this->setContent(0);
-	if (microinstruction->LOR)
-		this->setContent(databus->getContent());
-}
-*/
 void Operand::processSignalRisingEdge(){
 	if (microinstruction->EOR){
 		std::cout << "EOR\n";

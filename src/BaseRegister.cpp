@@ -58,7 +58,7 @@ void Register::decrement() {
 }
 
 std::string Register::toString() {
-	return std::to_string(this->Content) + "\t" + std::to_string(this->_nextContent);
+	return std::to_string(this->Content);
 }
 
 #endif

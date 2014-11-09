@@ -28,16 +28,6 @@ ProgramCounter::~ProgramCounter () {
 
 }
 
-/*
-void ProgramCounter::processSignal () {
-	if (microinstruction->EPC)
-		databus->setContent(this->getContent());
-	if (microinstruction->IPC)
-		this->increment();
-	if (microinstruction->LPC)
-		this->setContent(databus->getContent());
-}
-*/
 void ProgramCounter::processSignalRisingEdge(){
 	if (microinstruction->EPC){
 		std::cout << "EPC\n";

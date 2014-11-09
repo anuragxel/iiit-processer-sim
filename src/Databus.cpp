@@ -33,7 +33,6 @@ Databus::~Databus () {
 void Databus::setContent ( int content ) {
 	if (this->Busy){
 		this->Corrupt = true;
-//		throw CORRUPT_BIT_SET;
 	}
 	this->Content = content;
 	this->Busy = true;

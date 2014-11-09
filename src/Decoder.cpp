@@ -22,14 +22,12 @@
 
 Decoder::Decoder () {
 	this->hashTable.fill(0); //initially. 
-								//fetch loop. hahaha.
-									// In hindsight, even coded this semi-drunk. :P. @Ghosh.
 
 	// @Ghosh : nop
 
 	this->hashTable[ 0x00 ] = 2;
 
-	// this->hashTable[ 0x01 ] = ???; // @Ghosh : Parth says, "?!?!". 
+	this->hashTable[ 0x01 ] = 70; // @Ghosh : Parth says, "?!?!". 
 
 	// @Ghosh : adi xx
 

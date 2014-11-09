@@ -82,6 +82,19 @@ void cleanup () {
 int main(int argc, char const *argv[]) {
 	init("./Assembler/assemble.out");
 	
+	std::cout <<registerArray->toString();
+
+	for (int i = 0 ; i <= 255 ; i++)
+	{
+		memoryAddress->setContent(i);
+		memoryAddress->clockPulse();
+		std::cout <<(unsigned int)mainMemory->getContent()<<" ";
+		if (!((i + 1) % 16))
+			std::cout <<std::endl;
+	}
+	memoryAddress->setContent(0);
+	memoryAddress->clockPulse();
+
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++)
 	{
 		std::cout <<"\n\nBefore : " <<i<<std::endl; 
