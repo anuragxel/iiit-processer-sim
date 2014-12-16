@@ -79,63 +79,67 @@ void cleanup () {
 	delete stackPointer;
 }
 
-int main(int argc, char const *argv[]) {
-	init("./Assembler/assemble.out");
+void printState() {
+	std::cout <<"ALU  : "<<alu->getContent();
+	std::cout <<"\tACC  : "<<accumulator->getContent();
+	std::cout <<"\tDTBS : "<<databus->getContent()<<std::endl;
+
+	std::cout <<"DEC  : " <<decoder->getContent();
+	std::cout <<"\tMS   : "<<microprogramSequencer->getContent();	
+	std::cout <<"\tPC   : "<<programCounter->getContent()<<std::endl;
+
+	std::cout <<"MEM  : "<<mainMemory->getContent();
+	std::cout <<"\tMADD : "<<memoryAddress->getContent()<<std::endl;
+
+	std::cout <<"FL   : "<<flag->getContent();
+	std::cout <<"\tIO   : "<<io->getContent();
+	std::cout <<"\tIR   : "<<instruction->getContent()<<std::endl;
+
+	std::cout <<registerArray->toString()<<std::endl;
 	
-	std::cout <<registerArray->toString();
+	std::cout <<std::endl;
+}
 
-	for (int i = 0 ; i <= 255 ; i++)
-	{
-		memoryAddress->setContent(i);
-		memoryAddress->clockPulse();
-		std::cout <<(unsigned int)mainMemory->getContent()<<" ";
-		if (!((i + 1) % 16))
-			std::cout <<std::endl;
-	}
-	memoryAddress->setContent(0);
-	memoryAddress->clockPulse();
+void printMemory() {
+	std::cout << "Memory : " << std::endl;
+	std::cout << mainMemory->toString() << std::endl;
+}
 
-	for(int i = 0 ; instruction->getContent() != 0x01 ; i++)
-	{
-		std::cout <<"\n\nBefore : " <<i<<std::endl; 
-		std::cout <<"ALU : "<<alu->getContent()<<std::endl;
-		std::cout <<"Accumulator : "<<accumulator->getContent()<<std::endl;
-		std::cout <<"Databus : "<<databus->getContent()<<std::endl;
-		std::cout <<"Decoder : " <<decoder->getContent()<<std::endl;
-		std::cout <<"Program Counter : "<<programCounter->getContent()<<std::endl;
-		std::cout <<"mainMemory : "<<mainMemory->getContent()<<std::endl;
-		std::cout <<"flag : "<<flag->getContent()<<std::endl;
-		std::cout <<"io : "<<io->getContent()<<std::endl;
-		std::cout <<"instruction : "<<instruction->getContent()<<std::endl;
-		std::cout <<"memoryAddress : "<<memoryAddress->getContent()<<std::endl;
-		std::cout <<"Register : "<<registerArray->getContent()<<std::endl;
-		std::cout <<"MicroSequen : "<<microprogramSequencer->getContent()<<std::endl;
-		std::cout <<std::endl;
+void executeClockCycle() {
 
 		databus->resetBusy();
-		
+
 		accumulator->processSignalRisingEdge();
 		flag->processSignalRisingEdge();
 		instruction->processSignalRisingEdge();
 		io->processSignalRisingEdge();
+		
 		memoryAddress->processSignalRisingEdge();
 		memoryAddress->updateImmediate();
+		
 		mainMemory->processSignalRisingEdge();
-		microprogramSequencer->processSignalRisingEdge();
+		
+		//microprogramSequencer->processSignalRisingEdge();
 		operand->processSignalRisingEdge();
+		
 		programCounter->processSignalRisingEdge();
 		registerArray->processSignalRisingEdge();
 		stackPointer->processSignalRisingEdge();
-
+		
 		accumulator->processSignalFallingEdge();
+
 		flag->processSignalFallingEdge();
 		instruction->processSignalFallingEdge();
 		io->processSignalFallingEdge();
+		
 		memoryAddress->processSignalFallingEdge();
 		memoryAddress->updateImmediate();
+		
 		mainMemory->processSignalFallingEdge();
-		microprogramSequencer->processSignalFallingEdge();
+		
+		//microprogramSequencer->processSignalFallingEdge();
 		operand->processSignalFallingEdge();
+		
 		programCounter->processSignalFallingEdge();
 		registerArray->processSignalFallingEdge();
 		stackPointer->processSignalFallingEdge();
@@ -151,81 +155,39 @@ int main(int argc, char const *argv[]) {
 		registerArray->clockPulse();
 		stackPointer->clockPulse();
 
+		// why twice ?
 		microprogramSequencer->processSignalRisingEdge();
 		microprogramSequencer->processSignalFallingEdge();
 		microprogramSequencer->updateImmediate();
 		
 		rom->setMicroinstruction();
+		
+}
 
-		std::cout <<"\n\nAfter : "<< i << std::endl; 
-		std::cout <<"ALU : "<<alu->getContent()<<std::endl;
-		std::cout <<"Accumulator : "<<accumulator->getContent()<<std::endl;
-		std::cout <<"Databus : "<<databus->getContent()<<std::endl;
-		std::cout <<"Decoder : " <<decoder->getContent()<<std::endl;
-		std::cout <<"Program Counter : "<<programCounter->getContent()<<std::endl;
-		std::cout <<"mainMemory : "<<mainMemory->getContent()<<std::endl;
-		std::cout <<"flag : "<<flag->getContent()<<std::endl;
-		std::cout <<"io : "<<io->getContent()<<std::endl;
-		std::cout <<"instruction : "<<instruction->getContent()<<std::endl;
-		std::cout <<"memoryAddress : "<<memoryAddress->getContent()<<std::endl;
-		std::cout <<"Register : "<<registerArray->getContent()<<std::endl;
-		std::cout <<"MicroSequen : "<<microprogramSequencer->getContent()<<std::endl;
-		std::cout <<std::endl;
+int main(int argc, char const **argv) {
+	if(argc == 2) {
+		init(argv[1]);
+	}
+	else {
+		init("./Assembler/assemble.out");
 	}
 
-	std::cout <<registerArray->toString();
+	printMemory();
 
-	for (int i = 0 ; i <= 255 ; i++)
-	{
-		memoryAddress->setContent(i);
-		memoryAddress->clockPulse();
-		std::cout <<(unsigned int)mainMemory->getContent()<<" ";
-		if (!((i + 1) % 16))
-			std::cout <<std::endl;
+	bool verbose = true;	
+	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
+		
+		std::cout << "Clock Cycle : " << i <<std::endl; 
+		if(verbose) {
+			printState();
+		}
+		executeClockCycle();
+		std::cout << std::endl;
+
 	}
-
-
-
-	// std::cout <<stackPointer->getContent();
-
-	//	registerArray->clockPulse();
-	//	databus->setContent(1);
-	//	microinstruction->LIO = true;
-	//	io->processSignal();
-	//	io->clockPulse();
-	//	std::cout <<io->SFL<<std::endl;
-	//	std::cout <<flag->getFlag()<<std::endl;
-	//	flag->setNZ();
-	//	databus->resetBusy();
-	//	databus->setContent(2);
-	//	microinstruction->LIO = true;
-	//	io->processSignal();
-	//	io->clockPulse();
-	//	std::cout <<io->SFL<<std::endl;
-	//	std::cout <<flag->getFlag()<<std::endl;
-
-	//	operand->setContent( 0 );
-	//	databus->setContent( 127 );
-	//	operand->clockPulse();
-	//	microinstruction->SAF = 1;
-	//	std::cout <<alu->getContent()<<std::endl;
-	// 	std::cout <<flag->getC()<<std::endl;
-	//	std::cout <<flag->getS()<<std::endl;
-	//	std::cout <<flag->getNS()<<std::endl;
-
-
-	//	flag->setS();
-	//	std::cout <<flag->getS();
-	//	flag->resetS();
-	//	std::cout <<flag->getS();
-	//	std::cout <<flag->getU();
-
-	//	databus->setContent( 10 );
-	//	operand->setContent ( 20 );
-	//	operand->clockPulse();
-	//	microinstruction->SAF = 1;
-	//	std::cout <<(microinstruction->SAF & 15)<<std::endl;
-	//	std::cout <<alu->getContent()<<std::endl;
+	std::cout << "\n\nExecution Over" << std::endl;
+	printState();
+	printMemory();
 
 	cleanup();
 	return 0;

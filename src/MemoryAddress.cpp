@@ -33,7 +33,7 @@ void MemoryAddress::processSignalRisingEdge(){
 
 void MemoryAddress::processSignalFallingEdge(){
 	if (microinstruction->LMR){
-		std::cout << "LMR\n";
+		std::cout << "LMR\t";
 		this->setContent(databus->getContent());
 	}
 }

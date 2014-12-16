@@ -37,8 +37,7 @@ std::array <char, MEMSIZE> memory;
 int nextInstructionAddr;
 std::map <std::string, int> lookupTable;
 
-std::map <std::string, int> registers =
-{
+std::map <std::string, int> registers = {
 	// general registers
 	{ "r0", 0x00 },
 	{ "r1", 0x01 },
@@ -60,8 +59,7 @@ std::map <std::string, int> registers =
 	{ "or", 0x0F },
 };
 
-std::map <std::string, int> opCode =
-{
+std::map <std::string, int> opCode = {
 	// no operation
 	{ "nop", 0x00  },
 
@@ -71,13 +69,15 @@ std::map <std::string, int> opCode =
 	// if of the format adi xx
 	// [AR] <-- [AR] {op} xx
 	{ "adi", 0x02 },
-	{ "subi", 0x03 },
+	{ "sbi", 0x03 },
 	{ "xri", 0x04 },
-	{ "ani", 0x05 },
+	{ "adi", 0x05 },
 	{ "ori", 0x06 },
 	{ "cmi", 0x07 },
 
-	// PC <- [[SP]], [SP] <- [SP] + 1 if <FL> = 1
+	// return from function
+	// PC <- [[SP]], 
+	// [SP] <- [SP] + 1 if <FL> = 1
 	{ "retu", 0x08 },
 	{ "retz", 0x09 },
 	{ "retnz", 0x0A },
@@ -102,7 +102,7 @@ std::map <std::string, int> opCode =
 	{ "cmp", 0x60  },
 
 	// movs <R>
-	// [OR] <- [<R>] , [AR] <- [<R>]
+	// [AR] <- [<R>]
 	// we actually do add 00 - 0F to the opCode for the register number
 	{ "movs", 0x70 },
 
@@ -144,8 +144,11 @@ std::map <std::string, int> opCode =
 	{ "jmprm", 0xEE },
 	{ "jmprop", 0xEF },
 
+	// call function
 	// if of the format cd<FL> xx
-	//[SP] ← [SP] – 1, [[SP]] ← [PC], [PC] ← xx if <FL> = 1
+	// [SP] ← [SP] – 1 
+	// [[SP]] ← [PC] 
+	// [PC] ← xx if <FL> = 1
 	{ "cdu", 0xF0 },
 	{ "cdz", 0xF1 },
 	{ "cdnz", 0xF2 },
@@ -155,8 +158,12 @@ std::map <std::string, int> opCode =
 	{ "cdm", 0xF6 },
 	{ "cdop", 0xF7 },
 
+	// call function 
+	// whose address is saved.
 	// if of the format cr<FL>
-	// [SP] ← [SP] – 1, [[SP]] ← PC], [PC] ← [AR] if <FL> = 1
+	// [SP] ← [SP] – 1
+	// [[SP]] ← [PC] 
+	// [PC] ← [AR] if <FL> = 1
 	{ "cru", 0xF8 },
 	{ "crz", 0xF9 },
 	{ "crnz", 0xFA },
@@ -169,11 +176,12 @@ std::map <std::string, int> opCode =
 };
 
 void initialize();
-void assembleCode(std::string, std::string);
+int assembleCode(std::string, std::string);
 int typeOfInstruction(int);
 bool isALabel(std::string);
 bool isAnInstruction(std::string);
 bool isARegister(std::string word);
 bool islabelPresent(std::string word);
+void printError(std::string error);
 
 #endif

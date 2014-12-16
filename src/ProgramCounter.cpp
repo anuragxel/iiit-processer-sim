@@ -30,18 +30,18 @@ ProgramCounter::~ProgramCounter () {
 
 void ProgramCounter::processSignalRisingEdge(){
 	if (microinstruction->EPC){
-		std::cout << "EPC\n";
+		std::cout << "EPC\t";
 		databus->setContent(this->getContent());
 	}
 }
 
 void ProgramCounter::processSignalFallingEdge(){
 	if (microinstruction->IPC) {
-		std::cout << "IPC\n";
+		std::cout << "IPC\t";
 		this->increment();
 	}
 	if (microinstruction->LPC) {
-		std::cout << "LPC\n";
+		std::cout << "LPC\t";
 		this->setContent(databus->getContent());
 	}
 }

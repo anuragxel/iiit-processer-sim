@@ -1,7 +1,0 @@
-movi r2 10
-loopbegin: movs r2 
-subi 01
-movd r2 
-cmi 0
-jmpdnz loopbegin
-stop

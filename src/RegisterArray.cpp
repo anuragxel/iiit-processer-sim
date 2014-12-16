@@ -32,7 +32,7 @@ RegisterArray::~RegisterArray () {
 
 void RegisterArray::processSignalRisingEdge(){
 	if (microinstruction->ERG) {
-		std::cout << "ERG\n";
+		std::cout << "ERG\t";
 		switch (io->SRG) {
 			case 15:
 				databus->setContent(operand->getContent());
@@ -54,7 +54,7 @@ void RegisterArray::processSignalRisingEdge(){
 
 void RegisterArray::processSignalFallingEdge(){
 	if (microinstruction->LRG) {
-		std::cout << "LRG\n";
+		std::cout << "LRG\t";
 		switch (io->SRG) {
 			case 15:
 				operand->setContent(databus->getContent());
@@ -89,9 +89,13 @@ int RegisterArray::getContent() {
 
 std::string RegisterArray::toString() {
 	std::string buff;
-	for (auto &i : registerArray)
-		buff += i.toString() + "\n";
-
+	int j=0;
+	for (auto &i : registerArray) {
+		buff += "r" + std::to_string(j) + " : " + i.toString() + "\t";
+		j++;
+		if(j == 4 || j == 8 || j == 12)
+			buff += '\n';		
+	}
 	return buff;
 }
 

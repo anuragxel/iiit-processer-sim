@@ -38,6 +38,7 @@ class MainMemory
 
 		void processSignalRisingEdge();
 		void processSignalFallingEdge();
+		std::string toString();
 };
 
 #endif

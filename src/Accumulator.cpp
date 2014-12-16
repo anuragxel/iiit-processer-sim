@@ -30,18 +30,18 @@ Accumulator::~Accumulator () {
 
 void Accumulator::processSignalRisingEdge(){
 	if(microinstruction->EAR) {
-		std::cout << "EAR\n";
+		std::cout << "EAR\t";
 		databus->setContent(this->getContent());
 	}
 }
 
 void Accumulator::processSignalFallingEdge(){
 	if (microinstruction->RAR){
-		std::cout << "RAR\n";
+		std::cout << "RAR\t";
 		this->setContent(0);
 	}
 	if (microinstruction->LAR){
-		std::cout << "LAR\n";
+		std::cout << "LAR\t";
 		this->setContent(alu->getContent());
 	}
 }

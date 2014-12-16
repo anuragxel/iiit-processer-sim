@@ -41,7 +41,7 @@ void Instruction::processSignalRisingEdge(){
 
 void Instruction::processSignalFallingEdge(){
 	if (microinstruction->LIR){
-		std::cout << "LIR\n";
+		std::cout << "LIR\t";
 		this->setContent(databus->getContent());
 	}
 }

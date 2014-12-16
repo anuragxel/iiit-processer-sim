@@ -1,0 +1,8 @@
+movi r0
+10
+movs r0
+loop: sbi 01
+cmi 00
+jmpdnz loop
+movd r0
+stop

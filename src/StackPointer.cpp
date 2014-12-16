@@ -41,22 +41,22 @@ void StackPointer::processSignal () {
 */
 void StackPointer::processSignalRisingEdge(){
 	if (microinstruction->ESP) {
-		std::cout << "ESP\n";
+		std::cout << "ESP\t";
 		databus->setContent(this->getContent());
 	}
 }
 
 void StackPointer::processSignalFallingEdge(){
 	if (microinstruction->ISP) {
-		std::cout << "ISP\n";
+		std::cout << "ISP\t";
 		this->increment();
 	}
 	if (microinstruction->DSP) {
-		std::cout << "DSP\n";
+		std::cout << "DSP\t";
 		this->decrement();
 	}
 	if (microinstruction->LSP) {
-		std::cout << "LSP\n";
+		std::cout << "LSP\t";
 		this->setContent(databus->getContent());
 	}
 }

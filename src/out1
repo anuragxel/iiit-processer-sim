@@ -1,0 +1,296 @@
+Memory : 
+X |	0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+
+0 |	144	0	112	2	1	7	10	226	3	128	1	0	0	0	0	0	
+1 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+2 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+3 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+4 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+5 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+6 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+7 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+8 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+9 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+A |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+B |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+C |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+D |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+E |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+F |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	
+Clock Cycle : 0
+ALU  : 0	ACC  : 0	DTBS : 0
+DEC  : 2	MS   : 0	PC   : 0
+MEM  : 144	MADD : 0
+FL   : 3	IO   : 0	IR   : 0
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	IPC	LMS	
+Clock Cycle : 1
+ALU  : 0	ACC  : 0	DTBS : 144
+DEC  : 36	MS   : 36	PC   : 1
+MEM  : 144	MADD : 0
+FL   : 3	IO   : 144	IR   : 144
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 2
+ALU  : 0	ACC  : 0	DTBS : 1
+DEC  : 36	MS   : 37	PC   : 2
+MEM  : 0	MADD : 1
+FL   : 3	IO   : 144	IR   : 144
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LRG	RMS w/o flag	
+Clock Cycle : 3
+ALU  : 0	ACC  : 0	DTBS : 0
+DEC  : 36	MS   : 0	PC   : 2
+MEM  : 0	MADD : 1
+FL   : 3	IO   : 144	IR   : 144
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 4
+ALU  : 0	ACC  : 0	DTBS : 2
+DEC  : 36	MS   : 1	PC   : 3
+MEM  : 112	MADD : 2
+FL   : 3	IO   : 144	IR   : 144
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	LMS	
+Clock Cycle : 5
+ALU  : 112	ACC  : 0	DTBS : 112
+DEC  : 34	MS   : 34	PC   : 3
+MEM  : 112	MADD : 2
+FL   : 129	IO   : 112	IR   : 112
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+ERG	LAR	RMS w/o flag	
+Clock Cycle : 6
+ALU  : 0	ACC  : 0	DTBS : 0
+DEC  : 34	MS   : 0	PC   : 3
+MEM  : 112	MADD : 2
+FL   : 3	IO   : 112	IR   : 112
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 7
+ALU  : 0	ACC  : 0	DTBS : 3
+DEC  : 34	MS   : 1	PC   : 4
+MEM  : 2	MADD : 3
+FL   : 3	IO   : 112	IR   : 112
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	LMS	
+Clock Cycle : 8
+ALU  : 0	ACC  : 0	DTBS : 2
+DEC  : 3	MS   : 3	PC   : 4
+MEM  : 2	MADD : 3
+FL   : 3	IO   : 2	IR   : 2
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 9
+ALU  : 0	ACC  : 0	DTBS : 4
+DEC  : 3	MS   : 4	PC   : 5
+MEM  : 1	MADD : 4
+FL   : 3	IO   : 2	IR   : 2
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LOR	
+Clock Cycle : 10
+ALU  : 2	ACC  : 0	DTBS : 1
+DEC  : 3	MS   : 5	PC   : 5
+MEM  : 1	MADD : 4
+FL   : 209	IO   : 2	IR   : 2
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+---------------------------------------------------------
+	WTF ??? YE KYA HUA ???? :(
+---------------------------------------------------------
+
+EAR	EPC	LAR	LMR	IPC	RMS w/o flag  <<<<<---	YE KYA SIGNAL COMBO HAI ??? :o
+Clock Cycle : 11
+ALU  : 1	ACC  : 6	DTBS : 5
+DEC  : 3	MS   : 0	PC   : 6
+MEM  : 7	MADD : 5
+FL   : 129	IO   : 2	IR   : 2
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 12
+ALU  : 1	ACC  : 6	DTBS : 6
+DEC  : 3	MS   : 1	PC   : 7
+MEM  : 10	MADD : 6
+FL   : 129	IO   : 2	IR   : 2
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	LMS	
+Clock Cycle : 13
+ALU  : 1	ACC  : 6	DTBS : 10
+DEC  : 19	MS   : 19	PC   : 7
+MEM  : 10	MADD : 6
+FL   : 129	IO   : 10	IR   : 10
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RMS w/t flag	
+Clock Cycle : 14
+ALU  : 1	ACC  : 6	DTBS : 10
+DEC  : 19	MS   : 0	PC   : 7
+MEM  : 10	MADD : 6
+FL   : 129	IO   : 10	IR   : 10
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 15
+ALU  : 1	ACC  : 6	DTBS : 7
+DEC  : 19	MS   : 1	PC   : 8
+MEM  : 226	MADD : 7
+FL   : 129	IO   : 10	IR   : 10
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	LMS	
+Clock Cycle : 16
+ALU  : 1	ACC  : 6	DTBS : 226
+DEC  : 47	MS   : 47	PC   : 8
+MEM  : 226	MADD : 7
+FL   : 129	IO   : 226	IR   : 226
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	RMS w/t flag	
+Clock Cycle : 17
+ALU  : 1	ACC  : 6	DTBS : 8
+DEC  : 47	MS   : 0	PC   : 9
+MEM  : 3	MADD : 8
+FL   : 129	IO   : 226	IR   : 226
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 18
+ALU  : 1	ACC  : 6	DTBS : 9
+DEC  : 47	MS   : 1	PC   : 10
+MEM  : 128	MADD : 9
+FL   : 129	IO   : 226	IR   : 226
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	LMS	
+Clock Cycle : 19
+ALU  : 1	ACC  : 6	DTBS : 128
+DEC  : 35	MS   : 35	PC   : 10
+MEM  : 128	MADD : 9
+FL   : 129	IO   : 128	IR   : 128
+r0 : 0	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EAR	LRG	RMS w/o flag	
+Clock Cycle : 20
+ALU  : 1	ACC  : 6	DTBS : 6
+DEC  : 35	MS   : 0	PC   : 10
+MEM  : 128	MADD : 9
+FL   : 129	IO   : 128	IR   : 128
+r0 : 6	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+EPC	LMR	IPC	
+Clock Cycle : 21
+ALU  : 1	ACC  : 6	DTBS : 10
+DEC  : 35	MS   : 1	PC   : 11
+MEM  : 1	MADD : 10
+FL   : 129	IO   : 128	IR   : 128
+r0 : 6	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+RD	LIR	LIO	LMS	
+
+
+Execution Over
+ALU  : 1	ACC  : 6	DTBS : 1
+DEC  : 70	MS   : 70	PC   : 11
+MEM  : 1	MADD : 10
+FL   : 129	IO   : 1	IR   : 1
+r0 : 6	r1 : 0	r2 : 0	r3 : 0	
+r4 : 0	r5 : 0	r6 : 0	r7 : 0	
+r8 : 0	r9 : 0	r10 : 0	r11 : 0	
+
+
+Memory : 
+X |	0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+
+0 |	144	0	112	2	1	7	10	226	3	128	1	0	0	0	0	0	
+1 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+2 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+3 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+4 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+5 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+6 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+7 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+8 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+9 |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+A |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+B |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+C |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+D |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+E |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+F |	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	

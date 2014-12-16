@@ -42,7 +42,7 @@ void IO_RF::processSignalRisingEdge(){
 
 void IO_RF::processSignalFallingEdge(){
 	if (microinstruction->LIO) {
-		std::cout << "LIO\n";
+		std::cout << "LIO\t";
 		this->setContent(databus->getContent());
 	}
 }

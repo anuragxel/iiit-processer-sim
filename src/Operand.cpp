@@ -30,18 +30,18 @@ Operand::~Operand () {
 
 void Operand::processSignalRisingEdge(){
 	if (microinstruction->EOR){
-		std::cout << "EOR\n";
+		std::cout << "EOR\t";
 		databus->setContent(this->getContent());
 	}
 }
 
 void Operand::processSignalFallingEdge(){
 	if (microinstruction->ROR){
-		std::cout << "ROR\n";
+		std::cout << "ROR\t";
 		this->setContent(0);
 	}
 	if (microinstruction->LOR) {
-		std::cout << "LOR\n";
+		std::cout << "LOR\t";
 		this->setContent(databus->getContent());
 	}
 }

@@ -37,6 +37,7 @@ MainMemory::MainMemory (std::string path) {
 		throw FILE_NOT_READABLE;
 	infile.read(this->mainMemory.data() , sizeof(mainMemory));
 	infile.close();
+	this->mainMemory[255] = 0x01;
 }
 
 MainMemory::MainMemory (std::fstream infile) {
@@ -63,16 +64,50 @@ int MainMemory::getContent () {
 
 void MainMemory::processSignalRisingEdge(){
 	if(microinstruction->RD) {
-		std::cout << "RD\n";
+		std::cout << "RD\t";
 		databus->setContent(this->getContent());
 	}
 }
 
 void MainMemory::processSignalFallingEdge(){
 	if(microinstruction->WR) {
-		std::cout << "WR\n";
+		std::cout << "WR\t";
 		this->setContent(databus->getContent());
 	}
+}
+
+std::string hexed(int a) {
+	if(a < 10)
+		return std::to_string(a);
+	if(a == 10)
+		return "A";
+	if(a == 11)
+		return "B";
+	if(a == 12)
+		return "C";
+	if(a == 13)
+		return "D";
+	if(a == 14)
+		return "E";
+	if(a == 15)
+		return "F";
+	return NULL;
+}
+
+std::string MainMemory::toString() {
+	std::string buffer;
+	buffer = "X |";
+	for(int i=0;i<16;i++) {
+		buffer += "\t" + hexed(i);
+	}
+	buffer += "\n\n0 |\t";
+	for(int i=0;i<256;i++) {
+		buffer += std::to_string((unsigned int)(this->mainMemory[i] & 0xFF)) + "\t";
+		if(!((i+1)%16) && (i+1)/16 != 16) {
+			buffer +="\n" + hexed((i+1)/16) + " |\t";
+		}
+	}
+	return buffer;
 }
 
 #endif

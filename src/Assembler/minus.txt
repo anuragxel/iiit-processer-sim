@@ -1,0 +1,8 @@
+movi r1
+03
+movi r2
+02
+movs r1
+sub r2
+movd r3
+stop
