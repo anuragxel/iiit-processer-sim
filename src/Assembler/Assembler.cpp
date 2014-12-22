@@ -65,6 +65,14 @@ void printError(std::string error) {
 	std::cerr << error << nextInstructionAddr << std::endl;
 }
 
+void printTable() {
+	std::cout << "symbolTable = { " << std::endl;
+	for( auto elem : lookupTable ) {
+		std::cout << "\t" << elem.first << " : " << elem.second << std::endl; 
+	}
+	std::cout << "} " << std::endl; 
+}
+
 /* A Two pass Assembler for the iiit-processor assembly language */
 int assembleCode(std::string path,std::string outpath) {
 	std::string word;
@@ -136,13 +144,13 @@ int assembleCode(std::string path,std::string outpath) {
 			if( islabelPresent(word) ) {
 				std::string err = "Duplicate Label '" + word + "'. Lines: " + std::to_string(lookupTable[word]) + ", "; 
 				printError(err);
+				printTable();
 				return 1;
 			}
 			lookupTable[word] = nextInstructionAddr;
 		}
 		else {
-			printError("Incorrect. Neither Instruction nor Label. Line ");
-			return 1;
+			nextInstructionAddr++;
 		}
 	}
 
@@ -168,6 +176,7 @@ int assembleCode(std::string path,std::string outpath) {
 				if( not islabelPresent(word) ) {
 					std::string err = "Label '" + word + "' Not Defined Line: ";
 					printError(err);
+					printTable();
 					return 1;
 				}
 				memory[nextInstructionAddr++] = lookupTable[word];
@@ -183,6 +192,7 @@ int assembleCode(std::string path,std::string outpath) {
 				if( not islabelPresent(word) ) {
 					std::string err = "Label '" + word + "' Not Defined Line: ";
 					printError(err);
+					printTable();
 					return 1;
 				}
 				memory[nextInstructionAddr++] = lookupTable[word];
@@ -192,13 +202,14 @@ int assembleCode(std::string path,std::string outpath) {
 			}
 		}
 	}
-
 	infile.close();
 	outfile.open(outpath, std::ios::trunc | std::ios::binary);
 	outfile.write((char *) &memory, sizeof(memory)); // I love C++ oneliners;
 	outfile.close(); // Many OS makes lazy buffer flush. Be sure to clean before exit.
+	printTable();
 	return 0;
 }
+
 
 int main(const int argc, char **argv) {
 	initialize();

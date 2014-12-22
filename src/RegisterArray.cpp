@@ -79,8 +79,11 @@ void RegisterArray::clockPulse () {
 		i.clockPulse();
 }
 
+// this implies that io register must be set
+// before register array. 
+
 void RegisterArray::setContent ( int content ) {
-	registerArray[io->SRG].setContent (content);
+	registerArray[io->SRG].setContent(content);
 }
 
 int RegisterArray::getContent() {

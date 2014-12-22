@@ -91,10 +91,10 @@ void printState() {
 	std::cout <<"MEM  : "<<mainMemory->getContent();
 	std::cout <<"\tMADD : "<<memoryAddress->getContent()<<std::endl;
 
-	std::cout <<"FL   : "<<flag->getContent();
-	std::cout <<"\tIO   : "<<io->getContent();
+	std::cout <<"IO   : "<<io->getContent();
 	std::cout <<"\tIR   : "<<instruction->getContent()<<std::endl;
-
+	
+	std::cout <<flag->toString();
 	std::cout <<registerArray->toString()<<std::endl;
 	
 	std::cout <<std::endl;
@@ -173,11 +173,12 @@ int main(int argc, char const **argv) {
 	}
 
 	printMemory();
-
-	bool verbose = true;	
+	bool verbose = true;
+	
+	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
 		
-		std::cout << "Clock Cycle : " << i <<std::endl; 
+		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl; 
 		if(verbose) {
 			printState();
 		}
@@ -185,6 +186,7 @@ int main(int argc, char const **argv) {
 		std::cout << std::endl;
 
 	}
+
 	std::cout << "\n\nExecution Over" << std::endl;
 	printState();
 	printMemory();

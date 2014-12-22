@@ -4,5 +4,6 @@ movi r0
 04
 movs r1
 sub r0
+movd r2
 stop
 

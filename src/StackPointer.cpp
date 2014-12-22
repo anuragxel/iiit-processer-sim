@@ -27,18 +27,7 @@ StackPointer::StackPointer () {
 StackPointer::~StackPointer () {
 
 }
-/*
-void StackPointer::processSignal () {
-	if (microinstruction->ESP)
-		databus->setContent(this->getContent());
-	if (microinstruction->ISP)
-		this->increment();
-	if (microinstruction->DSP)
-		this->decrement();
-	if (microinstruction->LSP)
-		this->setContent(databus->getContent());
-}
-*/
+
 void StackPointer::processSignalRisingEdge(){
 	if (microinstruction->ESP) {
 		std::cout << "ESP\t";
@@ -60,6 +49,5 @@ void StackPointer::processSignalFallingEdge(){
 		this->setContent(databus->getContent());
 	}
 }
-
 
 #endif

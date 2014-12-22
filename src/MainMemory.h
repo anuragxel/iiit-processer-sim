@@ -20,6 +20,9 @@
 #include <array>
 #include <string>
 #include <fstream>
+#include <cstdlib>
+#include <iomanip>
+#include <sstream>
 
 class MainMemory
 {

@@ -8,12 +8,12 @@ movi r5
 100
 movi r6
 200
-movi SP
+movi sp
 150
 movs r1
 add r3
 movd r4
-movs r5
+back: movs r5
 store r4
 adi
 01
@@ -25,6 +25,5 @@ movs r3
 subi 
 01
 movd r3
-jmpdnz
-16
+jmpdnz back
 stop

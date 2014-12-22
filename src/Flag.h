@@ -66,6 +66,8 @@ class Flag : public Register {
 
 		void processSignalRisingEdge();
 		void processSignalFallingEdge();
+		
+		std::string toString();
 };
 
 #endif

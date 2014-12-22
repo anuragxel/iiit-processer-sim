@@ -183,5 +183,6 @@ bool isAnInstruction(std::string);
 bool isARegister(std::string word);
 bool islabelPresent(std::string word);
 void printError(std::string error);
+void printTable();
 
 #endif

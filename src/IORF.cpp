@@ -28,14 +28,6 @@ IO_RF::~IO_RF () {
 
 }
 
-/*
-void IO_RF::processSignal () {
-	if (microinstruction->LIO) {
-		this->setContent(databus->getContent());
-	}
-}
-*/
-
 void IO_RF::processSignalRisingEdge(){
 
 }

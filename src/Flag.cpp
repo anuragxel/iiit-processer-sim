@@ -60,11 +60,12 @@ bool Flag::getFlag() {
 	return false; //Never goes here.
 }
 
-void Flag::processSignalRisingEdge(){
+void Flag::processSignalRisingEdge() {
 
 }
 
-void Flag::processSignalFallingEdge(){
+void Flag::processSignalFallingEdge() {
+
 }
 
 bool Flag::getU() {
@@ -202,6 +203,43 @@ void Flag::setP( bool flag ) {
 
 bool Flag::getP() {
 	return ((this->Content >> 7) & 1) == 1;
+}
+
+std::string Flag::toString() {
+	auto current = this->Content;
+	std::string rv = "";
+	for(int i=0;i<8;i++) {
+		switch(i) {
+			case 0:
+				rv += "U :";
+				break;	
+			case 1:
+				rv += "Z :";
+				break;
+			case 2:
+				rv += "NZ :";
+				break;
+			case 3:
+				rv += "S :";
+				break;
+			case 4:
+				rv += "NS :";
+				break;
+			case 5:
+				rv += "C :";
+				break;
+			case 6:
+				rv += "NC :";
+				break;
+			case 7:
+				rv += "P :";
+				break;
+
+		}
+		rv = rv + std::to_string((current>>i)&1) + "\t";
+	}
+	rv += '\n';
+	return rv;
 }
 
 #endif

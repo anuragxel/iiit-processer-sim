@@ -76,27 +76,15 @@ void MainMemory::processSignalFallingEdge(){
 	}
 }
 
-std::string hexed(int a) {
-	if(a < 10)
-		return std::to_string(a);
-	if(a == 10)
-		return "A";
-	if(a == 11)
-		return "B";
-	if(a == 12)
-		return "C";
-	if(a == 13)
-		return "D";
-	if(a == 14)
-		return "E";
-	if(a == 15)
-		return "F";
-	return NULL;
+template< typename T >std::string hexed(T a) {
+	std::stringstream stream;
+	stream << std::hex << a;
+	return stream.str();
 }
 
 std::string MainMemory::toString() {
 	std::string buffer;
-	buffer = "X |";
+	buffer = "M |";
 	for(int i=0;i<16;i++) {
 		buffer += "\t" + hexed(i);
 	}

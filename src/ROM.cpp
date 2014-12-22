@@ -218,7 +218,7 @@ ROM::ROM () {
 	this->hashTable[38].LMR = true;
 	this->hashTable[38].IPC = true;
 
-	this->hashTable[39].RD = true;
+	this->hashTable[39].RD  = true;
 	this->hashTable[39].LRG = true;
 	this->hashTable[39].RMS = true;
 
@@ -228,7 +228,7 @@ ROM::ROM () {
 	this->hashTable[40].LMR = true;
 
 	this->hashTable[41].ERG = true;
-	this->hashTable[41].WR = true;
+	this->hashTable[41].WR  = true;
 	this->hashTable[41].RMS = true;
 
 	// @Ghosh : load <r>
@@ -236,7 +236,7 @@ ROM::ROM () {
 	this->hashTable[42].EAR = true;
 	this->hashTable[42].LMR = true;
 
-	this->hashTable[43].RD = true;
+	this->hashTable[43].RD  = true;
 	this->hashTable[43].LRG = true;
 	this->hashTable[43].RMS = true;
 
@@ -248,7 +248,7 @@ ROM::ROM () {
 	this->hashTable[45].LMR = true;
 
 	this->hashTable[46].ERG = true;
-	this->hashTable[46].WR = true;
+	this->hashTable[46].WR  = true;
 	this->hashTable[46].RMS = true;
 
 	// @Ghosh : pop <r>
@@ -257,7 +257,7 @@ ROM::ROM () {
 	this->hashTable[47].LMR = true;
 	this->hashTable[47].ISP = true;
 
-	this->hashTable[48].RD = true;
+	this->hashTable[48].RD  = true;
 	this->hashTable[48].LRG = true;
 	this->hashTable[48].RMS = true;
 
@@ -269,7 +269,7 @@ ROM::ROM () {
 	this->hashTable[49].EFL = true;
 	this->hashTable[49].RMS = true;
 
-	this->hashTable[50].RD = true;
+	this->hashTable[50].RD  = true;
 	this->hashTable[50].LPC = true;
 	this->hashTable[50].RMS = true;
 
@@ -290,7 +290,7 @@ ROM::ROM () {
 	this->hashTable[53].EFL = true;
 	this->hashTable[53].RMS = true;
 
-	this->hashTable[54].RD = true;
+	this->hashTable[54].RD  = true;
 	this->hashTable[54].LOR = true;
 	this->hashTable[54].DSP = true;
 
@@ -298,7 +298,7 @@ ROM::ROM () {
 	this->hashTable[55].LMR = true;
 
 	this->hashTable[56].EPC = true;
-	this->hashTable[56].WR = true;
+	this->hashTable[56].WR  = true;
 
 	this->hashTable[57].EOR = true;
 	this->hashTable[57].LPC = true;
@@ -315,7 +315,7 @@ ROM::ROM () {
 	this->hashTable[60].LMR = true;
 
 	this->hashTable[61].EPC = true;
-	this->hashTable[61].WR = true;
+	this->hashTable[61].WR  = true;
 
 	this->hashTable[62].EAR = true;
 	this->hashTable[62].LPC = true;

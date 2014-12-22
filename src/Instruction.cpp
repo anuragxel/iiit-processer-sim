@@ -28,13 +28,6 @@ Instruction::~Instruction () {
 
 }
 
-/*
-void Instruction::processSignal () {
-	if (microinstruction->LIR)
-		this->setContent(databus->getContent());
-}
-*/
-
 void Instruction::processSignalRisingEdge(){
 
 }
