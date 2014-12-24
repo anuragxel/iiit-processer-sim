@@ -90,7 +90,7 @@ std::string MainMemory::toString() {
 	}
 	buffer += "\n\n0 |\t";
 	for(int i=0;i<256;i++) {
-		buffer += std::to_string((unsigned int)(this->mainMemory[i] & 0xFF)) + "\t";
+		buffer += hexed((unsigned int)(this->mainMemory[i] & 0xFF)) + "\t";
 		if(!((i+1)%16) && (i+1)/16 != 16) {
 			buffer +="\n" + hexed((i+1)/16) + " |\t";
 		}

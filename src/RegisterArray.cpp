@@ -96,7 +96,7 @@ std::string RegisterArray::toString() {
 	for (auto &i : registerArray) {
 		buff += "r" + std::to_string(j) + " : " + i.toString() + "\t";
 		j++;
-		if(j == 4 || j == 8 || j == 12)
+		if(j == 6 || j == 12)
 			buff += '\n';		
 	}
 	return buff;

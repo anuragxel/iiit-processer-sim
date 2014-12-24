@@ -150,7 +150,6 @@ int assembleCode(std::string path,std::string outpath) {
 			lookupTable[word] = nextInstructionAddr;
 		}
 		else {
-			nextInstructionAddr++;
 		}
 	}
 
@@ -198,7 +197,6 @@ int assembleCode(std::string path,std::string outpath) {
 				memory[nextInstructionAddr++] = lookupTable[word];
 			}
 			else {
-				nextInstructionAddr++;
 			}
 		}
 	}

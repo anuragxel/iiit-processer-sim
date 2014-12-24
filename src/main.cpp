@@ -82,17 +82,15 @@ void cleanup () {
 void printState() {
 	std::cout <<"ALU  : "<<alu->getContent();
 	std::cout <<"\tACC  : "<<accumulator->getContent();
-	std::cout <<"\tDTBS : "<<databus->getContent()<<std::endl;
-
-	std::cout <<"DEC  : " <<decoder->getContent();
-	std::cout <<"\tMS   : "<<microprogramSequencer->getContent();	
+	std::cout <<"\tDTBS : "<<databus->getContent();
+	std::cout <<"\tDEC  : " <<decoder->getContent();
 	std::cout <<"\tPC   : "<<programCounter->getContent()<<std::endl;
 
 	std::cout <<"MEM  : "<<mainMemory->getContent();
-	std::cout <<"\tMADD : "<<memoryAddress->getContent()<<std::endl;
-
-	std::cout <<"IO   : "<<io->getContent();
-	std::cout <<"\tIR   : "<<instruction->getContent()<<std::endl;
+	std::cout <<"\tMADD : "<<memoryAddress->getContent();
+	std::cout <<"\tIO   : "<<io->getContent();
+	std::cout <<"\tIR   : "<<instruction->getContent();
+	std::cout <<"\tMS   : "<<microprogramSequencer->getContent() << std::endl;	
 	
 	std::cout <<flag->toString();
 	std::cout <<registerArray->toString()<<std::endl;

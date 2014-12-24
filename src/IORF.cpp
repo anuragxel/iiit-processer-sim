@@ -40,7 +40,7 @@ void IO_RF::processSignalFallingEdge(){
 }
 
 void IO_RF::clockPulse () {
-	Register::clockPulse();
+	Register::clockPulse(); // what the fuck ??
 	this->SRG = this->Content & 0x0F;
 	this->SFL = this->Content & 0x07;
 }
