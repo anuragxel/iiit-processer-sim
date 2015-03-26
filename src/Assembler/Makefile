@@ -3,25 +3,27 @@ MAN = stdArchAssembler.1
 override CFLAGS += -Ofast -funroll-loops -flto -Wall -std=c++11
 override DEVEL_FLAGS += -g -Wall -std=c++11
 override LFLAGS +=
-CC = g++
+CXX ?= g++
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
+CXXFILES = Assembler.cpp
+OBJFILES = $(patsubst %.cpp,%.o,$(CXXFILES))
 
-$(OBJ) : Assembler.o
-	$(CC) $(DEVEL_FLAGS) $^ -o $@ $(LFLAGS)
+$(OBJ) : $(OBJFILES)
+	$(CXX) $(DEVEL_FLAGS) $^ -o $@ $(LFLAGS)
 
-Assembler.o : Assembler.cpp
-	$(CC) $(DEVEL_FLAGS) -c $^
+%.o : %.cpp
+	$(CXX) $(DEVEL_FLAGS) -c $^
 
 clean :
-	rm -f Assembler.o $(OBJ)
+	rm -f $(OBJFILES) $(OBJ)
 
 clear : clean
 
 ofast :
-	$(CC) $(CFLAGS) -c Assembler.cpp
-	$(CC) $(CFLAGS) -o $(OBJ) Assembler.o $(LFLAGS)
+	$(CXX) $(CFLAGS) -c $(CXXFILES)
+	$(CXX) $(CFLAGS) -o $(OBJ) $(OBJFILES) $(LFLAGS)
 
 install : $(OBJ)
 	@echo "Installing program to $(DESTDIR)$(BINDIR) ..."

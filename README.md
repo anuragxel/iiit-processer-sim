@@ -1,6 +1,6 @@
 Old People. New Challenge. mov pc,lr
+[![Build Status](https://travis-ci.org/ParthKolekar/iiit-processor-sim.svg?branch=master)](https://travis-ci.org/ParthKolekar/iiit-processor-sim)
 
-[ ![Codeship Status for xel_1729/iiit-processor-sim](https://codeship.io/projects/ba129fd0-47a4-0132-a14f-46b32a25e7b0/status)](https://codeship.io/projects/45662)
 
 ### Structural Layout of Program ###
 .h-> 

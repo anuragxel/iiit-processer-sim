@@ -3,25 +3,27 @@ MAN = stdArchSim.1
 override CFLAGS += -Ofast -funroll-loops -flto -Wall -std=c++11
 override DEVEL_FLAGS += -g -Wall -std=c++11
 override LFLAGS +=
-CC = g++
+CXX ?= g++
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
+CXXFILES = Accumulator.cpp BaseRegister.cpp Decoder.cpp Instruction.cpp MainMemory.cpp MemoryAddress.cpp MicroprogramSequencer.cpp ProgramCounter.cpp ROM.cpp ALU.cpp Databus.cpp Flag.cpp IORF.cpp main.cpp Microinstruction.cpp Operand.cpp RegisterArray.cpp StackPointer.cpp
+OBJFILES = $(patsubst %.cpp,%.o,$(CXXFILES))
 
-$(OBJ) : *.o
-	$(CC) $(DEVEL_FLAGS) $^ -o $@ $(LFLAGS)
+$(OBJ) : $(OBJFILES)
+	$(CXX) $(DEVEL_FLAGS) $^ -o $@ $(LFLAGS)
 
 %.o : %.cpp
-	$(CC) $(DEVEL_FLAGS) -c $^
+	$(CXX) $(DEVEL_FLAGS) -c $^
 
 clean :
 	rm -f *.o $(OBJ)
 
 clear : clean
 
-ofast :
-	$(CC) $(CFLAGS) -c *.cpp
-	$(CC) $(CFLAGS) -o $(OBJ) *.o $(LFLAGS)
+ofast : clean
+	$(CXX) $(CFLAGS) -c $(CXXFILES)
+	$(CXX) $(CFLAGS) -o $(OBJ) $(OBJFILES) $(LFLAGS)
 
 install : $(OBJ)
 	@echo "Installing program to $(DESTDIR)$(BINDIR) ..."
@@ -34,3 +36,4 @@ install : $(OBJ)
 		echo "Failed. Try "make PREFIX=~ install" ?"
 
 all : install
+
