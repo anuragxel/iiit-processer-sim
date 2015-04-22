@@ -1,17 +1,22 @@
+iiit-processor-sim
+------------------
+
 Old People. New Challenge. mov pc,lr
-[![Build Status](https://travis-ci.org/ParthKolekar/iiit-processor-sim.svg?branch=master)](https://travis-ci.org/ParthKolekar/iiit-processor-sim)
 
+Structural Layout of Program
+----------------------------
 
-### Structural Layout of Program ###
-.h-> 
+.h  
 	class declaration of module.
 
-.cpp-> 
+.cpp
 	class defination of every module.
 	Must include processor.h
-	must include *.h
+	must include .h
 
-### Naming Conventions ###
+Naming Conventions
+------------------
+
 Every Module Contains Content.
 Make accessor, mutator in each.
 
@@ -22,6 +27,9 @@ Externs are .... Externs...
 
 Do not forget to update all files.
 
+Build Badges
+------------
 
+[![Build Status](https://travis-ci.org/ParthKolekar/iiit-processor-sim.svg?branch=master)](https://travis-ci.org/ParthKolekar/iiit-processor-sim)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ParthKolekar/iiit-processor-sim/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
