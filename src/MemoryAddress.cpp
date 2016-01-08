@@ -17,8 +17,8 @@
 #ifndef _MEMORYADDRESS_CPP
 #define _MEMORYADDRESS_CPP
 
-#include "MemoryAddress.h"
-#include "Processor.h"
+#include "include/MemoryAddress.h"
+#include "include/Processor.h"
 
 MemoryAddress::MemoryAddress () {
 }

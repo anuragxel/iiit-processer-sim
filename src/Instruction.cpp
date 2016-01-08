@@ -17,8 +17,8 @@
 #ifndef _INSTRUCTION_CPP
 #define _INSTRUCTION_CPP
 
-#include "Instruction.h"
-#include "Processor.h"
+#include "include/Instruction.h"
+#include "include/Processor.h"
 
 Instruction::Instruction () {
 

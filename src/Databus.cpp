@@ -17,8 +17,8 @@
 #ifndef _DATABUS_CPP
 #define _DATABUS_CPP
 
-#include "Databus.h"
-#include "Processor.h"
+#include "include/Databus.h"
+#include "include/Processor.h"
 
 Databus::Databus () {
 	this->Content = 0;

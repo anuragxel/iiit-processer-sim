@@ -17,8 +17,8 @@
 #ifndef _ACCUMULATOR_CPP
 #define _ACCUMULATOR_CPP
 
-#include "Accumulator.h"
-#include "Processor.h"
+#include "include/Accumulator.h"
+#include "include/Processor.h"
 
 Accumulator::Accumulator () {
 

@@ -17,8 +17,8 @@
 #ifndef _ROM_CPP
 #define _ROM_CPP
 
-#include "ROM.h"
-#include "Processor.h"
+#include "include/ROM.h"
+#include "include/Processor.h"
 
 
 //
@@ -27,7 +27,7 @@
 ROM::ROM () {
 	this->hashTable.resize(64); // Will call the constructor for default values of <Microinstruction> which happens to be completly 0'd out;
 
-	this->hashTable[0].EPC = true; 
+	this->hashTable[0].EPC = true;
 	this->hashTable[0].LMR = true;
 	this->hashTable[0].IPC = true;
 
@@ -40,7 +40,7 @@ ROM::ROM () {
 
 	this->hashTable[2].RMS = true;
 
-	// @Ghosh : stop 
+	// @Ghosh : stop
 	// @Ghosh : |->	Nothing to do!
 
 	// @Ghosh : adi xx
@@ -127,7 +127,7 @@ ROM::ROM () {
 	this->hashTable[20].RMS = true;
 
 	// @Ghosh : ret <fl>
-	
+
 	this->hashTable[21].EFL = true;
 	this->hashTable[21].RMS = true;
 
@@ -222,7 +222,7 @@ ROM::ROM () {
 	this->hashTable[39].LRG = true;
 	this->hashTable[39].RMS = true;
 
-	// @Ghosh : stor <r> 
+	// @Ghosh : stor <r>
 
 	this->hashTable[40].EAR = true;
 	this->hashTable[40].LMR = true;
@@ -304,7 +304,7 @@ ROM::ROM () {
 	this->hashTable[57].LPC = true;
 	this->hashTable[57].RMS = true;
 
-	// @Ghosh : cr <fl> 
+	// @Ghosh : cr <fl>
 
 	this->hashTable[58].EFL = true;
 	this->hashTable[58].RMS = true;

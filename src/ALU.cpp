@@ -17,8 +17,8 @@
 #ifndef _ALU_CPP
 #define _ALU_CPP
 
-#include "ALU.h"
-#include "Processor.h"
+#include "include/ALU.h"
+#include "include/Processor.h"
 
 ALU::ALU () {
 

@@ -17,8 +17,8 @@
 #ifndef _PROGRAMCOUNTER_CPP
 #define _PROGRAMCOUNTER_CPP
 
-#include "ProgramCounter.h"
-#include "Processor.h"
+#include "include/ProgramCounter.h"
+#include "include/Processor.h"
 
 ProgramCounter::ProgramCounter () {
 

@@ -17,8 +17,8 @@
 #ifndef _MAINMEMORY_CPP
 #define _MAINMEMORY_CPP
 
-#include "MainMemory.h"
-#include "Processor.h"
+#include "include/MainMemory.h"
+#include "include/Processor.h"
 
 MainMemory::MainMemory () {
 	this->mainMemory.fill(0); // Un-necessary by implementation of g++, this will be done automatically. But other compilers will complain.

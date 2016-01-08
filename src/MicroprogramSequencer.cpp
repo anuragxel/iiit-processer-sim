@@ -17,8 +17,8 @@
 #ifndef _MICROPROGRAMSEQUENCER_CPP
 #define _MICROPROGRAMSEQUENCER_CPP
 
-#include "MicroprogramSequencer.h"
-#include "Processor.h"
+#include "include/MicroprogramSequencer.h"
+#include "include/Processor.h"
 
 MicroprogramSequencer::MicroprogramSequencer () {
 
@@ -28,10 +28,10 @@ MicroprogramSequencer::~MicroprogramSequencer () {
 
 }
 
-void MicroprogramSequencer::processSignalRisingEdge(){	
+void MicroprogramSequencer::processSignalRisingEdge(){
 }
 
-void MicroprogramSequencer::processSignalFallingEdge(){	
+void MicroprogramSequencer::processSignalFallingEdge(){
 	if (microinstruction->RMS == true && microinstruction->EFL == false){ // @Ghosh : Unconditional reset, if EFL == false;
 		std::cout << "RMS w/o flag\t";
 		this->setContent(RESET_ADDRESS);

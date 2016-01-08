@@ -17,8 +17,8 @@
 #ifndef _OPERAND_CPP
 #define _OPERAND_CPP
 
-#include "Operand.h"
-#include "Processor.h"
+#include "include/Operand.h"
+#include "include/Processor.h"
 
 Operand::Operand () {
 

@@ -19,8 +19,8 @@
 
 #include <iostream>
 
-#include "RegisterArray.h"
-#include "Processor.h"
+#include "include/RegisterArray.h"
+#include "include/Processor.h"
 
 RegisterArray::RegisterArray () {
 
@@ -80,7 +80,7 @@ void RegisterArray::clockPulse () {
 }
 
 // this implies that io register must be set
-// before register array. 
+// before register array.
 
 void RegisterArray::setContent ( int content ) {
 	registerArray[io->SRG].setContent(content);
@@ -97,7 +97,7 @@ std::string RegisterArray::toString() {
 		buff += "r" + std::to_string(j) + " : " + i.toString() + "\t";
 		j++;
 		if(j == 6 || j == 12)
-			buff += '\n';		
+			buff += '\n';
 	}
 	return buff;
 }

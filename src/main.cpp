@@ -21,7 +21,7 @@
 #include <vector>
 #include <string>
 
-#include "Processor.h"
+#include "include/Processor.h"
 
 Accumulator *accumulator;
 ALU *alu;
@@ -90,11 +90,11 @@ void printState() {
 	std::cout <<"\tMADD : "<<memoryAddress->getContent();
 	std::cout <<"\tIO   : "<<io->getContent();
 	std::cout <<"\tIR   : "<<instruction->getContent();
-	std::cout <<"\tMS   : "<<microprogramSequencer->getContent() << std::endl;	
-	
+	std::cout <<"\tMS   : "<<microprogramSequencer->getContent() << std::endl;
+
 	std::cout <<flag->toString();
 	std::cout <<registerArray->toString()<<std::endl;
-	
+
 	std::cout <<std::endl;
 }
 
@@ -111,33 +111,33 @@ void executeClockCycle() {
 		flag->processSignalRisingEdge();
 		instruction->processSignalRisingEdge();
 		io->processSignalRisingEdge();
-		
+
 		memoryAddress->processSignalRisingEdge();
 		memoryAddress->updateImmediate();
-		
+
 		mainMemory->processSignalRisingEdge();
-		
+
 		//microprogramSequencer->processSignalRisingEdge();
 		operand->processSignalRisingEdge();
-		
+
 		programCounter->processSignalRisingEdge();
 		registerArray->processSignalRisingEdge();
 		stackPointer->processSignalRisingEdge();
-		
+
 		accumulator->processSignalFallingEdge();
 
 		flag->processSignalFallingEdge();
 		instruction->processSignalFallingEdge();
 		io->processSignalFallingEdge();
-		
+
 		memoryAddress->processSignalFallingEdge();
 		memoryAddress->updateImmediate();
-		
+
 		mainMemory->processSignalFallingEdge();
-		
+
 		//microprogramSequencer->processSignalFallingEdge();
 		operand->processSignalFallingEdge();
-		
+
 		programCounter->processSignalFallingEdge();
 		registerArray->processSignalFallingEdge();
 		stackPointer->processSignalFallingEdge();
@@ -157,9 +157,9 @@ void executeClockCycle() {
 		microprogramSequencer->processSignalRisingEdge();
 		microprogramSequencer->processSignalFallingEdge();
 		microprogramSequencer->updateImmediate();
-		
+
 		rom->setMicroinstruction();
-		
+
 }
 
 int main(int argc, char const **argv) {
@@ -172,11 +172,11 @@ int main(int argc, char const **argv) {
 
 	printMemory();
 	bool verbose = true;
-	
+
 	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
-		
-		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl; 
+
+		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl;
 		if(verbose) {
 			printState();
 		}

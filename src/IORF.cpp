@@ -17,8 +17,8 @@
 #ifndef _IORF_CPP
 #define _IORF_CPP
 
-#include "IORF.h"
-#include "Processor.h"
+#include "include/IORF.h"
+#include "include/Processor.h"
 
 IO_RF::IO_RF () {
 

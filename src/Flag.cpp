@@ -17,8 +17,8 @@
 #ifndef _FLAG_CPP
 #define _FLAG_CPP
 
-#include "Flag.h"
-#include "Processor.h"
+#include "include/Flag.h"
+#include "include/Processor.h"
 
 Flag::Flag () {
 	this->Content = 1;
@@ -212,7 +212,7 @@ std::string Flag::toString() {
 		switch(i) {
 			case 0:
 				rv += "U :";
-				break;	
+				break;
 			case 1:
 				rv += "Z :";
 				break;

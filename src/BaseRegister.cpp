@@ -17,8 +17,8 @@
 #ifndef _BASE_REGISTER_CPP
 #define _BASE_REGISTER_CPP
 
-#include "BaseRegister.h"
-#include "Processor.h"
+#include "include/BaseRegister.h"
+#include "include/Processor.h"
 
 Register::Register () {
 	this->Content = 0;

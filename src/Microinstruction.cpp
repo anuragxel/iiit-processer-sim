@@ -17,8 +17,8 @@
 #ifndef _MICROINSTRUCTION_CPP
 #define _MICROINSTRUCTION_CPP
 
-#include "Microinstruction.h"
-#include "Processor.h"
+#include "include/Microinstruction.h"
+#include "include/Processor.h"
 
 Microinstruction::Microinstruction () {
 	this->RD = false;

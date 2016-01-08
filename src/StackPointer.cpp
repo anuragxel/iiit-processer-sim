@@ -17,8 +17,8 @@
 #ifndef _STACKPOINTER_CPP
 #define _STACKPOINTER_CPP
 
-#include "StackPointer.h"
-#include "Processor.h"
+#include "include/StackPointer.h"
+#include "include/Processor.h"
 
 StackPointer::StackPointer () {
 	this->Content = -1; // Becomes 255 on getContent()
