@@ -9,19 +9,39 @@ class Register
 		int Content;
 		int _nextContent;
 	public:
-		Register();
-		~Register();
+		Register() {
+			this->Content = 0;
+			this->_nextContent = 0;
+		}
 
-		void setContent( int content );
-		int getContent ();
-		void clockPulse();
+		~Register() {}
+
+		void setContent(int content) {
+			this->_nextContent = content;
+		}
+		int getContent () {
+			return (int) this->Content & 0xFF;
+		}	
+		void clockPulse() {
+			this->Content = this->_nextContent;
+		}
 
 		//Register Level Capablities. Not exploited by Processor, but included just in case.
-		void rightShift();
-		void leftShift();
-		void increment();
-		void decrement();
-		std::string toString();
+		void rightShift() {
+			this->_nextContent = (this->_nextContent >> 1);
+		}
+		void leftShift() {
+			this->_nextContent = (this->_nextContent << 1);
+		}
+		void increment() {
+			this->_nextContent = (this->_nextContent + 1);
+		}
+		void decrement() {
+			this->_nextContent = (this->_nextContent - 1);
+		}
+		std::string toString() {
+			return std::to_string(this->Content);
+		}
 };
 
 #endif

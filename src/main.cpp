@@ -1,19 +1,3 @@
-/*
- * This file is part of Std-Arch-Sim.
- *
- * Std-Arch-Sim is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Std-Arch-Sim is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with Std-Arch-Sim.  If not, see <http://www.gnu.org/licenses/>.
- */
 #include <iostream>
 #include <fstream>
 #include <cstdio>
@@ -107,7 +91,7 @@ void executeClockCycle() {
 
 		databus->resetBusy();
 
-		accumulator->processSignalRisingEdge();
+		accumulator->processSignalRisingEdge(microinstruction, databus);
 		flag->processSignalRisingEdge();
 		instruction->processSignalRisingEdge();
 		io->processSignalRisingEdge();
@@ -124,7 +108,7 @@ void executeClockCycle() {
 		registerArray->processSignalRisingEdge();
 		stackPointer->processSignalRisingEdge();
 
-		accumulator->processSignalFallingEdge();
+		accumulator->processSignalFallingEdge(microinstruction, alu);
 
 		flag->processSignalFallingEdge();
 		instruction->processSignalFallingEdge();
@@ -147,7 +131,7 @@ void executeClockCycle() {
 		instruction->clockPulse();
 		io->clockPulse();
 		memoryAddress->clockPulse();
-		microprogramSequencer->clockPulse();
+		microprogramSequencer->clockPulse(microinstruction);
 		operand->clockPulse();
 		programCounter->clockPulse();
 		registerArray->clockPulse();
@@ -155,7 +139,7 @@ void executeClockCycle() {
 
 		// why twice ?
 		microprogramSequencer->processSignalRisingEdge();
-		microprogramSequencer->processSignalFallingEdge();
+		microprogramSequencer->processSignalFallingEdge(microinstruction, io, flag, decoder);
 		microprogramSequencer->updateImmediate();
 
 		rom->setMicroinstruction();
