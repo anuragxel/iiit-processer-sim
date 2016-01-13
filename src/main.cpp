@@ -102,29 +102,29 @@ void executeClockCycle() {
 		mainMemory->processSignalRisingEdge();
 
 		//microprogramSequencer->processSignalRisingEdge();
-		operand->processSignalRisingEdge();
+		operand->processSignalRisingEdge(microinstruction, databus);
 
-		programCounter->processSignalRisingEdge();
+		programCounter->processSignalRisingEdge(microinstruction, databus);
 		registerArray->processSignalRisingEdge();
-		stackPointer->processSignalRisingEdge();
+		stackPointer->processSignalRisingEdge(microinstruction, databus);
 
 		accumulator->processSignalFallingEdge(microinstruction, alu);
 
 		flag->processSignalFallingEdge();
-		instruction->processSignalFallingEdge();
-		io->processSignalFallingEdge();
+		instruction->processSignalFallingEdge(microinstruction, databus);
+		io->processSignalFallingEdge(microinstruction, databus);
 
-		memoryAddress->processSignalFallingEdge();
+		memoryAddress->processSignalFallingEdge(microinstruction, databus);
 		memoryAddress->updateImmediate();
 
 		mainMemory->processSignalFallingEdge();
 
 		//microprogramSequencer->processSignalFallingEdge();
-		operand->processSignalFallingEdge();
+		operand->processSignalFallingEdge(microinstruction, databus);
 
-		programCounter->processSignalFallingEdge();
+		programCounter->processSignalFallingEdge(microinstruction, databus);
 		registerArray->processSignalFallingEdge();
-		stackPointer->processSignalFallingEdge();
+		stackPointer->processSignalFallingEdge(microinstruction, databus);
 
 		accumulator->clockPulse();
 		flag->clockPulse();

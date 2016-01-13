@@ -9,8 +9,8 @@ class RegisterArray {
 	private:
 		std::array<Register , 12> registerArray;
 	public:
-		RegisterArray();
-		~RegisterArray();
+		RegisterArray() {}
+		~RegisterArray() {}
 		void processSignalRisingEdge();
 		void processSignalFallingEdge();
 		void clockPulse();

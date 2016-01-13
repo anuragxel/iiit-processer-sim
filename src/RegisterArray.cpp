@@ -6,15 +6,7 @@
 #include "include/RegisterArray.h"
 #include "include/Processor.h"
 
-RegisterArray::RegisterArray () {
-
-}
-
-RegisterArray::~RegisterArray () {
-
-}
-
-void RegisterArray::processSignalRisingEdge(){
+void RegisterArray::processSignalRisingEdge() {
 	if (microinstruction->ERG) {
 		std::cout << "ERG\t";
 		switch (io->SRG) {
@@ -65,7 +57,6 @@ void RegisterArray::clockPulse () {
 
 // this implies that io register must be set
 // before register array.
-
 void RegisterArray::setContent ( int content ) {
 	registerArray[io->SRG].setContent(content);
 }
