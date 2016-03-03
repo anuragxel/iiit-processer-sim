@@ -7,7 +7,7 @@ CXX ?= g++
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
 MANDIR = $(PREFIX)/share/man/man1
-CXXFILES = Accumulator.cpp BaseRegister.cpp Decoder.cpp Instruction.cpp MainMemory.cpp MemoryAddress.cpp MicroprogramSequencer.cpp ProgramCounter.cpp ROM.cpp ALU.cpp Databus.cpp Flag.cpp IORF.cpp main.cpp Microinstruction.cpp Operand.cpp RegisterArray.cpp StackPointer.cpp
+CXXFILES = ALU.cpp  Decoder.cpp  main.cpp	MainMemory.cpp	Microinstruction.cpp  RegisterArray.cpp  ROM.cpp
 OBJFILES = $(patsubst %.cpp,%.o,$(CXXFILES))
 
 $(OBJ) : $(OBJFILES)
