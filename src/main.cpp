@@ -1,19 +1,3 @@
-/*
- * This file is part of Std-Arch-Sim.
- *
- * Std-Arch-Sim is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Std-Arch-Sim is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with Std-Arch-Sim.  If not, see <http://www.gnu.org/licenses/>.
- */
 #include <iostream>
 #include <fstream>
 #include <cstdio>
@@ -21,7 +5,7 @@
 #include <vector>
 #include <string>
 
-#include "Processor.h"
+#include "include/Processor.h"
 
 Accumulator *accumulator;
 ALU *alu;
@@ -90,11 +74,11 @@ void printState() {
 	std::cout <<"\tMADD : "<<memoryAddress->getContent();
 	std::cout <<"\tIO   : "<<io->getContent();
 	std::cout <<"\tIR   : "<<instruction->getContent();
-	std::cout <<"\tMS   : "<<microprogramSequencer->getContent() << std::endl;	
-	
+	std::cout <<"\tMS   : "<<microprogramSequencer->getContent() << std::endl;
+
 	std::cout <<flag->toString();
 	std::cout <<registerArray->toString()<<std::endl;
-	
+
 	std::cout <<std::endl;
 }
 
@@ -107,47 +91,47 @@ void executeClockCycle() {
 
 		databus->resetBusy();
 
-		accumulator->processSignalRisingEdge();
+		accumulator->processSignalRisingEdge(microinstruction, databus);
 		flag->processSignalRisingEdge();
 		instruction->processSignalRisingEdge();
 		io->processSignalRisingEdge();
-		
+
 		memoryAddress->processSignalRisingEdge();
 		memoryAddress->updateImmediate();
-		
+
 		mainMemory->processSignalRisingEdge();
-		
+
 		//microprogramSequencer->processSignalRisingEdge();
-		operand->processSignalRisingEdge();
-		
-		programCounter->processSignalRisingEdge();
+		operand->processSignalRisingEdge(microinstruction, databus);
+
+		programCounter->processSignalRisingEdge(microinstruction, databus);
 		registerArray->processSignalRisingEdge();
-		stackPointer->processSignalRisingEdge();
-		
-		accumulator->processSignalFallingEdge();
+		stackPointer->processSignalRisingEdge(microinstruction, databus);
+
+		accumulator->processSignalFallingEdge(microinstruction, alu);
 
 		flag->processSignalFallingEdge();
-		instruction->processSignalFallingEdge();
-		io->processSignalFallingEdge();
-		
-		memoryAddress->processSignalFallingEdge();
+		instruction->processSignalFallingEdge(microinstruction, databus);
+		io->processSignalFallingEdge(microinstruction, databus);
+
+		memoryAddress->processSignalFallingEdge(microinstruction, databus);
 		memoryAddress->updateImmediate();
-		
+
 		mainMemory->processSignalFallingEdge();
-		
+
 		//microprogramSequencer->processSignalFallingEdge();
-		operand->processSignalFallingEdge();
-		
-		programCounter->processSignalFallingEdge();
+		operand->processSignalFallingEdge(microinstruction, databus);
+
+		programCounter->processSignalFallingEdge(microinstruction, databus);
 		registerArray->processSignalFallingEdge();
-		stackPointer->processSignalFallingEdge();
+		stackPointer->processSignalFallingEdge(microinstruction, databus);
 
 		accumulator->clockPulse();
 		flag->clockPulse();
 		instruction->clockPulse();
 		io->clockPulse();
 		memoryAddress->clockPulse();
-		microprogramSequencer->clockPulse();
+		microprogramSequencer->clockPulse(microinstruction);
 		operand->clockPulse();
 		programCounter->clockPulse();
 		registerArray->clockPulse();
@@ -155,11 +139,11 @@ void executeClockCycle() {
 
 		// why twice ?
 		microprogramSequencer->processSignalRisingEdge();
-		microprogramSequencer->processSignalFallingEdge();
+		microprogramSequencer->processSignalFallingEdge(microinstruction, io, flag, decoder);
 		microprogramSequencer->updateImmediate();
-		
+
 		rom->setMicroinstruction();
-		
+
 }
 
 int main(int argc, char const **argv) {
@@ -172,11 +156,11 @@ int main(int argc, char const **argv) {
 
 	printMemory();
 	bool verbose = true;
-	
+
 	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
-		
-		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl; 
+
+		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl;
 		if(verbose) {
 			printState();
 		}

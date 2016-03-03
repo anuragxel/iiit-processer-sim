@@ -1,36 +1,12 @@
-/*
- * This file is part of Std-Arch-Sim.
- *
- * Std-Arch-Sim is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Std-Arch-Sim is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with Std-Arch-Sim.  If not, see <http://www.gnu.org/licenses/>.
- */
 #ifndef _REGISTERARRAY_CPP
 #define _REGISTERARRAY_CPP
 
 #include <iostream>
 
-#include "RegisterArray.h"
-#include "Processor.h"
+#include "include/RegisterArray.h"
+#include "include/Processor.h"
 
-RegisterArray::RegisterArray () {
-
-}
-
-RegisterArray::~RegisterArray () {
-
-}
-
-void RegisterArray::processSignalRisingEdge(){
+void RegisterArray::processSignalRisingEdge() {
 	if (microinstruction->ERG) {
 		std::cout << "ERG\t";
 		switch (io->SRG) {
@@ -80,8 +56,7 @@ void RegisterArray::clockPulse () {
 }
 
 // this implies that io register must be set
-// before register array. 
-
+// before register array.
 void RegisterArray::setContent ( int content ) {
 	registerArray[io->SRG].setContent(content);
 }
@@ -97,7 +72,7 @@ std::string RegisterArray::toString() {
 		buff += "r" + std::to_string(j) + " : " + i.toString() + "\t";
 		j++;
 		if(j == 6 || j == 12)
-			buff += '\n';		
+			buff += '\n';
 	}
 	return buff;
 }
