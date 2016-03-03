@@ -12,10 +12,8 @@ install:
 script:
     - cd src
     - make 
-    - make ofast
     - cd Assembler 
     - make 
-    - make ofast
 
 notifications:
     email:
