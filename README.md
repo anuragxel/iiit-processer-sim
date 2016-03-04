@@ -1,4 +1,4 @@
-iiit-processor-sim
+simple-processor-sim
 ------------------
 
 Old People. New Challenge. mov pc,lr
