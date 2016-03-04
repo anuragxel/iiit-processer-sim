@@ -30,6 +30,6 @@ Do not forget to update all files.
 Build Badges
 ------------
 
-[![Build Status](https://travis-ci.org/ParthKolekar/iiit-processor-sim.svg?branch=master)](https://travis-ci.org/ParthKolekar/iiit-processor-sim)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ParthKolekar/iiit-processor-sim/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/stdarchsim/stdarchsim.svg?branch=master)](https://travis-ci.org/stdarchsim/stdarchsim)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/stdarchsim/stdarchsim/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
