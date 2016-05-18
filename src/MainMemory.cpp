@@ -38,7 +38,11 @@ MainMemory::MainMemory (std::ifstream infile) {
 	infile.close();
 }
 
-void MainMemory::setContent ( int content ) {
+void MainMemory::manualEdit (int index, int content) {
+	this->mainMemory[ index & 0xFF ] = (char) content;
+}
+
+void MainMemory::setContent (int content) {
 	this->mainMemory[ memoryAddress->getContent() ] = (char) content;
 }
 
@@ -46,14 +50,14 @@ int MainMemory::getContent () {
 	return (int) ((this->mainMemory [ memoryAddress->getContent() ]) & 0xFF);
 }
 
-void MainMemory::processSignalRisingEdge(){
+void MainMemory::processSignalRisingEdge (){
 	if(microinstruction->RD) {
 		std::cout << "RD\t";
 		databus->setContent(this->getContent());
 	}
 }
 
-void MainMemory::processSignalFallingEdge(){
+void MainMemory::processSignalFallingEdge (){
 	if(microinstruction->WR) {
 		std::cout << "WR\t";
 		this->setContent(databus->getContent());

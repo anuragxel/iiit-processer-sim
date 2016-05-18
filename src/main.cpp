@@ -87,6 +87,25 @@ void printMemory() {
 	std::cout << mainMemory->toString() << std::endl;
 }
 
+void editMemory() {
+	std::cout << "Edit Memory by entering values in the format 'index value' line by line." << std::endl;
+	std::cout << "The index and values should be in Base 10 and in the range 0-255" << std::endl;
+	std::cout << "Enter -1 : -1 to indicate that you are done." << std::endl;
+	int index, val;
+	std::string line;
+	while(true) {
+		std::cin >> index >> val;
+		if(index == -1 and val == -1) {
+			break;
+		}
+		if (index < 0 || index > 255) {
+			std::cout << "Invalid Index" << std::endl;
+			continue;
+		}
+		mainMemory->manualEdit(index, val);
+	}
+}
+
 void executeClockCycle() {
 
 		databus->resetBusy();
@@ -155,7 +174,10 @@ int main(int argc, char const **argv) {
 	}
 
 	printMemory();
-	bool verbose = true;
+	editMemory();
+	printMemory();
+	return 1;
+	bool verbose = false;
 
 	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {

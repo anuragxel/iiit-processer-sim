@@ -16,13 +16,14 @@ class MainMemory
 		MainMemory();
 		~MainMemory();
 
+
 		MainMemory(std::string);
 		MainMemory(std::fstream);
 		MainMemory(std::ifstream);
 
 		void setContent( int );
-		int getContent ( );
-
+		int getContent();
+		void manualEdit(int, int);
 		void processSignalRisingEdge();
 		void processSignalFallingEdge();
 		std::string toString();
