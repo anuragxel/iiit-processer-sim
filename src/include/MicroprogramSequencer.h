@@ -12,10 +12,7 @@ class MicroprogramSequencer : public Register {
 		void clockPulse(Microinstruction *microinstruction) {
 			if (!microinstruction->RMS && !microinstruction->LMS)
 				this->increment();
-		}
-
-		void processSignalRisingEdge() {}
-		
+		}		
 		void processSignalFallingEdge(Microinstruction *microinstruction, IO_RF *io, Flag* flag, Decoder *decoder) {
 			if (microinstruction->RMS == true && microinstruction->EFL == false){ // @Ghosh : Unconditional reset, if EFL == false;
 				std::cout << "RMS w/o flag\t";
@@ -27,7 +24,7 @@ class MicroprogramSequencer : public Register {
 						std::cout << "RMS w/t flag\t";
 						this->setContent(RESET_ADDRESS);
 						this->clockPulse(microinstruction);
-				}	
+				}
 			}
 			if (microinstruction->LMS){
 				std::cout << "LMS\t";

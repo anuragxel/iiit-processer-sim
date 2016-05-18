@@ -12,7 +12,6 @@ class MemoryAddress : public Register {
 	public:
 		MemoryAddress() {}
 		~MemoryAddress() {}
-		void processSignalRisingEdge() {}
 		void processSignalFallingEdge(Microinstruction *microinstruction, Databus *databus) {
 			if (microinstruction->LMR){
 				std::cout << "LMR\t";

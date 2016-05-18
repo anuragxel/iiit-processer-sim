@@ -12,7 +12,6 @@ class Instruction : public Register {
 	public:
 		Instruction() {}
 		~Instruction() {}
-		void processSignalRisingEdge() {}
 		void processSignalFallingEdge(Microinstruction *microinstruction, Databus *databus) {
 			if (microinstruction->LIR){
 				std::cout << "LIR\t";

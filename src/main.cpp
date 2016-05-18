@@ -112,15 +112,12 @@ void executeClockCycle() {
 
 		accumulator->processSignalRisingEdge(microinstruction, databus);
 		flag->processSignalRisingEdge();
-		instruction->processSignalRisingEdge();
-		io->processSignalRisingEdge();
 
-		memoryAddress->processSignalRisingEdge();
+		// TODO: KNOW WHY??!!
 		memoryAddress->updateImmediate();
 
 		mainMemory->processSignalRisingEdge();
 
-		//microprogramSequencer->processSignalRisingEdge();
 		operand->processSignalRisingEdge(microinstruction, databus);
 
 		programCounter->processSignalRisingEdge(microinstruction, databus);
@@ -138,7 +135,6 @@ void executeClockCycle() {
 
 		mainMemory->processSignalFallingEdge();
 
-		//microprogramSequencer->processSignalFallingEdge();
 		operand->processSignalFallingEdge(microinstruction, databus);
 
 		programCounter->processSignalFallingEdge(microinstruction, databus);
@@ -157,9 +153,8 @@ void executeClockCycle() {
 		stackPointer->clockPulse();
 
 		// why twice ?
-		microprogramSequencer->processSignalRisingEdge();
 		microprogramSequencer->processSignalFallingEdge(microinstruction, io, flag, decoder);
-		microprogramSequencer->updateImmediate();
+	  microprogramSequencer->updateImmediate();
 
 		rom->setMicroinstruction();
 
@@ -176,13 +171,15 @@ int main(int argc, char const **argv) {
 	printMemory();
 	editMemory();
 	printMemory();
-	return 1;
-	bool verbose = false;
+	bool verbose = true;
 
 	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
 
 		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl;
+		if(i > 30) {
+				break;
+		}
 		if(verbose) {
 			printState();
 		}

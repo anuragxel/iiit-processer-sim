@@ -11,7 +11,6 @@ class IO_RF : public Register {
 		IO_RF() {}
 		~IO_RF() {}
 
-		void processSignalRisingEdge() {}
 
 		void processSignalFallingEdge(Microinstruction *microinstruction, Databus *databus) {
 			if (microinstruction->LIO) {
