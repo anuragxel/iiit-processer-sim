@@ -51,9 +51,9 @@ void printError(std::string error) {
 void printTable() {
 	std::cout << "symbolTable = { " << std::endl;
 	for( auto elem : lookupTable ) {
-		std::cout << "\t" << elem.first << " : " << elem.second << std::endl; 
+		std::cout << "\t" << elem.first << " : " << elem.second << std::endl;
 	}
-	std::cout << "} " << std::endl; 
+	std::cout << "} " << std::endl;
 }
 
 /* A Two pass Assembler for the iiit-processor assembly language */
@@ -125,12 +125,12 @@ int assembleCode(std::string path,std::string outpath) {
 			// building up the lookup table with the labels defined in the code.
 			word = word.erase(word.size() - 1);
 			if( islabelPresent(word) ) {
-				std::string err = "Duplicate Label '" + word + "'. Lines: " + std::to_string(lookupTable[word]) + ", "; 
+				std::string err = "Duplicate Label '" + word + "'. Lines: " + std::to_string(lookupTable[word]) + ", ";
 				printError(err);
 				printTable();
 				return 1;
 			}
-			lookupTable[word] = nextInstructionAddr;
+			lookupTable[word] = nextInstructionAddr - 1 ; //experiment
 		}
 		else {
 		}

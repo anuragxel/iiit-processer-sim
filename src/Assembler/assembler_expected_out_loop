@@ -1,0 +1,57 @@
+Addr ### Mem #### Code
+00   ### 90  #### movi r0 \/
+01   ### 0a  #### 10 \/
+02   ### 70  #### movs r0 \/
+03   ### 03  #### loop: sbi \/
+04   ### 01  #### 01 \/
+05   ### 07  #### cmi \/
+06   ### 00  #### 00 \/
+07   ### e2  #### jmpdnz \/
+08   ### 03  #### loop \/ (This should point to the address where PC should be next)
+09   ### 80  #### movd r0 \/
+0a   ### 01  #### stop \/
+
+Assembly output is awesome!
+
+// First Fetch Decode
+0
+RD  LIR	LIO	IPC	LMS
+
+// movi
+1
+EPC	LMR	IPC
+2
+RD	LRG	RMS w/o flag
+
+// movs
+EPC	LMR	IPC
+3
+RD	LIR	LIO	LMS
+ERG	LAR	RMS w/o flag
+
+// sbi
+EPC	LMR	IPC
+4
+RD LIR LIO	LMS
+EPC	LMR	IPC
+5
+RD	LOR
+EAR	LAR	RMS w/o flag
+
+// cmi
+EPC	LMR	IPC
+6
+RD	LIR	LIO	LMS
+EPC	LMR	IPC
+7
+RD	LOR
+EAR	RMS w/o flag
+
+// jumpdnz
+EPC	LMR	IPC
+8
+RD  LIR	LIO	LMS // TODO: ISSUE HERE
+EPC	LMR	IPC // EPC , LMR , IPC , EFL , End if <FL>’
+EPC	LMR	IPC // RD, LPC , End
+EPC	LMR	IPC // Go to 3 basically
+EPC	LMR	IPC //

@@ -114,7 +114,7 @@ void executeClockCycle() {
 		flag->processSignalRisingEdge();
 
 		// TODO: KNOW WHY??!!
-		memoryAddress->updateImmediate();
+		//memoryAddress->updateImmediate();
 
 		mainMemory->processSignalRisingEdge();
 
@@ -131,7 +131,7 @@ void executeClockCycle() {
 		io->processSignalFallingEdge(microinstruction, databus);
 
 		memoryAddress->processSignalFallingEdge(microinstruction, databus);
-		memoryAddress->updateImmediate();
+		//memoryAddress->updateImmediate();
 
 		mainMemory->processSignalFallingEdge();
 
@@ -172,20 +172,20 @@ int main(int argc, char const **argv) {
 	editMemory();
 	printMemory();
 	bool verbose = true;
-
+	int val;
 	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
 
-		std::cout << std::endl <<"Clock Cycle : " << i <<std::endl;
-		if(i > 30) {
-				break;
-		}
+		std::cout << std::endl << "Clock Cycle : " << i <<std::endl;
 		if(verbose) {
 			printState();
 		}
 		executeClockCycle();
 		std::cout << std::endl;
-
+		std::cin >> val;
+		if(val == 0) {
+				break;
+		}
 	}
 
 	std::cout << "\n\nExecution Over" << std::endl;

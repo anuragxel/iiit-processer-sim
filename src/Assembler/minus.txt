@@ -1,7 +1,7 @@
 movi r1
-03
+41
 movi r2
-02
+24
 movs r1
 sub r2
 movd r3
