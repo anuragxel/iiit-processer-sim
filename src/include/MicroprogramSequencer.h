@@ -13,6 +13,7 @@ class MicroprogramSequencer : public Register {
 			if (!microinstruction->RMS && !microinstruction->LMS)
 				this->increment();
 		}
+
 		void processSignalFallingEdge(Microinstruction *microinstruction, IO_RF *io, Flag* flag, Decoder *decoder) {
 			if (microinstruction->RMS == true && microinstruction->EFL == false){ // @Ghosh : Unconditional reset, if EFL == false;
 				std::cout << "RMS w/o flag\t";

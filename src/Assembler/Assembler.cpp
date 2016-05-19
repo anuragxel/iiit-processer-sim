@@ -130,7 +130,7 @@ int assembleCode(std::string path,std::string outpath) {
 				printTable();
 				return 1;
 			}
-			lookupTable[word] = nextInstructionAddr - 1 ; //experiment
+			lookupTable[word] = nextInstructionAddr;
 		}
 		else {
 		}
