@@ -25,8 +25,10 @@ class MicroprogramSequencer : public Register {
 						this->setContent(RESET_ADDRESS);
 						this->clockPulse(microinstruction);
 				}
-				// I hate this, if it doesn't end, it needs to go the next one.
-				this->increment();
+				else { // Flag is not set, go ahead
+					// I hate this, if it doesn't end, it needs to go the next one.
+					this->increment();
+				}
 			}
 			if (microinstruction->LMS){
 				std::cout << "LMS\t";
