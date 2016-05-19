@@ -44,10 +44,6 @@ class Flag : public Register {
 			return false; //Never goes here.
 		}
 
-		void processSignalRisingEdge() {}
-
-		void processSignalFallingEdge() {}
-
 		bool getU() {
 			return (this->Content & 1) == 1; //Should Always Be 1.
 		}
@@ -84,7 +80,7 @@ class Flag : public Register {
 				this->setNZ();
 			else
 				this->resetNZ();
-	}
+	 }
 
 		bool getNZ() {
 			return ((this->Content >> 2) & 1) == 1;
@@ -183,7 +179,7 @@ class Flag : public Register {
 
 		bool getP() {
 			return ((this->Content >> 7) & 1) == 1;
-		}	
+		}
 
 
 		std::string toString()  {

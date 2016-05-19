@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+#include <bitset>
+
 #include "include/Processor.h"
 
 Accumulator *accumulator;
@@ -63,22 +65,47 @@ void cleanup () {
 	delete stackPointer;
 }
 
+void printRegisters() {
+	std::string top = " PC\tSP\tACC\tOR\tR0\tR1\tR2\tR3\tR4\tR5\tR6\tR7\tR8\tR9\tR10\tR11";
+	std::string reg_string = " " + programCounter->toString() + "\t";
+	reg_string += stackPointer->toString() + "\t";
+	reg_string += accumulator->toString() + "\t";
+	reg_string += operand->toString() + "\t";
+	reg_string += registerArray->toString();
+	std::cout << top << std::endl;
+	std::cout << reg_string << std::endl;
+}
+
+std::string string_maker(int val) {
+		if(val == 0) {
+			return " ";
+		}
+		return std::to_string(val);
+}
+
+void printMisc() {
+	std::string top = " ALU\tDTBS\tDEC\tMEM\tMADD\tIO\tIR\tMS";
+	std::bitset<4> alu_bits(alu->getContent());
+	std::string reg_string = " 0b" + alu_bits.to_string<char, std::string::traits_type, std::string::allocator_type>() + "\t";
+	reg_string += string_maker(databus->getContent()) + "\t";
+	reg_string += string_maker(decoder->getContent()) + "\t";
+	reg_string += string_maker(mainMemory->getContent()) + "\t";
+	reg_string += memoryAddress->toString() + "\t";
+	reg_string += io->toString() + "\t";
+	reg_string += instruction->toString() + "\t";
+	reg_string += microprogramSequencer->toString() + "\t";
+	std::cout << top << std::endl;
+	std::cout << reg_string << std::endl;
+}
+
 void printState() {
-	std::cout <<"ALU  : "<<alu->getContent();
-	std::cout <<"\tACC  : "<<accumulator->getContent();
-	std::cout <<"\tDTBS : "<<databus->getContent();
-	std::cout <<"\tDEC  : " <<decoder->getContent();
-	std::cout <<"\tPC   : "<<programCounter->getContent()<<std::endl;
-
-	std::cout <<"MEM  : "<<mainMemory->getContent();
-	std::cout <<"\tMADD : "<<memoryAddress->getContent();
-	std::cout <<"\tIO   : "<<io->getContent();
-	std::cout <<"\tIR   : "<<instruction->getContent();
-	std::cout <<"\tMS   : "<<microprogramSequencer->getContent() << std::endl;
-
-	std::cout <<flag->toString();
-	std::cout <<registerArray->toString()<<std::endl;
-
+	std::string outline = "________________________________________________________________";
+	std::cout << outline << outline << std::endl;
+	printRegisters();
+	std::cout << outline << outline << std::endl;
+	printMisc();
+	std::cout << outline << outline << std::endl;
+	std::cout << flag->toString();
 	std::cout <<std::endl;
 }
 
@@ -111,32 +138,18 @@ void executeClockCycle() {
 		databus->resetBusy();
 
 		accumulator->processSignalRisingEdge(microinstruction, databus);
-		flag->processSignalRisingEdge();
-
-		// TODO: KNOW WHY??!!
-		//memoryAddress->updateImmediate();
-
 		mainMemory->processSignalRisingEdge();
-
 		operand->processSignalRisingEdge(microinstruction, databus);
-
 		programCounter->processSignalRisingEdge(microinstruction, databus);
 		registerArray->processSignalRisingEdge();
 		stackPointer->processSignalRisingEdge(microinstruction, databus);
 
 		accumulator->processSignalFallingEdge(microinstruction, alu);
-
-		flag->processSignalFallingEdge();
 		instruction->processSignalFallingEdge(microinstruction, databus);
 		io->processSignalFallingEdge(microinstruction, databus);
-
 		memoryAddress->processSignalFallingEdge(microinstruction, databus);
-		//memoryAddress->updateImmediate();
-
 		mainMemory->processSignalFallingEdge();
-
 		operand->processSignalFallingEdge(microinstruction, databus);
-
 		programCounter->processSignalFallingEdge(microinstruction, databus);
 		registerArray->processSignalFallingEdge();
 		stackPointer->processSignalFallingEdge(microinstruction, databus);
@@ -173,15 +186,19 @@ int main(int argc, char const **argv) {
 	printMemory();
 	bool verbose = true;
 	int val;
+	std::string outline = "################################################################";
+
 	// The processor. :P
 	for(int i = 0 ; instruction->getContent() != 0x01 ; i++) {
 
+		std::cout << outline << outline << std::endl;
 		std::cout << std::endl << "Clock Cycle : " << i <<std::endl;
+		executeClockCycle();
+		std::cout << std::endl;
 		if(verbose) {
 			printState();
 		}
-		executeClockCycle();
-		std::cout << std::endl;
+		std::cout << outline << outline << std::endl;
 		std::cin >> val;
 		if(val == 0) {
 				break;

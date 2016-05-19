@@ -21,7 +21,7 @@ class Register
 		}
 		int getContent () {
 			return (int) this->Content & 0xFF;
-		}	
+		}
 		void clockPulse() {
 			this->Content = this->_nextContent;
 		}
@@ -40,6 +40,9 @@ class Register
 			this->_nextContent = (this->_nextContent - 1);
 		}
 		std::string toString() {
+			if(this->Content == 0) {
+				return " ";
+			}
 			return std::to_string(this->Content);
 		}
 };

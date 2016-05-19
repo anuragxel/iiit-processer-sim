@@ -67,12 +67,9 @@ int RegisterArray::getContent() {
 
 std::string RegisterArray::toString() {
 	std::string buff;
-	int j=0;
 	for (auto &i : registerArray) {
-		buff += "r" + std::to_string(j) + " : " + i.toString() + "\t";
-		j++;
-		if(j == 6 || j == 12)
-			buff += '\n';
+		buff +=  i.toString();
+		buff += "\t";
 	}
 	return buff;
 }
