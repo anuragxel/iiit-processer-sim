@@ -22,12 +22,13 @@ class MicroprogramSequencer : public Register {
 			}
 			if (microinstruction->RMS == true && microinstruction->EFL == true){ // @Ghosh : Conditional reset, if flag is enabled;
 				if (  flag->getFlag(io) ) {
-						std::cout << "RMS w/t flag\t";
+						std::cout << "FL SET, RMS\t";
 						this->setContent(RESET_ADDRESS);
-						this->clockPulse(microinstruction);
+						this->increment();
 				}
 				else { // Flag is not set, go ahead
 					// I hate this, if it doesn't end, it needs to go the next one.
+					std::cout << "FL UNSET, No RMS\t";
 					this->increment();
 				}
 			}
