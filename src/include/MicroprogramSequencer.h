@@ -12,7 +12,7 @@ class MicroprogramSequencer : public Register {
 		void clockPulse(Microinstruction *microinstruction) {
 			if (!microinstruction->RMS && !microinstruction->LMS)
 				this->increment();
-		}		
+		}
 		void processSignalFallingEdge(Microinstruction *microinstruction, IO_RF *io, Flag* flag, Decoder *decoder) {
 			if (microinstruction->RMS == true && microinstruction->EFL == false){ // @Ghosh : Unconditional reset, if EFL == false;
 				std::cout << "RMS w/o flag\t";
@@ -25,6 +25,8 @@ class MicroprogramSequencer : public Register {
 						this->setContent(RESET_ADDRESS);
 						this->clockPulse(microinstruction);
 				}
+				// I hate this, if it doesn't end, it needs to go the next one.
+				this->increment();
 			}
 			if (microinstruction->LMS){
 				std::cout << "LMS\t";
